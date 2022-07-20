@@ -6,7 +6,7 @@ A little console timer to calculate fasting zones. I wrote this out of annoyance
 
 ## 🤩 What's this for?
 
-Basically, it has functionality of Timer screen of Zero application. A user can start a new fast, control how it is going on, and stop it.
+In short, the script copies part of the Zero functionality in the Timer section. If you've ever used it, you know what I mean.
 
 ## 🙃 How to use it?
 
@@ -22,7 +22,7 @@ Being executed, the script shows you a menu with three commands available:
 2. Start fast
 3. End fast
 
-The first one shows you how started fast is going on. For instance:
+The first one shows you how active fast is going on. For instance:
 
 ```
 CURRENT FAST:    16 HOURS
@@ -34,4 +34,4 @@ Started:  Wed, 21:15
 Goal:     Thu, 13:15
 ```
 
-What's for the second command (start fast) and the third one (end fast), requires no explanation.
+The second command starts a new fast, and the third one ends the active one.
