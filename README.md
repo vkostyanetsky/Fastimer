@@ -37,3 +37,7 @@ Goal:     Thu, 13:15
 ```
 
 The second command starts a new fast, and the third one ends the active one.
+
+## 😌 Where to see my fasts?
+
+The script stores all the fasts in the `journal.yaml` file. It is human-readable, so you can just open it in your lovely text editor. 
