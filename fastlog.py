@@ -6,7 +6,7 @@ from os.path import join
 from consolemenu import ConsoleMenu, PromptUtils, Screen
 from consolemenu.items import FunctionItem
 from consolemenu.validators.regex import RegexValidator
-from yaml import parser, safe_load, safe_dump
+from yaml import parser, safe_dump, safe_load
 
 
 def main() -> None:
@@ -88,8 +88,8 @@ def display_fast(data: namedtuple, prompt_utils: PromptUtils):
         print(f"Elapsed time:    {elapsed_time}")
         print(f"Remaining:       {remaining_time}")
         print()
-        print(f'Started:  {started}')
-        print(f'Goal:     {goal}')
+        print(f"Started:  {started}")
+        print(f"Goal:     {goal}")
 
     print()
     prompt_utils.enter_to_continue()
