@@ -1,18 +1,20 @@
-# ⏲ ⏱️ ⌚ Fastlog
+# ⏲ ⏰ 🕰️ Fastlog
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A little console timer to calculate fasting zones. I wrote this out of annoyance due to the fact that the [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics.
+A little console timer to calculate fasting zones. I wrote this out of annoyance due to the fact that [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. Geez-Louise! It's not that hard, after all, so I just did it on my own.
 
-## 🤩 How to start it?
+## 🤩 What's this for?
+
+Basically, it has functionality of Timer screen of Zero application. A user can start a new fast, control how it is going on, and stop it.
+
+## 🙃 How to use it?
 
 There is only one script, so the answer is rather obvious:
 
 ```commandline
 py fastlog.py
 ```
-
-## 🙃 How does it work? 
 
 Being executed, the script shows you a menu with three commands available: 
 
