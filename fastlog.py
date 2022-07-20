@@ -1,7 +1,7 @@
 import datetime
 import sys
 from collections import namedtuple
-from os.path import join
+from os.path import isfile
 
 from consolemenu import ConsoleMenu, PromptUtils, Screen
 from consolemenu.items import FunctionItem
@@ -10,9 +10,7 @@ from yaml import parser, safe_dump, safe_load
 
 
 def main() -> None:
-    data = namedtuple("data", "path journal")
-
-    data.path = sys.argv[1] if len(sys.argv) > 1 else ""
+    data = namedtuple("data", "journal")
 
     read_journal(data)
     display_menu(data)
@@ -23,31 +21,28 @@ def get_journal_file_name() -> str:
 
 
 def read_journal(data: namedtuple):
-    yaml_file_path = join(data.path, get_journal_file_name())
 
-    try:
+    yaml_file_name = get_journal_file_name()
 
-        with open(yaml_file_path, encoding="utf-8-sig") as yaml_file:
-            data.journal = safe_load(yaml_file)
+    data.journal = []
 
-            if data.journal is None:
-                data.journal = []
+    if isfile(yaml_file_name):
 
-    except FileNotFoundError:
+        try:
 
-        print(f"File is not found: {yaml_file_path}")
-        sys.exit(1)
+            with open(yaml_file_name, encoding="utf-8-sig") as yaml_file:
+                data.journal = safe_load(yaml_file)
 
-    except parser.ParserError:
+        except parser.ParserError:
 
-        print(f"Unable to parse: {yaml_file_path}")
-        sys.exit(1)
+            print(f"Unable to parse: {yaml_file_name}")
+            sys.exit(1)
 
 
 def write_journal(data: namedtuple):
-    yaml_file_path = join(data.path, get_journal_file_name())
+    yaml_file_name = get_journal_file_name()
 
-    with open(yaml_file_path, encoding="utf-8-sig", mode="w") as yaml_file:
+    with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:
         safe_dump(data.journal, yaml_file)
 
 
@@ -131,7 +126,7 @@ def end_fast(data: namedtuple, prompt_utils: PromptUtils):
 
     if fast is not None:
 
-        if prompt_utils.prompt_for_yes_or_no("Do you want to end your ongoing fast? "):
+        if prompt_utils.prompt_for_yes_or_no("Do you want to end your ongoing fast?"):
 
             data.journal[-1]["stopped"] = datetime.datetime.now()
             write_journal(data)
