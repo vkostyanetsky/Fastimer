@@ -40,4 +40,4 @@ The second command starts a new fast, and the third one ends the active one.
 
 ## 😌 Where to see my fasts?
 
-The script stores all the fasts in the `journal.yaml` file. It is human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in the `journal.yaml` file in the directory where it is run. The file is quite human-readable, so you can just open it in your lovely text editor.
