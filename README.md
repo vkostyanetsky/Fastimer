@@ -2,11 +2,11 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A little console timer to calculate fasting zones. I wrote this script in a fit of overwhelming annoyance that the Zero once again refused to show me the fasting statistics.
+A little console timer to calculate fasting zones. I wrote this out of annoyance due to the fact that the [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics.
 
 ## 🤩 How to start it?
 
-There is only script, so the answer is rather obvious:
+There is only one script, so the answer is rather obvious:
 
 ```commandline
 py fastlog.py
