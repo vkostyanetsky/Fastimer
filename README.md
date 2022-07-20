@@ -6,7 +6,7 @@ A little console timer to calculate fasting zones. I wrote this out of annoyance
 
 It's not that hard, after all, so I just did it on my own.
 
-## 🤩 What's this for?
+## 😮 What's this for?
 
 The script copies part of the Zero functionality in the Timer section. If you've ever used it, you know what I mean.
 
