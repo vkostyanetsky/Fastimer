@@ -1,16 +1,16 @@
-# ⏲ Fastlog
+# ⏲ ⏱️ ⌚ Fastlog
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A little console timer to calculate fasting zones.
 
-## How to use it?
+## 🤩 How to use it?
 
 ```commandline
 py fastlog.py
 ```
 
-## How does it work? 
+## 🙃 How does it work? 
 
 It has three simple commands: 
 
