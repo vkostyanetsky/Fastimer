@@ -2,7 +2,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A little console timer to calculate fasting zones. I wrote this out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. I tap on the calendar, it does nothing. Geez-Louise!
+A little console timer to calculate fasting zones. I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. I tap on the calendar, it does nothing. Geez-Louise!
 
 It's not that hard, after all, so I just did it on my own.
 
