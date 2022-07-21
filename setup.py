@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-from fastlog.version import __version__
+from fastimer.version import __version__
 
 
 setup(
-    name="fastlog",
+    name="fastimer",
     version=__version__,
     description="A simple CLI timer to calculate fasting zones.",
     long_description=open('README.md', encoding="utf-8-sig").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/vkostyanetsky/Fastlog",
+    url="https://github.com/vkostyanetsky/Fastimer",
     license="MIT",
     python_requires=">=3.7",
-    packages=["fastlog"],
+    packages=["fastimer"],
     install_requires=["ConsoleMenu~=1.0.1", "PyYAML~=6.0"],
     entry_points={"console_scripts": [
-        "fastlog=fastlog.fastlog:main"
+        "fastimer=fastimer.fastimer:main"
     ]},
     author="Vlad Kostyanetsky",
     author_email="vlad@kostyanetsky.me",

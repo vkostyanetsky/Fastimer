@@ -13,7 +13,7 @@ from yaml import parser, safe_dump, safe_load
 from .fast import display_fast
 
 
-def main() -> None:
+def show() -> None:
     data = namedtuple("data", "journal")
 
     read_journal(data)
