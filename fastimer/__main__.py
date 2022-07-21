@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .menu import show
+from fastimer.fastimer import main
 
 if __name__ == "__main__":
-    show()
+    main()
