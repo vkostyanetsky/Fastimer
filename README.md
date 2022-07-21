@@ -2,27 +2,29 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A little console timer to calculate fasting zones. I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. I tap on the calendar, it does nothing. Geez-Louise!
+It is a little CLI timer to track fasts, designed specifically to help you monitor your fasting intervals, so you can optimize your results.  
+
+## 😮 What's this for? There are already a lot of apps like this.
+
+Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. Like, I tap on the calendar, but it does nothing. Geez-Louise!
 
 It's not that hard, after all, so I just did it on my own.
 
-## 😮 What's this for?
+## 🙃 How to install it?
 
-The script copies part of the Zero functionality in the Timer section. If you've ever used it, you know what I mean.
+`pip install fastimer`
 
-## 🙃 How to use it?
-
-There is only one script, so the answer is rather obvious:
+## 🙂 How to use it?
 
 ```commandline
-py fastlog.py
+fastimer
 ```
 
-Being executed, the script shows you a menu with three commands available: 
+The script shows you a menu with three commands available: 
 
-1. Display fast
-2. Start fast
-3. End fast
+1. Display Fast
+2. Start Fast
+3. End Fast
 
 The first one shows you how active fast is going on. For instance:
 
@@ -38,6 +40,6 @@ Goal:     Thu, 13:15
 
 The second command starts a new fast, and the third one ends the active one.
 
-## 😌 Where to see my fasts?
+## 😌 Where I can see or edit my fasts?
 
-The script stores all the fasts in the `journal.yaml` file in the directory where it is run. The file is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in `journal.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
