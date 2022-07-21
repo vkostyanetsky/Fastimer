@@ -44,7 +44,7 @@ The second command starts a new fast, and the third one ends the active one.
 
 The script stores all the fasts in `journal.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
 
-For instance, the completed fast looks like this in the journal:
+For instance, the completed fast in the journal looks like this:
 
 ```yaml
 - length: 16
