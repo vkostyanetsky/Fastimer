@@ -12,7 +12,9 @@ It's not that hard, after all, so I just did it on my own.
 
 ## 🙃 How to install it?
 
-`pip install fastimer`
+```commandline
+pip install fastimer
+```
 
 ## 🙂 How to use it?
 
