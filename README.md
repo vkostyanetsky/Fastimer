@@ -2,11 +2,11 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-It is a little CLI timer to track fasts, designed specifically to help you monitor your fasting intervals, so you can optimize your results.  
+It is a little CLI timer to track fasts, designed specifically to help you monitor your fasting intervals.  
 
  ## 😮 What's this for? There are a lot of apps like this!
 
-Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics it accumulates. Like, I tap on the calendar, but it does nothing. Geez-Louise!
+Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics for a date. Like, I tap on the calendar, but it does nothing. Geez-Louise!
 
 It's not that hard, after all, so I just did it on my own.
 
@@ -55,3 +55,5 @@ For instance, the completed fast in the journal looks like this:
 ```
 
 The first parameter is the length of the fast, the second is the start date of this, and the third is the completion date.
+
+For an active fast, the last parameter is equal to `null`.
