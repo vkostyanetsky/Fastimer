@@ -6,9 +6,7 @@ It is a little CLI timer to track fasts, designed specifically to help you monit
 
  ## 😮 What's this for? There are a lot of apps like this!
 
-Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics for a date. Like, I tap on the calendar, but it does nothing. Geez-Louise!
-
-It's not that hard, after all, so I just did it on my own.
+Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics for a date. Like, I tap on the calendar, but it does nothing. Geez-Louise! What is wrong this time?
 
 ## 🙃 How to install it?
 
