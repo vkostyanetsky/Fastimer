@@ -1,12 +1,12 @@
 # ⏲ ⏰ 🕰️ Fastimer
 
-[![PyPi](https://img.shields.io/pypi/v/fastimer)](https://pypi.org/project/fastimer/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![PyPi](https://img.shields.io/pypi/v/fastimer)](https://pypi.org/project/fastimer/)
 
 It is a little CLI timer to track fasts, designed specifically to help you monitor your fasting intervals.  
 
 ## 😮 What's this for? There are a lot of apps like this!
 
-Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics for a date. I was tapping on the calendar, but the app was doing nothing 🤷
+Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me the statistics for a date. I was tapping on the calendar, but the app was doing nothing ¯\\\_(ツ)\_/¯
 
 Have no idea what was wrong with it. Anyway, the problem is not that hard, so I just wrote my own timer.
 
