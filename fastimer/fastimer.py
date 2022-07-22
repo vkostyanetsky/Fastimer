@@ -85,6 +85,7 @@ def start_new_fast(data: namedtuple, prompt_utils: PromptUtils):
     if fast is not None:
 
         print("Fast is already on.")
+        print()
         prompt_utils.enter_to_continue()
 
     else:
