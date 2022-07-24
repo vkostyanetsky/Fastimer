@@ -29,5 +29,9 @@ def print_statistics(data: namedtuple) -> None:
 
     avg_fast_length = (total_hours * 60 + total_minutes) / len(data.journal) // 60
 
-    print("Total Fasting Time:  {hours}h {minutes}m".format(hours=int(total_hours), minutes=int(total_minutes)))
+    print(
+        "Total Fasting Time:  {hours}h {minutes}m".format(
+            hours=int(total_hours), minutes=int(total_minutes)
+        )
+    )
     print("Average Fast Length: {hours}h".format(hours=int(avg_fast_length)))
