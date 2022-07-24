@@ -18,6 +18,8 @@ pip install fastimer
 
 ## 🙂 How to use it?
 
+Simply run the script in the directory where you want to store data:
+
 ```commandline
 fastimer
 ```
