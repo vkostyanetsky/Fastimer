@@ -66,8 +66,12 @@ def display_menu(data: namedtuple):
 
     menu.append_item(FunctionItem("Start New Fast", start_new_fast, items_params))
     menu.append_item(FunctionItem("End Active Fast", end_active_fast, items_params))
-    menu.append_item(FunctionItem("Display Active Fast", display_active_fast, items_params))
-    menu.append_item(FunctionItem("Display Statistical Data", display_statistical_data, items_params))
+    menu.append_item(
+        FunctionItem("Display Active Fast", display_active_fast, items_params)
+    )
+    menu.append_item(
+        FunctionItem("Display Statistical Data", display_statistical_data, items_params)
+    )
 
     menu.show()
 
