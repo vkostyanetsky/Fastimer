@@ -11,9 +11,11 @@ from consolemenu.validators.regex import RegexValidator
 from yaml import parser, safe_dump, safe_load
 
 from .fast import display_fast
+from .statistics import print_statistics
 
 
 def main() -> None:
+
     data = namedtuple("data", "journal")
 
     read_journal(data)
@@ -21,6 +23,7 @@ def main() -> None:
 
 
 def get_journal_file_name() -> str:
+
     return "journal.yaml"
 
 
@@ -44,6 +47,7 @@ def read_journal(data: namedtuple):
 
 
 def write_journal(data: namedtuple):
+
     yaml_file_name = get_journal_file_name()
 
     with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:
@@ -60,9 +64,10 @@ def display_menu(data: namedtuple):
 
     menu = ConsoleMenu("FASTING LOG")
 
-    menu.append_item(FunctionItem("Display Fast", display_active_fast, items_params))
-    menu.append_item(FunctionItem("Start Fast", start_new_fast, items_params))
-    menu.append_item(FunctionItem("End Fast", end_active_fast, items_params))
+    menu.append_item(FunctionItem("Start New Fast", start_new_fast, items_params))
+    menu.append_item(FunctionItem("End Active Fast", end_active_fast, items_params))
+    menu.append_item(FunctionItem("Display Active Fast", display_active_fast, items_params))
+    menu.append_item(FunctionItem("Display Statistical Data", display_statistical_data, items_params))
 
     menu.show()
 
@@ -127,6 +132,12 @@ def end_active_fast(data: namedtuple, prompt_utils: PromptUtils):
         print()
 
         prompt_utils.enter_to_continue()
+
+
+def display_statistical_data(data: namedtuple, prompt_utils: PromptUtils) -> None:
+    print_statistics(data)
+
+    prompt_utils.enter_to_continue()
 
 
 def get_current_fast(data: namedtuple):

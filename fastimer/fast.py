@@ -1,38 +1,42 @@
 #!/usr/bin/env python3
-from collections import namedtuple
+
 import datetime
+
+from .utils import get_time_difference
 
 
 def display_fast(fast: dict) -> None:
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
 
     elapsed_time = __get_elapsed_time(fast)
-    remaining_time = __get_time(datetime.datetime.today(), goal)
+    time_now = datetime.datetime.now()
+
+    if time_now < goal:
+        time = __get_time(time_now, goal)
+        time = f"Remaining:       {time}"
+    else:
+        time = __get_time(goal, time_now)
+        time = f"Excess time:     {time}"
 
     started = fast["started"].strftime("%a, %H:%M")
 
     goal = goal.strftime("%a, %H:%M")
 
-    print(f'CURRENT FAST:    {fast["length"]} HOURS')
+    print(f"Started:  {started}")
+    print(f'Goal:     {goal} ({fast["length"]} hours)')
     print()
     print(f"Elapsed time:    {elapsed_time}")
-    print(f"Remaining:       {remaining_time}")
-    print()
-    print(f"Started:  {started}")
-    print(f"Goal:     {goal}")
+    print(time)
 
 
 def __get_time(start_date: datetime, end_date: datetime) -> str:
-    seconds = (end_date - start_date).total_seconds()
-    hours = int(seconds / 60 / 60)
-    minutes = int((seconds - hours * 60 * 60) / 60)
-    seconds = int(seconds - hours * 60 * 60 - minutes * 60)
+
+    hours, minutes = get_time_difference(start_date, end_date)
 
     hours = str(hours).zfill(2)
     minutes = str(minutes).zfill(2)
-    seconds = str(seconds).zfill(2)
 
-    return f"{hours}:{minutes}:{seconds}"
+    return f"{hours}:{minutes}"
 
 
 def __get_elapsed_time(fast: dict) -> str:
