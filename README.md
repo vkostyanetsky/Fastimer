@@ -24,13 +24,16 @@ Simply run the script in the directory where you want to store data:
 fastimer
 ```
 
-The script shows you a menu with three commands available: 
+The script shows you a menu with four commands available: 
 
-1. Display Fast
-2. Start Fast
-3. End Fast
+1. Start New Fast
+2. End Active Fast
+3. Display Active Fast
+4. Display Statistical Data  
 
-The first one shows you how active fast is going on. For instance:
+The first command starts a new fast, while the second command ends the active one. 
+
+The `Display Active Fast` command shows you how active fast is going on. For instance:
 
 ```
 Started:        Mon, 20:19
@@ -42,7 +45,7 @@ Remaining:      13:44
 | #########------------------------------- | 23.7%
 ```
 
-The second command starts a new fast, and the third one ends the active one.
+The `Display Statistical Data` shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
 
 ## 😌 Where I can see or edit my fasts?
 
