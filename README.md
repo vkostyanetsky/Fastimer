@@ -31,7 +31,7 @@ The script shows you a menu with four commands available:
 3. Display Active Fast
 4. Display Statistical Data  
 
-The first command starts a new fast, while the second command ends the active one. 
+Something is obvious: so, the first command starts a new fast, while the second command ends the active one. 
 
 The `Display Active Fast` command shows you how active fast is going on. For instance:
 
@@ -45,7 +45,7 @@ Remaining:      13:44
 | #########------------------------------- | 23.7%
 ```
 
-The `Display Statistical Data` shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
+The `Display Statistical Data` command shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
 
 ## 😌 Where I can see or edit my fasts?
 
