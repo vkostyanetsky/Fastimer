@@ -7,8 +7,10 @@ from os.path import isfile
 
 # noinspection PyPackageRequirements
 from consolemenu import ConsoleMenu, PromptUtils, Screen
+
 # noinspection PyPackageRequirements
 from consolemenu.items import FunctionItem
+
 # noinspection PyPackageRequirements
 from consolemenu.validators.regex import RegexValidator
 from yaml import parser, safe_dump, safe_load
@@ -114,7 +116,6 @@ def start_new_fast(data: namedtuple, prompt_utils: PromptUtils):
                 fast = {
                     "length": length,
                     "started": datetime.datetime.now(),
-                    "stopped": None,
                 }
 
                 data.journal.append(fast)
@@ -142,14 +143,16 @@ def end_active_fast(data: namedtuple, prompt_utils: PromptUtils):
 
 
 def display_statistical_data(data: namedtuple, prompt_utils: PromptUtils) -> None:
+
     print_statistics(data)
 
     prompt_utils.enter_to_continue()
 
 
-def get_current_fast(data: namedtuple):
+def get_current_fast(data: namedtuple) -> dict | None:
+
     return (
         data.journal[-1]
-        if len(data.journal) > 0 and data.journal[-1]["stopped"] is None
+        if len(data.journal) > 0 and data.journal[-1].get("stopped") is None
         else None
     )

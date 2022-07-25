@@ -58,4 +58,4 @@ For instance, the completed fast in the journal looks like this:
 
 The first parameter is the length of the fast, the second is the start date of this, and the third is the completion date.
 
-For an active fast, the last parameter is equal to `null`.
+For an active fast, the last parameter is omitted.

@@ -43,6 +43,7 @@ def __print_with_alignment(title: str, value: str) -> None:
 
     print(string)
 
+
 def __get_time(start_date: datetime, end_date: datetime) -> str:
 
     hours, minutes = get_time_difference(start_date, end_date)
@@ -55,6 +56,6 @@ def __get_time(start_date: datetime, end_date: datetime) -> str:
 
 def __get_elapsed_time(fast: dict) -> str:
     date1 = fast["started"]
-    date2 = datetime.datetime.today() if fast["stopped"] is None else fast["stopped"]
+    date2 = datetime.datetime.today() if fast.get("stopped") is None else fast.get("stopped")
 
     return __get_time(date1, date2)
