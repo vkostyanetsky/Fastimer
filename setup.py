@@ -14,7 +14,7 @@ setup(
     license="MIT",
     python_requires=">=3.7",
     packages=["fastimer"],
-    install_requires=["console-menu~=0.7.1", "PyYAML~=6.0"],
+    install_requires=["console_menu~=0.7.1", "PyYAML~=6.0"],
     entry_points={"console_scripts": ["fastimer=fastimer.fastimer:main"]},
     author="Vlad Kostyanetsky",
     author_email="vlad@kostyanetsky.me",

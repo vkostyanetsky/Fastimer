@@ -5,8 +5,11 @@ import sys
 from collections import namedtuple
 from os.path import isfile
 
+# noinspection PyPackageRequirements
 from consolemenu import ConsoleMenu, PromptUtils, Screen
+# noinspection PyPackageRequirements
 from consolemenu.items import FunctionItem
+# noinspection PyPackageRequirements
 from consolemenu.validators.regex import RegexValidator
 from yaml import parser, safe_dump, safe_load
 
