@@ -12,7 +12,7 @@ def print_statistics(data: namedtuple) -> None:
     for fast in data.journal:
         started = fast["started"]
         stopped = (
-            fast["stopped"] if fast["stopped"] is not None else datetime.datetime.now()
+            fast.get("stopped") if fast.get("stopped") is not None else datetime.datetime.now()
         )
 
         hours, minutes = get_time_difference(started, stopped)
