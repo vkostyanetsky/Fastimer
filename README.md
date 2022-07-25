@@ -46,7 +46,7 @@ The second command starts a new fast, and the third one ends the active one.
 
 ## 😌 Where I can see or edit my fasts?
 
-The script stores all the fasts in `journal.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in `fasts.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
 
 For instance, the completed fast in the journal looks like this:
 
