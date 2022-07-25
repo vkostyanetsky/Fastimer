@@ -36,8 +36,10 @@ The first one shows you how active fast is going on. For instance:
 Started:        Mon, 20:19
 Goal:           Tue, 14:19 (18 hours)
 
-Elapsed time:   02:47
-Remaining:      15:12
+Elapsed time:   04:15
+Remaining:      13:44
+
+| #########------------------------------- | 23.7%
 ```
 
 The second command starts a new fast, and the third one ends the active one.

@@ -20,21 +20,27 @@ def display_fast(fast: dict) -> None:
 
     started = fast["started"].strftime("%a, %H:%M")
 
-    goal = goal.strftime("%a, %H:%M")
+    goal_as_string = goal.strftime("%a, %H:%M")
 
     __print_with_alignment("Started", started)
-    __print_with_alignment("Goal", f'{goal} ({fast["length"]} hours)')
+    __print_with_alignment("Goal", f'{goal_as_string} ({fast["length"]} hours)')
 
     print()
 
     __print_with_alignment("Elapsed time", elapsed_time)
-    __print_with_alignment("Remaining", remaining_time)
+
+    if excess_time is None:
+        __print_with_alignment("Remaining", remaining_time)
+    else:
+        __print_with_alignment("Excess time", excess_time)
+
+    print()
+
+    __print_progress_bar(fast, goal)
 
     if excess_time is not None:
         print()
         print("You have completed your fast!")
-        print()
-        __print_with_alignment("Excess time", excess_time)
 
 
 def __print_with_alignment(title: str, value: str) -> None:
@@ -42,6 +48,25 @@ def __print_with_alignment(title: str, value: str) -> None:
     string = "{} {}".format(title, value)
 
     print(string)
+
+
+def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
+
+    seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
+    seconds_all = (goal-fast["started"]).total_seconds()
+
+    percent = round(seconds_now / seconds_all * 100, 1)
+
+    done_len = int(percent // 2.5)
+
+    if done_len > 40:
+        done_len = 40
+
+    left_len = int(40 - done_len)
+
+    bar = "| {done}{left} | {tail}%".format(done="#" * done_len, left="-" * left_len, tail=str(percent))
+
+    print(bar)
 
 
 def __get_time(start_date: datetime, end_date: datetime) -> str:
