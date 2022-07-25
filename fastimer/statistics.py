@@ -35,3 +35,5 @@ def print_statistics(data: namedtuple) -> None:
         )
     )
     print("Average Fast Length: {hours}h".format(hours=int(avg_fast_length)))
+
+    print()
