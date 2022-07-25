@@ -24,7 +24,7 @@ def main() -> None:
 
 def get_journal_file_name() -> str:
 
-    return "journal.yaml"
+    return "fasts.yaml"
 
 
 def read_journal(data: namedtuple):
