@@ -33,13 +33,11 @@ The script shows you a menu with three commands available:
 The first one shows you how active fast is going on. For instance:
 
 ```
-CURRENT FAST:    16 HOURS
+Started:        Mon, 20:19
+Goal:           Tue, 14:19 (18 hours)
 
-Elapsed time:    00:38:27
-Remaining:       15:21:33
-        
-Started:  Wed, 21:15
-Goal:     Thu, 13:15
+Elapsed time:   02:47
+Remaining:      15:12
 ```
 
 The second command starts a new fast, and the third one ends the active one.
