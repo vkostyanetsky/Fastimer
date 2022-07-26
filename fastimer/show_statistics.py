@@ -13,22 +13,53 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
 
     fasts = read_fasts()
 
-    total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
-
-    completed_fasts = __get_completed_fasts(fasts)
-    total_fasting_time = "{hours}h {minutes}m".format(
-        hours=int(total_hours), minutes=int(total_minutes)
-    )
-    average_fast_length = __get_average_fast_length(fasts, total_hours, total_minutes)
-
-    offset = 22
-
-    print_with_alignment("Completed Fasts", str(completed_fasts), offset)
-    print_with_alignment("Total Fasting Time", total_fasting_time, offset)
-    print_with_alignment("Average Fast Length", average_fast_length, offset)
+    __print_completed_fasts(fasts)
+    __print_total_fasting_time(fasts)
+    __print_average_fast_length(fasts)
 
     print()
     prompt_utils.enter_to_continue()
+
+
+def __print_completed_fasts(fasts: list) -> None:
+
+    value = __get_completed_fasts(fasts)
+    value = str(value)
+
+    __print_with_alignment("Completed Fasts", value)
+
+
+def __print_total_fasting_time(fasts: list) -> None:
+
+    total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
+
+    value = "{hours}h {minutes}m".format(
+        hours=int(total_hours), minutes=int(total_minutes)
+    )
+
+    __print_with_alignment("Total Fasting Time", value)
+
+
+def __print_average_fast_length(fasts: list) -> None:
+
+    hours_total, minutes_total = __get_total_hours_and_minutes(fasts)
+
+    minutes_per_hour = 60
+    completed_fasts = __get_completed_fasts(fasts)
+
+
+    avg_fast_length = (
+        (hours_total * 60 + minutes_total) / completed_fasts // minutes_per_hour
+    )
+
+    value = "{hours}h".format(hours=int(avg_fast_length))
+
+    __print_with_alignment("Average Fast Length", value)
+
+
+def __print_with_alignment(title: str, value: str):
+
+    print_with_alignment(title, value, 22)
 
 
 def __get_completed_fasts(fasts: list) -> int:
@@ -64,15 +95,3 @@ def __get_total_hours_and_minutes(fasts: list) -> tuple:
         total_hours += hours
 
     return total_hours, total_minutes
-
-
-def __get_average_fast_length(fasts: list, hours_total: int, minutes_total: int) -> str:
-
-    fasts_total = len(fasts)
-    minutes_per_hour = 60
-
-    avg_fast_length = (
-        (hours_total * 60 + minutes_total) / fasts_total // minutes_per_hour
-    )
-
-    return "{hours}h".format(hours=int(avg_fast_length))
