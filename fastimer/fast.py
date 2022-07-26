@@ -6,6 +6,10 @@ from .utils import get_time_difference
 
 
 def display_fast(fast: dict) -> None:
+
+    print("ACTIVE FAST")
+    print()
+
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
 
     elapsed_time = __get_elapsed_time(fast)
@@ -13,10 +17,10 @@ def display_fast(fast: dict) -> None:
 
     if time_now < goal:
         remaining_time = __get_time(time_now, goal)
-        excess_time = None
+        extra_time = None
     else:
         remaining_time = "00:00"
-        excess_time = __get_time(goal, time_now)
+        extra_time = __get_time(goal, time_now)
 
     started = fast["started"].strftime("%a, %H:%M")
 
@@ -29,18 +33,18 @@ def display_fast(fast: dict) -> None:
 
     __print_with_alignment("Elapsed time", elapsed_time)
 
-    if excess_time is None:
+    if extra_time is None:
         __print_with_alignment("Remaining", remaining_time)
     else:
-        __print_with_alignment("Excess time", excess_time)
+        __print_with_alignment("Extra time", extra_time)
 
     print()
 
     __print_progress_bar(fast, goal)
 
-    if excess_time is not None:
+    if extra_time is not None:
         print()
-        print("You have completed your fast!")
+        print("Well done! You have completed your goal!")
 
 
 def __print_with_alignment(title: str, value: str) -> None:
