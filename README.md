@@ -36,13 +36,23 @@ Something is obvious: so, the first command starts a new fast, while the second 
 The `Display Active Fast` command shows you how active fast is going on. For instance:
 
 ```
+ACTIVE FAST
+
 Started:        Mon, 20:19
 Goal:           Tue, 14:19 (18 hours)
 
-Elapsed time:   04:15
-Remaining:      13:44
+Fasting zones:
 
-| #########------------------------------- | 23.7%
+- Anabolic:     from Mon, 20:19
+- Catabolic:    from Tue, 00:19 <-- you are here
+- Fat burning:  from Tue, 12:19
+- Ketosis:      from Tue, 20:19
+- Deep ketosis: from Thu, 20:19
+
+Elapsed time:   13:38
+Remaining:      04:21
+
+| ##############################---------- | 75.8%
 ```
 
 The `Display Statistical Data` command shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
