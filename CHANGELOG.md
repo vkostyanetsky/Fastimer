@@ -4,7 +4,9 @@
 
 ### Added
 
-* A new `Display Statistical Data` menu option. Shows total fasting hours & the average fast length.
+* A new `Display Statistical Data` menu option. Shows the number of fasts, total fasting hours & the average fast length.
+* A progress bar to show how much of fast is done (see the `Display Active Fast` command).
+* Fasting zones calculation (see the `Display Active Fast` command). 
 
 ### Fixed
 
