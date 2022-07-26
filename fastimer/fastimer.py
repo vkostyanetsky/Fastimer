@@ -13,9 +13,6 @@ from .stop_fast import stop_fast
 
 
 def main() -> None:
-    """
-    Builds and then displays main menu of the application.
-    """
 
     prompt = PromptUtils(Screen())
     params = [prompt]
