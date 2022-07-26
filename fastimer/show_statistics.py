@@ -6,7 +6,7 @@ import datetime
 from consolemenu import PromptUtils
 
 from .fasts_file import read_fasts
-from .utils import get_time_difference, print_with_alignment
+from .utils import get_active_fast, get_time_difference, print_with_alignment
 
 
 def show_statistics(prompt_utils: PromptUtils) -> None:
@@ -15,7 +15,7 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
 
     total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
 
-    completed_fasts = str(len(fasts))
+    completed_fasts = __get_completed_fasts(fasts)
     total_fasting_time = "{hours}h {minutes}m".format(
         hours=int(total_hours), minutes=int(total_minutes)
     )
@@ -23,12 +23,19 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
 
     offset = 22
 
-    print_with_alignment("Completed Fasts", completed_fasts, offset)
+    print_with_alignment("Completed Fasts", str(completed_fasts), offset)
     print_with_alignment("Total Fasting Time", total_fasting_time, offset)
     print_with_alignment("Average Fast Length", average_fast_length, offset)
 
     print()
     prompt_utils.enter_to_continue()
+
+
+def __get_completed_fasts(fasts: list) -> int:
+
+    completed_fasts = len(fasts)
+
+    return completed_fasts if get_active_fast(fasts) is None else completed_fasts - 1
 
 
 def __get_total_hours_and_minutes(fasts: list) -> tuple:
