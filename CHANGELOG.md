@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.0] - 2022-07-26
 
 ### Added
 
-* A new `Display Statistical Data` menu option. Shows the number of fasts, total fasting hours & the average fast length.
+* A new `Display Fasting Statistics` menu option. Shows the number of fasts, total fasting hours, achievements, and other accumulated information.
 * A progress bar to show how much of fast is done (see the `Display Active Fast` command).
 * Fasting zones calculation (see the `Display Active Fast` command). 
 
