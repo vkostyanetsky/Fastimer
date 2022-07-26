@@ -2,10 +2,28 @@
 
 import datetime
 
-from .utils import get_time_difference, __print_with_alignment
+# noinspection PyPackageRequirements
+from consolemenu import PromptUtils
+
+from .fasts_file import read_fasts
+from .utils import get_active_fast, get_time_difference, print_with_alignment
 
 
-def display_fast(fast: dict) -> None:
+def show_fast(prompt: PromptUtils) -> None:
+
+    fasts = read_fasts()
+    fast = get_active_fast(fasts)
+
+    if fast is None:
+        print("No current fast to display.")
+    else:
+        __print_fast(fast)
+
+    print()
+    prompt.enter_to_continue()
+
+
+def __print_fast(fast: dict) -> None:
 
     print("ACTIVE FAST")
     print()
@@ -26,8 +44,8 @@ def display_fast(fast: dict) -> None:
 
     goal_as_string = goal.strftime("%a, %H:%M")
 
-    __print_with_alignment("Started", started)
-    __print_with_alignment("Goal", f'{goal_as_string} ({fast["length"]} hours)')
+    print_with_alignment("Started", started)
+    print_with_alignment("Goal", f'{goal_as_string} ({fast["length"]} hours)')
 
     print()
 
@@ -35,12 +53,12 @@ def display_fast(fast: dict) -> None:
 
     print()
 
-    __print_with_alignment("Elapsed time", elapsed_time)
+    print_with_alignment("Elapsed time", elapsed_time)
 
     if extra_time is None:
-        __print_with_alignment("Remaining", remaining_time)
+        print_with_alignment("Remaining", remaining_time)
     else:
-        __print_with_alignment("Extra time", extra_time)
+        print_with_alignment("Extra time", extra_time)
 
     print()
 
@@ -84,19 +102,21 @@ def __print_fasting_zones(fast: dict) -> None:
 
     deep_ketosis_zone_from = deep_ketosis_zone.strftime(fmt)
     deep_ketosis_zone_note = note if deep_ketosis_zone <= now else ""
-    deep_ketosis_zone_info = "{}{}".format(deep_ketosis_zone_from, deep_ketosis_zone_note)
+    deep_ketosis_zone_info = "{}{}".format(
+        deep_ketosis_zone_from, deep_ketosis_zone_note
+    )
 
-    __print_with_alignment("- Anabolic", anabolic_zone_info)
-    __print_with_alignment("- Catabolic", catabolic_zone_info)
-    __print_with_alignment("- Fat burning", fat_burning_zone_info)
-    __print_with_alignment("- Ketosis", ketosis_zone_info)
-    __print_with_alignment("- Deep ketosis", deep_ketosis_zone_info)
+    print_with_alignment("- Anabolic", anabolic_zone_info)
+    print_with_alignment("- Catabolic", catabolic_zone_info)
+    print_with_alignment("- Fat burning", fat_burning_zone_info)
+    print_with_alignment("- Ketosis", ketosis_zone_info)
+    print_with_alignment("- Deep ketosis", deep_ketosis_zone_info)
 
 
 def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
 
     seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
-    seconds_all = (goal-fast["started"]).total_seconds()
+    seconds_all = (goal - fast["started"]).total_seconds()
 
     percent = round(seconds_now / seconds_all * 100, 1)
 
@@ -107,7 +127,9 @@ def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
 
     left_len = int(40 - done_len)
 
-    bar = "| {done}{left} | {tail}%".format(done="#" * done_len, left="-" * left_len, tail=str(percent))
+    bar = "| {done}{left} | {tail}%".format(
+        done="#" * done_len, left="-" * left_len, tail=str(percent)
+    )
 
     print(bar)
 
@@ -123,7 +145,12 @@ def __get_time(start_date: datetime, end_date: datetime) -> str:
 
 
 def __get_elapsed_time(fast: dict) -> str:
+
     date1 = fast["started"]
-    date2 = datetime.datetime.today() if fast.get("stopped") is None else fast.get("stopped")
+    date2 = (
+        datetime.datetime.today()
+        if fast.get("stopped") is None
+        else fast.get("stopped")
+    )
 
     return __get_time(date1, date2)

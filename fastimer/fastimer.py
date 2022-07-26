@@ -1,158 +1,32 @@
 #!/usr/bin/env python3
 
-import datetime
-import sys
-from collections import namedtuple
-from os.path import isfile
-
 # noinspection PyPackageRequirements
 from consolemenu import ConsoleMenu, PromptUtils, Screen
 
 # noinspection PyPackageRequirements
 from consolemenu.items import FunctionItem
 
-# noinspection PyPackageRequirements
-from consolemenu.validators.regex import RegexValidator
-from yaml import parser, safe_dump, safe_load
-
-from .fast import display_fast
-from .statistics import print_statistics
+from .show_fast import show_fast
+from .show_statistics import show_statistics
+from .start_fast import start_fast
+from .stop_fast import stop_fast
 
 
 def main() -> None:
-
-    data = namedtuple("data", "journal")
-
-    read_journal(data)
-    display_menu(data)
-
-
-def get_journal_file_name() -> str:
-
-    return "fasts.yaml"
-
-
-def read_journal(data: namedtuple):
-
-    yaml_file_name = get_journal_file_name()
-
-    data.journal = []
-
-    if isfile(yaml_file_name):
-
-        try:
-
-            with open(yaml_file_name, encoding="utf-8-sig") as yaml_file:
-                data.journal = safe_load(yaml_file)
-
-        except parser.ParserError:
-
-            print(f"Unable to parse: {yaml_file_name}")
-            sys.exit(1)
-
-
-def write_journal(data: namedtuple):
-
-    yaml_file_name = get_journal_file_name()
-
-    with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:
-        safe_dump(data.journal, yaml_file)
-
-
-def display_menu(data: namedtuple):
     """
     Builds and then displays main menu of the application.
     """
 
-    prompt_utils = PromptUtils(Screen())
-    items_params = [data, prompt_utils]
+    prompt = PromptUtils(Screen())
+    params = [prompt]
 
     menu = ConsoleMenu("FASTING LOG")
 
-    menu.append_item(FunctionItem("Start New Fast", start_new_fast, items_params))
-    menu.append_item(FunctionItem("End Active Fast", end_active_fast, items_params))
+    menu.append_item(FunctionItem("Start New Fast", start_fast, params))
+    menu.append_item(FunctionItem("End Active Fast", stop_fast, params))
+    menu.append_item(FunctionItem("Display Active Fast", show_fast, params))
     menu.append_item(
-        FunctionItem("Display Active Fast", display_active_fast, items_params)
-    )
-    menu.append_item(
-        FunctionItem("Display Statistical Data", display_statistical_data, items_params)
+        FunctionItem("Display Fasting Statistics", show_statistics, params)
     )
 
     menu.show()
-
-
-def display_active_fast(data: namedtuple, prompt_utils: PromptUtils):
-    fast = get_current_fast(data)
-
-    if fast is None:
-        print("No current fast to display.")
-    else:
-        display_fast(fast)
-
-    print()
-    prompt_utils.enter_to_continue()
-
-
-def start_new_fast(data: namedtuple, prompt_utils: PromptUtils):
-    fast = get_current_fast(data)
-
-    if fast is not None:
-
-        print("Fast is already on.")
-        print()
-        prompt_utils.enter_to_continue()
-
-    else:
-
-        length = None
-        length_validator = RegexValidator("^[0-9]*$")
-
-        while length is None:
-            input_result = prompt_utils.input(
-                prompt="Enter fast length: ", default="16", validators=length_validator
-            )
-            if input_result.validation_result:
-                length = int(input_result.input_string)
-                fast = {
-                    "length": length,
-                    "started": datetime.datetime.now(),
-                }
-
-                data.journal.append(fast)
-                write_journal(data)
-            else:
-                print("Please enter a valid number.")
-
-
-def end_active_fast(data: namedtuple, prompt_utils: PromptUtils):
-    fast = get_current_fast(data)
-
-    if fast is not None:
-
-        if prompt_utils.prompt_for_yes_or_no("Do you want to end your ongoing fast?"):
-
-            data.journal[-1]["stopped"] = datetime.datetime.now()
-            write_journal(data)
-
-    else:
-
-        print("No current fast to end.")
-        print()
-
-        prompt_utils.enter_to_continue()
-
-
-def display_statistical_data(data: namedtuple, prompt_utils: PromptUtils) -> None:
-
-    print_statistics(data)
-
-    prompt_utils.enter_to_continue()
-
-
-def get_current_fast(data: namedtuple) -> dict | None:
-
-    return (
-        data.journal[-1]
-        if len(data.journal) > 0 and data.journal[-1].get("stopped") is None
-        else None
-    )

@@ -18,9 +18,14 @@ def get_time_difference(
     return hours, minutes
 
 
-def __print_with_alignment(title: str, value: str, width: int = 15) -> None:
+def print_with_alignment(title: str, value: str, width: int = 15) -> None:
 
     title = f"{title}:".ljust(width)
     string = "{} {}".format(title, value)
 
     print(string)
+
+
+def get_active_fast(fasts: list) -> dict | None:
+
+    return fasts[-1] if len(fasts) > 0 and fasts[-1].get("stopped") is None else None
