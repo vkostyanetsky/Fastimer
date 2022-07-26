@@ -29,7 +29,7 @@ The script shows you a menu with four commands available:
 1. Start New Fast
 2. End Active Fast
 3. Display Active Fast
-4. Display Statistical Data  
+4. Display Fasting Statistics  
 
 Something is obvious: so, the first command starts a new fast, while the second command ends the active one. 
 
@@ -65,8 +65,8 @@ For instance, the completed fast in the journal looks like this:
 
 ```yaml
 - length: 16
-  started: 2022-07-20 19:59:14.210099
-  stopped: 2022-07-21 12:00:33.906634
+  started: 2022-07-20 19:59:14
+  stopped: 2022-07-21 12:00:33
 ```
 
 The first parameter is the length of the fast, the second is the start date of this, and the third is the completion date.

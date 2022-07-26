@@ -25,10 +25,10 @@ def start_fast(prompt: PromptUtils) -> None:
 
     else:
 
-        __execute_starting(prompt, fasts)
+        __ask_for_fast_length(prompt, fasts)
 
 
-def __execute_starting(prompt: PromptUtils, fasts: list) -> None:
+def __ask_for_fast_length(prompt: PromptUtils, fasts: list) -> None:
 
     length = None
     length_validator = RegexValidator("^[0-9]*$")

@@ -27,6 +27,13 @@ def read_fasts() -> list:
 
 def write_fasts(fasts: list) -> None:
 
+    for fast in fasts:
+
+        fast["started"] = fast["started"].replace(microsecond=0)
+
+        if fast.get("stopped") is not None:
+            fast["stopped"] = fast["stopped"].replace(microsecond=0)
+
     yaml_file_name = __get_journal_file_name()
 
     with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:

@@ -4,7 +4,7 @@
 from consolemenu import ConsoleMenu, PromptUtils, Screen
 
 # noinspection PyPackageRequirements
-from consolemenu.items import FunctionItem
+from consolemenu.items import FunctionItem as Item
 
 from .show_fast import show_fast
 from .show_statistics import show_statistics
@@ -22,11 +22,9 @@ def main() -> None:
 
     menu = ConsoleMenu("FASTING LOG")
 
-    menu.append_item(FunctionItem("Start New Fast", start_fast, params))
-    menu.append_item(FunctionItem("End Active Fast", stop_fast, params))
-    menu.append_item(FunctionItem("Display Active Fast", show_fast, params))
-    menu.append_item(
-        FunctionItem("Display Fasting Statistics", show_statistics, params)
-    )
+    menu.append_item(Item("Start New Fast", start_fast, params))
+    menu.append_item(Item("End Active Fast", stop_fast, params))
+    menu.append_item(Item("Display Active Fast", show_fast, params))
+    menu.append_item(Item("Display Fasting Statistics", show_statistics, params))
 
     menu.show()
