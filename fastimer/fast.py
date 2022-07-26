@@ -2,7 +2,7 @@
 
 import datetime
 
-from .utils import get_time_difference
+from .utils import get_time_difference, __print_with_alignment
 
 
 def display_fast(fast: dict) -> None:
@@ -49,13 +49,6 @@ def display_fast(fast: dict) -> None:
     if extra_time is not None:
         print()
         print("Well done! You have completed your goal!")
-
-
-def __print_with_alignment(title: str, value: str, width: int = 15) -> None:
-    title = f"{title}:".ljust(width)
-    string = "{} {}".format(title, value)
-
-    print(string)
 
 
 def __print_fasting_zones(fast: dict) -> None:

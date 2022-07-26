@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import datetime
 from collections import namedtuple
-from .utils import get_time_difference
+from .utils import get_time_difference, __print_with_alignment
 
 
 def print_statistics(data: namedtuple) -> None:
@@ -29,13 +29,12 @@ def print_statistics(data: namedtuple) -> None:
 
     avg_fast_length = (total_hours * 60 + total_minutes) / len(data.journal) // 60
 
-    print("Completed Fasts:       {}".format(len(data.journal)))
+    completed_fasts = str(len(data.journal))
+    total_fasting_time = "{hours}h {minutes}m".format(hours=int(total_hours), minutes=int(total_minutes))
+    average_fast_length = "{hours}h".format(hours=int(avg_fast_length))
 
-    print(
-        "Total Fasting Time:    {hours}h {minutes}m".format(
-            hours=int(total_hours), minutes=int(total_minutes)
-        )
-    )
-    print("Average Fast Length:   {hours}h".format(hours=int(avg_fast_length)))
+    __print_with_alignment("Completed Fasts", completed_fasts, 22)
+    __print_with_alignment("Total Fasting Time", total_fasting_time, 22)
+    __print_with_alignment("Average Fast Length", average_fast_length, 22)
 
     print()

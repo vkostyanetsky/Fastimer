@@ -16,3 +16,11 @@ def get_time_difference(
     minutes = int(seconds % seconds_per_hour // seconds_per_minute)
 
     return hours, minutes
+
+
+def __print_with_alignment(title: str, value: str, width: int = 15) -> None:
+
+    title = f"{title}:".ljust(width)
+    string = "{} {}".format(title, value)
+
+    print(string)
