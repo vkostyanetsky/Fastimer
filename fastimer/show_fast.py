@@ -28,48 +28,52 @@ def __print_fast(fast: dict) -> None:
     print("ACTIVE FAST")
     print()
 
+    now = datetime.datetime.now()
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
+    is_completed = fast.get("stopped") is not None
 
-    elapsed_time = __get_elapsed_time(fast)
-    time_now = datetime.datetime.now()
+    __print_fast_started(fast)
+    __print_fast_goal(fast, goal)
 
-    if time_now < goal:
-        remaining_time = __get_time(time_now, goal)
-        extra_time = None
+    print()
+
+    __print_fast_zones(fast)
+
+    print()
+
+    __print_fast_elapsed_time(fast, now)
+
+    if is_completed:
+        __print_fast_extra_time(goal, now)
     else:
-        remaining_time = "00:00"
-        extra_time = __get_time(goal, time_now)
-
-    started = fast["started"].strftime("%a, %H:%M")
-
-    goal_as_string = goal.strftime("%a, %H:%M")
-
-    print_with_alignment("Started", started)
-    print_with_alignment("Goal", f'{goal_as_string} ({fast["length"]} hours)')
+        __print_fast_remaining_time(goal, now)
 
     print()
 
-    __print_fasting_zones(fast)
+    __print_fast_progress_bar(fast, goal)
 
-    print()
-
-    print_with_alignment("Elapsed time", elapsed_time)
-
-    if extra_time is None:
-        print_with_alignment("Remaining", remaining_time)
-    else:
-        print_with_alignment("Extra time", extra_time)
-
-    print()
-
-    __print_progress_bar(fast, goal)
-
-    if extra_time is not None:
+    if is_completed:
         print()
         print("Well done! You have completed your goal!")
 
 
-def __print_fasting_zones(fast: dict) -> None:
+def __print_fast_started(fast: dict) -> None:
+
+    value = __get_day(fast["started"])
+
+    print_with_alignment("Started", value)
+
+
+def __print_fast_goal(fast: dict, goal: datetime.datetime) -> None:
+
+    value = "{goal} ({length} hours)".format(
+        goal=goal.strftime("%a, %H:%M"), length=fast["length"]
+    )
+
+    print_with_alignment("Goal", value)
+
+
+def __print_fast_zones(fast: dict) -> None:
 
     print("Fasting zones:")
     print()
@@ -113,7 +117,37 @@ def __print_fasting_zones(fast: dict) -> None:
     print_with_alignment("- Deep ketosis", deep_ketosis_zone_info)
 
 
-def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
+def __print_fast_elapsed_time(fast: dict, now: datetime.datetime) -> None:
+
+    date1 = fast["started"]
+    date2 = now if fast.get("stopped") is None else fast.get("stopped")
+
+    value = __get_time_difference(date1, date2)
+
+    print_with_alignment("Elapsed time", value)
+
+
+def __print_fast_extra_time(goal: datetime.datetime, now: datetime.datetime) -> None:
+
+    value = __get_time_difference(goal, now) if now >= goal else None
+
+    print_with_alignment("Extra time", value)
+
+
+def __print_fast_remaining_time(
+    goal: datetime.datetime, now: datetime.datetime
+) -> None:
+
+    value = (
+        __get_time_difference(now - datetime.timedelta(minutes=1), goal)
+        if now < goal
+        else None
+    )
+
+    print_with_alignment("Remaining", value)
+
+
+def __print_fast_progress_bar(fast: dict, goal: datetime.datetime) -> None:
 
     seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
     seconds_all = (goal - fast["started"]).total_seconds()
@@ -134,7 +168,7 @@ def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
     print(bar)
 
 
-def __get_time(start_date: datetime, end_date: datetime) -> str:
+def __get_time_difference(start_date: datetime, end_date: datetime) -> str:
 
     hours, minutes = get_time_difference(start_date, end_date)
 
@@ -144,13 +178,6 @@ def __get_time(start_date: datetime, end_date: datetime) -> str:
     return f"{hours}:{minutes}"
 
 
-def __get_elapsed_time(fast: dict) -> str:
+def __get_day(date: datetime.datetime) -> str:
 
-    date1 = fast["started"]
-    date2 = (
-        datetime.datetime.today()
-        if fast.get("stopped") is None
-        else fast.get("stopped")
-    )
-
-    return __get_time(date1, date2)
+    return date.strftime("%a, %H:%M")
