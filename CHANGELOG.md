@@ -11,6 +11,7 @@
 ### Fixed
 
 * If a fast goal is less than a current moment, the `Display Active Fast` command will show excess time instead of negative remaining time (as before).
+* Microseconds were removed from dates in the `fasts.yaml` file.
 
 ## [1.0.3] - 2022-07-22
 
