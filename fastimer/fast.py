@@ -31,6 +31,10 @@ def display_fast(fast: dict) -> None:
 
     print()
 
+    __print_fasting_zones(fast)
+
+    print()
+
     __print_with_alignment("Elapsed time", elapsed_time)
 
     if extra_time is None:
@@ -47,11 +51,53 @@ def display_fast(fast: dict) -> None:
         print("Well done! You have completed your goal!")
 
 
-def __print_with_alignment(title: str, value: str) -> None:
-    title = f"{title}:".ljust(15)
+def __print_with_alignment(title: str, value: str, width: int = 15) -> None:
+    title = f"{title}:".ljust(width)
     string = "{} {}".format(title, value)
 
     print(string)
+
+
+def __print_fasting_zones(fast: dict) -> None:
+
+    print("Fasting zones:")
+    print()
+
+    anabolic_zone = fast["started"]
+    catabolic_zone = anabolic_zone + datetime.timedelta(hours=4)
+    fat_burning_zone = catabolic_zone + datetime.timedelta(hours=12)
+    ketosis_zone = fat_burning_zone + datetime.timedelta(hours=8)
+    deep_ketosis_zone = ketosis_zone + datetime.timedelta(hours=48)
+
+    now = datetime.datetime.now()
+    fmt = "from %a, %H:%M"
+    note = " <-- you are here"
+
+    anabolic_zone_from = anabolic_zone.strftime(fmt)
+    anabolic_zone_note = note if anabolic_zone <= now < catabolic_zone else ""
+    anabolic_zone_info = "{}{}".format(anabolic_zone_from, anabolic_zone_note)
+
+    catabolic_zone_from = catabolic_zone.strftime(fmt)
+    catabolic_zone_note = note if catabolic_zone <= now < fat_burning_zone else ""
+    catabolic_zone_info = "{}{}".format(catabolic_zone_from, catabolic_zone_note)
+
+    fat_burning_zone_from = fat_burning_zone.strftime(fmt)
+    fat_burning_zone_note = note if fat_burning_zone <= now < ketosis_zone else ""
+    fat_burning_zone_info = "{}{}".format(fat_burning_zone_from, fat_burning_zone_note)
+
+    ketosis_zone_from = ketosis_zone.strftime(fmt)
+    ketosis_zone_note = note if ketosis_zone <= now < deep_ketosis_zone else ""
+    ketosis_zone_info = "{}{}".format(ketosis_zone_from, ketosis_zone_note)
+
+    deep_ketosis_zone_from = deep_ketosis_zone.strftime(fmt)
+    deep_ketosis_zone_note = note if deep_ketosis_zone <= now else ""
+    deep_ketosis_zone_info = "{}{}".format(deep_ketosis_zone_from, deep_ketosis_zone_note)
+
+    __print_with_alignment("- Anabolic", anabolic_zone_info)
+    __print_with_alignment("- Catabolic", catabolic_zone_info)
+    __print_with_alignment("- Fat burning", fat_burning_zone_info)
+    __print_with_alignment("- Ketosis", ketosis_zone_info)
+    __print_with_alignment("- Deep ketosis", deep_ketosis_zone_info)
 
 
 def __print_progress_bar(fast: dict, goal: datetime.datetime) -> None:
