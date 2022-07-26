@@ -55,7 +55,21 @@ Remaining:      04:21
 | ##############################---------- | 75.8%
 ```
 
-The `Display Statistical Data` command shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
+The `Display Statistical Data` command shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.). For instance:
+
+```
+FASTING STATISTICS
+
+Completed Fasts:         4
+Total Fasting Time:      69h 15m
+Average Fast Length:     17h 18m
+Longest Fast Length:     18h 4m
+Longest Fasting Streak:  2 days
+Current Fasting Streak:  2 days
+
+Achievements:
+- Nothing yet.
+```
 
 ## 😌 Where I can see or edit my fasts?
 
