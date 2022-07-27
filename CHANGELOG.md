@@ -4,7 +4,8 @@
 
 ### Fixed
 
-* The `Display Active Fast` command now properly shows `Extra time` parameter for a completed fast, instead of `Remaining: None`. 
+* The `Display Active Fast` command now properly shows `Extra time` parameter for a completed fast, instead of `Remaining: None`.
+* The `Display Fasting Statistics` command now properly calculates fasting streaks.
 
 ## [1.1.0] - 2022-07-26
 
