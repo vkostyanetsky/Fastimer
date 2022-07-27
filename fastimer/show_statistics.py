@@ -235,7 +235,7 @@ def __get_longest_fasting_streak(fasts: list) -> int:
                 if value < current_value:
                     value = current_value
 
-                current_value = 0
+                current_value = 1
 
             period = __get_period(fast["started"] + datetime.timedelta(days=1))
 
@@ -258,7 +258,7 @@ def __get_current_fasting_streak(fasts: list) -> int:
             if period[0] <= fast["started"] < period[1]:
                 current_value += 1
             else:
-                current_value = 0
+                current_value = 1
 
             period = __get_period(fast["started"] + datetime.timedelta(days=1))
 
