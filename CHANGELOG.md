@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+* The `Display Active Fast` command now properly shows `Extra time` parameter for a completed fast, instead of `Remaining: None`. 
+
 ## [1.1.0] - 2022-07-26
 
 ### Added
