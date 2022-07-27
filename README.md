@@ -62,15 +62,15 @@ For instance:
 ```
 FASTING STATISTICS
 
-Completed Fasts:         4
-Total Fasting Time:      69h 15m
-Average Fast Length:     17h 18m
-Longest Fast Length:     18h 4m
-Longest Fasting Streak:  2 days
-Current Fasting Streak:  2 days
+Completed Fasts:         5
+Total Fasting Time:      87h 27m
+Average Fast Length:     17h 29m
+Longest Fast Length:     18h 12m
+Longest Fasting Streak:  3 days
+Current Fasting Streak:  3 days
 
 Achievements:
-- Nothing yet.
+- Well Done! 5 fasts completed!
 ```
 
 Please note that only completed fasts are taken into account in the statistics.
