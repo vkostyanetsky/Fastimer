@@ -43,7 +43,7 @@ def __print_fast(fast: dict) -> None:
 
     __print_fast_elapsed_time(fast, now)
 
-    if is_completed:
+    if now > goal:
         __print_fast_extra_time(goal, now)
     else:
         __print_fast_remaining_time(goal, now)
