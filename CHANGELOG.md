@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+* Added the `Cancel Active Fast` command. 
+
 ## [1.1.1] - 2022-07-28
 
 ### Fixed
