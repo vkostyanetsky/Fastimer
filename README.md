@@ -67,15 +67,15 @@ For instance:
 ```
 FASTING STATISTICS
 
-Completed Fasts:         5
-Total Fasting Time:      87h 27m
-Average Fast Length:     17h 29m
+Completed Fasts:         8
+Total Fasting Time:      120h 59m
+Average Fast Length:     15h 7m
 Longest Fast Length:     18h 12m
 Longest Fasting Streak:  3 days
-Current Fasting Streak:  3 days
+Current Fasting Streak:  1 days
 
 Achievements:
-- Well Done! 5 fasts completed!
+- WOODEN PERSISTENCE (level 1). Five fasts completed!
 ```
 
 Please note that only completed fasts are taken into account in the statistics.
