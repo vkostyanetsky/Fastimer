@@ -124,15 +124,24 @@ def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
     completed_fasts = __get_completed_fasts(fasts)
 
     levels = {
-        5: "WOODEN PERSISTENCE (level 1). Five fasts completed!",
-        25: "COPPER PERSISTENCE (level 2). Twenty five fasts completed!",
-        50: "BRONZE PERSISTENCE (level 3). Fifty fasts completed!",
-        100: "IRON PERSISTENCE (level 4). One hundred fasts completed!",
-        250: "STEEL PERSISTENCE (level 5). Two hundred and fifty fasts completed!",
-        500: "SILVER PERSISTENCE (level 6). Five hundred fasts completed!",
-        1000: "GOLD PERSISTENCE (level 7). Thousand fasts completed!",
-        2500: "PLATINUM PERSISTENCE (level 8). Two and a half thousand fasts completed!",
-        5000: "DIAMOND PERSISTENCE (level 9). Five thousand fasts completed!"
+        5: "WOODEN PERSISTENCE (level 1). "
+           "Five fasts completed!",
+        25: "COPPER PERSISTENCE (level 2). "
+            "Twenty five fasts completed!",
+        50: "BRONZE PERSISTENCE (level 3). "
+            "Fifty fasts completed!",
+        100: "IRON PERSISTENCE (level 4). "
+             "One hundred fasts completed!",
+        250: "STEEL PERSISTENCE (level 5). "
+             "Two hundred and fifty fasts completed!",
+        500: "SILVER PERSISTENCE (level 6). "
+             "Five hundred fasts completed!",
+        1000: "GOLD PERSISTENCE (level 7). "
+              "Thousand fasts completed!",
+        2500: "PLATINUM PERSISTENCE (level 8). "
+              "Two and a half thousand fasts completed!",
+        5000: "DIAMOND PERSISTENCE (level 9). "
+              "Five thousand fasts completed!"
     }
 
     __add_achievement(achievements, levels, completed_fasts)
@@ -143,15 +152,24 @@ def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
     longest_fasting_streak = __get_longest_fasting_streak(fasts)
 
     levels = {
-        5: "WOODEN HABIT (level 1). Five fasts in a row!",
-        10: "COPPER HABIT (level 2). Twenty five fasts in a row!",
-        25: "BRONZE HABIT (level 3). Fifty fasts in a row!",
-        50: "IRON HABIT (level 4). One hundred fasts in a row!",
-        100: "STEEL HABIT (level 5). Two hundred and fifty fasts in a row!",
-        150: "SILVER HABIT (level 6). Five hundred fasts in a row!",
-        200: "GOLD HABIT (level 7). Thousand fasts in a row!",
-        250: "PLATINUM HABIT (level 8). Two and a half thousand fasts in a row!",
-        365: "DIAMOND HABIT (level 9). Five thousand fasts in a row!"
+        5: "WOODEN HABIT (level 1). "
+           "Five fasts in a row!",
+        10: "COPPER HABIT (level 2). "
+            "Twenty five fasts in a row!",
+        25: "BRONZE HABIT (level 3). "
+            "Fifty fasts in a row!",
+        50: "IRON HABIT (level 4). "
+            "One hundred fasts in a row!",
+        100: "STEEL HABIT (level 5). "
+             "Two hundred and fifty fasts in a row!",
+        150: "SILVER HABIT (level 6). "
+             "Five hundred fasts in a row!",
+        200: "GOLD HABIT (level 7). "
+             "Thousand fasts in a row!",
+        250: "PLATINUM HABIT (level 8). "
+             "Two and a half thousand fasts in a row!",
+        365: "DIAMOND HABIT (level 9). "
+             "Five thousand fasts in a row!"
     }
 
     __add_achievement(achievements, levels, longest_fasting_streak)
@@ -162,9 +180,12 @@ def __add_daily_fasting_achievement(achievements: list, fasts: list) -> None:
     hours, _ = __get_longest_fast_length(fasts)
 
     levels = {
-        24: "BRONZE ASCETIC (level 1). Twenty four hours of continued fasting!",
-        48: "IRON ASCETIC (level 2). Forty eight hours of continued fasting!",
-        72: "STEEL ASCETIC (level 3). Seventy two hours of continued fasting!",
+        24: "BRONZE ASCETIC (level 1). "
+            "Twenty four hours of continued fasting!",
+        48: "IRON ASCETIC (level 2). "
+            "Forty eight hours of continued fasting!",
+        72: "STEEL ASCETIC (level 3). "
+            "Seventy two hours of continued fasting!",
     }
 
     __add_achievement(achievements, levels, hours)
