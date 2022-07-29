@@ -27,13 +27,18 @@ fastimer
 The script shows you a menu with four commands available: 
 
 1. Start New Fast
-2. End Active Fast
-3. Display Active Fast
-4. Display Fasting Statistics  
+2. Manage Active Fast
+3. Display Statistics  
 
-Something is obvious: so, the first command starts a new fast, while the second command ends the active one. 
+Something is obvious: so, the first command starts a new fast. The second one displays submenu: 
 
-The `Display Active Fast` command shows you how active fast is going on. For instance:
+1. End Fast
+2. Cancel Fast
+3. Display Fast
+
+The first command here enables you to end active fast, second one means the cancelling of active fast. Third one shows you how active fast is going on.
+
+For instance:  
 
 ```
 ACTIVE FAST
@@ -55,7 +60,7 @@ Remaining:      04:21
 | ##############################---------- | 75.8%
 ```
 
-The `Display Statistical Data` command shows you some statistics & achievement you were able to unlock (total fasting time, average fast length etc.).
+The `Display Statistics` command shows you some statistics & [achievements](Achievements.md) you were able to unlock (total fasting time, average fast length etc.).
 
 For instance:
 
