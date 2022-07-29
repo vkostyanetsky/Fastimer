@@ -5,43 +5,28 @@ import datetime
 # noinspection PyPackageRequirements
 from consolemenu import PromptUtils
 
-from .fasts_file import read_fasts
-from .utils import get_active_fast, get_time_difference, print_with_alignment
+from .utils import get_time_difference, print_with_alignment
 
 
-def show_fast(prompt: PromptUtils) -> None:
-
-    fasts = read_fasts()
-    fast = get_active_fast(fasts)
-
-    if fast is None:
-        print("No current fast to display.")
-    else:
-        __print_fast(fast)
-
-    print()
-    prompt.enter_to_continue()
-
-
-def __print_fast(fast: dict) -> None:
+def show_fast(prompt: PromptUtils, fasts: list, active_fast: dict) -> None:
 
     print("ACTIVE FAST")
     print()
 
     now = datetime.datetime.now()
-    goal = fast["started"] + datetime.timedelta(hours=fast["length"])
-    is_completed = fast.get("stopped") is not None
+    goal = active_fast["started"] + datetime.timedelta(hours=active_fast["length"])
+    is_completed = active_fast.get("stopped") is not None
 
-    __print_fast_started(fast)
-    __print_fast_goal(fast, goal)
-
-    print()
-
-    __print_fast_zones(fast)
+    __print_fast_started(active_fast)
+    __print_fast_goal(active_fast, goal)
 
     print()
 
-    __print_fast_elapsed_time(fast, now)
+    __print_fast_zones(active_fast)
+
+    print()
+
+    __print_fast_elapsed_time(active_fast, now)
 
     if now > goal:
         __print_fast_extra_time(goal, now)
@@ -50,11 +35,14 @@ def __print_fast(fast: dict) -> None:
 
     print()
 
-    __print_fast_progress_bar(fast, goal)
+    __print_fast_progress_bar(active_fast, goal)
 
     if is_completed:
         print()
         print("Well done! You have completed your goal!")
+
+    print()
+    prompt.enter_to_continue()
 
 
 def __print_fast_started(fast: dict) -> None:

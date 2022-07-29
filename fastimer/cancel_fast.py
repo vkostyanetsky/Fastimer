@@ -1,29 +1,16 @@
 #!/usr/bin/env python3
 
-import datetime
-
 # noinspection PyPackageRequirements
 from consolemenu import PromptUtils
 
-from .fasts_file import read_fasts, write_fasts
-from .utils import get_active_fast
+from .fasts_file import write_fasts
 
 
-def cancel_fast(prompt: PromptUtils) -> None:
+def cancel_fast(prompt: PromptUtils, fasts: list, active_fast: dict) -> None:
 
-    fasts = read_fasts()
-    fast = get_active_fast(fasts)
+    question = "Do you want to CANCEL the active fast? It cannot be undone."
 
-    if fast is not None:
+    if prompt.prompt_for_yes_or_no(question):
 
-        if prompt.prompt_for_yes_or_no("Do you want to CANCEL your ongoing fast? It cannot be undone."):
-
-            fasts.remove(fast)
-            write_fasts(fasts)
-
-    else:
-
-        print("No current fast to cancel.")
-        print()
-
-        prompt.enter_to_continue()
+        fasts.remove(active_fast)
+        write_fasts(fasts)

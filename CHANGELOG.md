@@ -5,6 +5,7 @@
 ### Added
 
 * Added the `Cancel Active Fast` command. 
+* The command `End Active Fast`, the command `Display Active Fast`, and the new command `Cancel Active Fast` (was mentioned above) were moved to a new submenu `Manage Active Fast`. 
 
 ## [1.1.1] - 2022-07-28
 
