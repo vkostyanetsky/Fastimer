@@ -5,12 +5,12 @@ from consolemenu import ConsoleMenu, PromptUtils, Screen
 # noinspection PyPackageRequirements
 from consolemenu.items import FunctionItem as Item
 
-from .cancel_fast import cancel_fast
+from .cancel_active_fast import cancel_fast
 from .fasts_file import read_fasts
-from .show_fast import show_fast
+from .show_active_fast import show_fast
 from .show_statistics import show_statistics
 from .start_fast import start_fast
-from .stop_fast import stop_fast
+from .stop_active_fast import stop_fast
 from .utils import get_active_fast
 
 
