@@ -7,7 +7,7 @@ from fastimer.version import __version__
 setup(
     name="fastimer",
     version=__version__,
-    description="A simple CLI timer to calculate fasting zones.",
+    description="A simple CLI tool to track food you consume.",
     long_description=open("README.md", encoding="utf-8-sig").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/vkostyanetsky/Fastimer",
