@@ -4,7 +4,7 @@ I have implemented them to entertain and motivate myself. To be honest, fasting 
 
 ## Persistence 
 
-This achievement awards for the number of completed fasts.
+This reward can be obtained for the number of completed fasts.
 
 | Level | Completed Fasts | Quality  |
 |-------|-----------------|----------|
@@ -20,7 +20,7 @@ This achievement awards for the number of completed fasts.
 
 ## Habit
 
-This achievement awards for the number of fasts in a row.
+This reward can be obtained for the number of fasts in a row.
 
 | Level | Fasts In a Row | Quality  |
 |-------|----------------|----------|
@@ -36,7 +36,7 @@ This achievement awards for the number of fasts in a row.
 
 ## Ascetic
 
-This achievement awards for the number of hours of continued fasting.
+This reward can be obtained for the number of hours of continued fasting.
 
 | Level | Hours of Fasting | Quality |
 |-------|------------------|---------|
