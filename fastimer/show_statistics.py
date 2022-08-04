@@ -278,7 +278,7 @@ def __get_fasting_streaks(fasts: list) -> list:
 
             if previous_fast is not None:
 
-                timedelta = fast["started"] - previous_fast["stopped"]
+                timedelta = fast.get("started") - previous_fast.get("stopped")
 
                 if timedelta.total_seconds() <= seconds_per_day:
 
