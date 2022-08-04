@@ -4,8 +4,13 @@
 
 ### Added
 
-* Added the `Cancel Active Fast` command. 
+* Added the `Cancel Active Fast` command.
 * The command `End Active Fast`, the command `Display Active Fast`, and the new command `Cancel Active Fast` (was mentioned above) were moved to a new submenu `Manage Active Fast`. 
+* Added more precise description for each achievement & a page with the full list of possible awards.
+
+### Fixed
+
+* The `Display Fasting Statistics` command received a new logic to calculate fasting streaks (I hope it is finally right one).
 
 ## [1.1.1] - 2022-07-28
 

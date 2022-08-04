@@ -124,23 +124,23 @@ def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
     completed_fasts = __get_completed_fasts(fasts)
 
     levels = {
-        5: "WOODEN PERSISTENCE (level 1 badge). "
+        5: "WOODEN PERSISTENCE (level 1 badge out of 9). "
            "Five fasts completed!",
-        25: "COPPER PERSISTENCE (level 2 badge). "
+        25: "COPPER PERSISTENCE (level 2 badge out of 9). "
             "Twenty five fasts completed!",
-        50: "BRONZE PERSISTENCE (level 3 badge). "
+        50: "BRONZE PERSISTENCE (level 3 badge out of 9). "
             "Fifty fasts completed!",
-        100: "IRON PERSISTENCE (level 4 badge). "
+        100: "IRON PERSISTENCE (level 4 badge out of 9). "
              "One hundred fasts completed!",
-        250: "STEEL PERSISTENCE (level 5 badge). "
+        250: "STEEL PERSISTENCE (level 5 badge out of 9). "
              "Two hundred and fifty fasts completed!",
-        500: "SILVER PERSISTENCE (level 6 badge). "
+        500: "SILVER PERSISTENCE (level 6 badge out of 9). "
              "Five hundred fasts completed!",
-        1000: "GOLD PERSISTENCE (level 7 badge). "
+        1000: "GOLD PERSISTENCE (level 7 badge out of 9). "
               "Thousand fasts completed!",
-        2500: "PLATINUM PERSISTENCE (level 8 badge). "
+        2500: "PLATINUM PERSISTENCE (level 8 badge out of 9). "
               "Two and a half thousand fasts completed!",
-        5000: "DIAMOND PERSISTENCE (level 9 badge). "
+        5000: "DIAMOND PERSISTENCE (level 9 badge out of 9). "
               "Five thousand fasts completed!"
     }
 
@@ -152,24 +152,24 @@ def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
     longest_fasting_streak = __get_longest_fasting_streak(fasts)
 
     levels = {
-        5: "WOODEN HABIT (level 1 badge). "
+        5: "WOODEN HABIT (level 1 badge out of 9). "
            "Five fasts in a row!",
-        10: "COPPER HABIT (level 2 badge). "
+        10: "COPPER HABIT (level 2 badge out of 9). "
+            "Ten fasts in a row!",
+        25: "BRONZE HABIT (level 3 badge out of 9). "
             "Twenty five fasts in a row!",
-        25: "BRONZE HABIT (level 3 badge). "
+        50: "IRON HABIT (level 4 badge out of 9). "
             "Fifty fasts in a row!",
-        50: "IRON HABIT (level 4 badge). "
-            "One hundred fasts in a row!",
-        100: "STEEL HABIT (level 5 badge). "
+        100: "STEEL HABIT (level 5 badge out of 9). "
+             "One hundred fasts in a row!",
+        150: "SILVER HABIT (level 6 badge out of 9). "
+             "One hundred and fifty fasts in a row!",
+        200: "GOLD HABIT (level 7 badge out of 9). "
+             "Two hundred fasts in a row!",
+        250: "PLATINUM HABIT (level 8 badge out of 9). "
              "Two hundred and fifty fasts in a row!",
-        150: "SILVER HABIT (level 6 badge). "
-             "Five hundred fasts in a row!",
-        200: "GOLD HABIT (level 7 badge). "
-             "Thousand fasts in a row!",
-        250: "PLATINUM HABIT (level 8 badge). "
-             "Two and a half thousand fasts in a row!",
-        365: "DIAMOND HABIT (level 9 badge). "
-             "Five thousand fasts in a row!"
+        365: "DIAMOND HABIT (level 9 badge out of 9). "
+             "Three hundred sixty five fasts in a row!"
     }
 
     __add_achievement(achievements, levels, longest_fasting_streak)
@@ -180,11 +180,11 @@ def __add_daily_fasting_achievement(achievements: list, fasts: list) -> None:
     hours, _ = __get_longest_fast_length(fasts)
 
     levels = {
-        24: "BRONZE ASCETIC (level 1 badge). "
+        24: "BRONZE ASCETIC (level 1 badge out of 3). "
             "Twenty four hours of continued fasting!",
-        48: "IRON ASCETIC (level 2 badge). "
+        48: "IRON ASCETIC (level 2 badge out of 3). "
             "Forty eight hours of continued fasting!",
-        72: "STEEL ASCETIC (level 3 badge). "
+        72: "STEEL ASCETIC (level 3 badge out of 3). "
             "Seventy two hours of continued fasting!",
     }
 
@@ -257,54 +257,58 @@ def __get_completed_fasts(fasts: list) -> int:
     return result
 
 
-def __get_longest_fasting_streak(fasts: list) -> int:
+def __get_fasting_streaks(fasts: list) -> list:
 
-    value = 0
-    current_value = 0
+    streaks = []
+    current_streak = 0
+
+    seconds_per_minute = 60
+    minutes_per_hour = 60
+    hours_per_day = 24
+    seconds_per_day = seconds_per_minute * minutes_per_hour * hours_per_day
 
     if __get_completed_fasts(fasts) > 0:
 
-        period = __get_period(fasts[0]["started"])
+        previous_fast = None
 
         for fast in fasts:
 
-            if period[0] <= fast["started"] < period[1]:
+            if fast.get("stopped") is None:
+                continue
 
-                current_value += 1
+            if previous_fast is not None:
 
-            else:
+                timedelta = fast["started"] - previous_fast["stopped"]
 
-                if value < current_value:
-                    value = current_value
+                if timedelta.total_seconds() <= seconds_per_day:
 
-                current_value = 1
+                    current_streak += 1
 
-            period = __get_period(fast["started"] + datetime.timedelta(days=1))
+                else:
 
-    if value < current_value:
-        value = current_value
+                    streaks.append(current_streak)
+                    current_streak = 0
 
-    return value
+            previous_fast = fast
+
+        if current_streak > 0:
+            streaks.append(current_streak)
+
+    return streaks
+
+
+def __get_longest_fasting_streak(fasts: list) -> int:
+
+    streaks = __get_fasting_streaks(fasts)
+
+    return max(streaks) if len(streaks) > 0 else 0
 
 
 def __get_current_fasting_streak(fasts: list) -> int:
 
-    current_value = 0
+    streaks = __get_fasting_streaks(fasts)
 
-    if __get_completed_fasts(fasts) > 0:
-
-        period = __get_period(fasts[0]["started"])
-
-        for fast in fasts:
-
-            if period[0] <= fast["started"] < period[1]:
-                current_value += 1
-            else:
-                current_value = 1
-
-            period = __get_period(fast["started"] + datetime.timedelta(days=1))
-
-    return current_value
+    return streaks[-1] if len(streaks) > 0 else 0
 
 
 def __get_longest_fast_length(fasts: list) -> tuple:
