@@ -10,7 +10,7 @@
 
 ### Fixed
 
-* The `Display Fasting Statistics` command received a new logic to calculate fasting streaks (I hope it is finally right one).
+* The `Display Fasting Statistics` command received a new logic to calculate fasting streaks (I hope this one will last me for a good while).
 
 ## [1.1.1] - 2022-07-28
 
