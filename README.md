@@ -75,7 +75,7 @@ Longest Fasting Streak:  3 days
 Current Fasting Streak:  1 days
 
 Achievements:
-- WOODEN PERSISTENCE (level 1). Five fasts completed!
+- WOODEN PERSISTENCE (level 1 badge out of 9). Five fasts completed!
 ```
 
 Please note that only completed fasts are taken into account in the statistics.
