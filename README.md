@@ -78,8 +78,6 @@ Achievements:
 - WOODEN PERSISTENCE (level 1 badge out of 9). Five fasts completed!
 ```
 
-Please note that only completed fasts are taken into account in the statistics.
-
 ## 😌 Where I can see or edit my fasts?
 
 The script stores all the fasts in `fasts.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
