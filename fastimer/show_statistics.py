@@ -17,6 +17,7 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
     print()
 
     __print_completed_fasts(fasts)
+    __print_incomplete_fasts(fasts)
     __print_total_fasting_time(fasts)
     __print_average_fast_length(fasts)
     __print_longest_fast_length(fasts)
@@ -32,10 +33,18 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
 
 def __print_completed_fasts(fasts: list) -> None:
 
-    value = __get_completed_fasts(fasts)
+    value = __get_number_of_completed_fasts(fasts)
     value = str(value)
 
     __print_with_alignment("Completed Fasts", value)
+
+
+def __print_incomplete_fasts(fasts: list) -> None:
+
+    value = __get_number_of_incomplete_fasts(fasts)
+    value = str(value)
+
+    __print_with_alignment("Incomplete Fasts", value)
 
 
 def __print_total_fasting_time(fasts: list) -> None:
@@ -53,7 +62,7 @@ def __print_average_fast_length(fasts: list) -> None:
 
     minutes_per_hour = 60
 
-    fasts_total = __get_completed_fasts(fasts)
+    fasts_total = __get_number_of_completed_fasts(fasts)
     all_minutes = hours_total * 60 + minutes_total
     avg_minutes = all_minutes / fasts_total
 
@@ -121,7 +130,7 @@ def __get_achievements(fasts: list) -> list:
 
 def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
 
-    completed_fasts = __get_completed_fasts(fasts)
+    completed_fasts = __get_number_of_completed_fasts(fasts)
 
     levels = {
         5: "WOODEN PERSISTENCE (level 1 badge out of 9). "
@@ -153,23 +162,23 @@ def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
 
     levels = {
         5: "WOODEN HABIT (level 1 badge out of 9). "
-           "Five fasts in a row!",
+           "Five completed fasts in a row!",
         10: "COPPER HABIT (level 2 badge out of 9). "
-            "Ten fasts in a row!",
+            "Ten completed fasts in a row!",
         25: "BRONZE HABIT (level 3 badge out of 9). "
-            "Twenty five fasts in a row!",
+            "Twenty five completed fasts in a row!",
         50: "IRON HABIT (level 4 badge out of 9). "
-            "Fifty fasts in a row!",
+            "Fifty completed fasts in a row!",
         100: "STEEL HABIT (level 5 badge out of 9). "
-             "One hundred fasts in a row!",
+             "One hundred completed fasts in a row!",
         150: "SILVER HABIT (level 6 badge out of 9). "
-             "One hundred and fifty fasts in a row!",
+             "One hundred and fifty completed fasts in a row!",
         200: "GOLD HABIT (level 7 badge out of 9). "
-             "Two hundred fasts in a row!",
+             "Two hundred completed fasts in a row!",
         250: "PLATINUM HABIT (level 8 badge out of 9). "
-             "Two hundred and fifty fasts in a row!",
+             "Two hundred and fifty completed fasts in a row!",
         365: "DIAMOND HABIT (level 9 badge out of 9). "
-             "Three hundred sixty five fasts in a row!"
+             "Three hundred sixty five completed fasts in a row!"
     }
 
     __add_achievement(achievements, levels, longest_fasting_streak)
@@ -246,13 +255,36 @@ def __get_total_hours_and_minutes(fasts: list) -> tuple:
     return total_hours, total_minutes
 
 
-def __get_completed_fasts(fasts: list) -> int:
+def __get_number_of_completed_fasts(fasts: list) -> int:
 
     result = 0
-    number = len(fasts)
 
-    if number > 0:
-        result = number - 1 if fasts[-1].get("stopped") is None else number
+    for fast in fasts:
+
+        if fast.get("stopped") is None:
+            continue
+
+        if fast.get("length") > __get_fast_length(fast)[0]:
+            continue
+
+        result += 1
+
+    return result
+
+
+def __get_number_of_incomplete_fasts(fasts: list) -> int:
+
+    result = 0
+
+    for fast in fasts:
+
+        if fast.get("stopped") is None:
+            continue
+
+        if fast.get("length") <= __get_fast_length(fast)[0]:
+            continue
+
+        result += 1
 
     return result
 
@@ -267,13 +299,16 @@ def __get_fasting_streaks(fasts: list) -> list:
     hours_per_day = 24
     seconds_per_day = seconds_per_minute * minutes_per_hour * hours_per_day
 
-    if __get_completed_fasts(fasts) > 0:
+    if __get_number_of_completed_fasts(fasts) > 0:
 
         previous_fast = None
 
         for fast in fasts:
 
             if fast.get("stopped") is None:
+                continue
+
+            if fast.get("length") > __get_fast_length(fast)[0]:
                 continue
 
             if previous_fast is not None:
