@@ -11,6 +11,7 @@
 ### Fixed
 
 * The `Display Fasting Statistics` command received a new logic to calculate fasting streaks (I hope this one will last us for a good while).
+* The `Display Fasting Statistics` command now considers a fast as completed only if it did not end earlier than planned. 
 
 ## [1.1.1] - 2022-07-28
 

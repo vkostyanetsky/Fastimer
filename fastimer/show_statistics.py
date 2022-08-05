@@ -17,7 +17,6 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
     print()
 
     __print_completed_fasts(fasts)
-    __print_incomplete_fasts(fasts)
     __print_total_fasting_time(fasts)
     __print_average_fast_length(fasts)
     __print_longest_fast_length(fasts)
@@ -33,18 +32,13 @@ def show_statistics(prompt_utils: PromptUtils) -> None:
 
 def __print_completed_fasts(fasts: list) -> None:
 
-    value = __get_number_of_completed_fasts(fasts)
-    value = str(value)
+    completed_fasts = __get_number_of_completed_fasts(fasts)
+    incomplete_fasts = __get_number_of_incomplete_fasts(fasts)
+    total_fasts = completed_fasts + incomplete_fasts
+
+    value = f"{completed_fasts} out of {total_fasts}"
 
     __print_with_alignment("Completed Fasts", value)
-
-
-def __print_incomplete_fasts(fasts: list) -> None:
-
-    value = __get_number_of_incomplete_fasts(fasts)
-    value = str(value)
-
-    __print_with_alignment("Incomplete Fasts", value)
 
 
 def __print_total_fasting_time(fasts: list) -> None:
