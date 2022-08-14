@@ -299,7 +299,10 @@ def __get_fasting_streaks(fasts: list) -> list:
 
         for fast in fasts:
 
-            if fast.get("length") > __get_fast_length(fast)[0] and fast.get("stopped") is not None:
+            goal_is_not_achieved = fast.get("length") > __get_fast_length(fast)[0]
+            fast_is_finished = fast.get("stopped") is not None
+
+            if goal_is_not_achieved and fast_is_finished:
                 continue
 
             if previous_fast is not None:
