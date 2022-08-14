@@ -299,10 +299,7 @@ def __get_fasting_streaks(fasts: list) -> list:
 
         for fast in fasts:
 
-            if fast.get("stopped") is None:
-                continue
-
-            if fast.get("length") > __get_fast_length(fast)[0]:
+            if fast.get("length") > __get_fast_length(fast)[0] and fast.get("stopped") is not None:
                 continue
 
             if previous_fast is not None:
@@ -310,11 +307,8 @@ def __get_fasting_streaks(fasts: list) -> list:
                 timedelta = fast.get("started") - previous_fast.get("stopped")
 
                 if timedelta.total_seconds() <= seconds_per_day:
-
                     current_streak += 1
-
                 else:
-
                     streaks.append(current_streak)
                     current_streak = 0
 
@@ -322,6 +316,8 @@ def __get_fasting_streaks(fasts: list) -> list:
 
         if current_streak > 0:
             streaks.append(current_streak)
+        else:
+            streaks.append(0)
 
     return streaks
 
