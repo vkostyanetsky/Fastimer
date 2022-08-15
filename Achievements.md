@@ -2,7 +2,7 @@
 
 I have implemented them to entertain and motivate myself. To be honest, fasting is not an easy way to lose weight, so some additional gamification is always nice.
 
-## Persistence 
+## Sense of Purpose 
 
 This reward can be obtained for the number of completed fasts.
 

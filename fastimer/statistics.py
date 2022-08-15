@@ -2,35 +2,10 @@
 
 import datetime
 
-# noinspection PyPackageRequirements
-from consolemenu import PromptUtils
-
-from .fasts_file import read_fasts
-from .utils import get_time_difference, print_with_alignment
+from fastimer import utils
 
 
-def show_statistics(prompt_utils: PromptUtils) -> None:
-
-    fasts = read_fasts()
-
-    print("FASTING STATISTICS")
-    print()
-
-    __print_completed_fasts(fasts)
-    __print_total_fasting_time(fasts)
-    __print_average_fast_length(fasts)
-    __print_longest_fast_length(fasts)
-    __print_longest_fasting_streak(fasts)
-    __print_current_fasting_streak(fasts)
-    print()
-
-    __print_achievements(fasts)
-    print()
-
-    prompt_utils.enter_to_continue()
-
-
-def __print_completed_fasts(fasts: list) -> None:
+def print_completed_fasts(fasts: list) -> None:
 
     completed_fasts = __get_number_of_completed_fasts(fasts)
     incomplete_fasts = __get_number_of_incomplete_fasts(fasts)
@@ -41,7 +16,7 @@ def __print_completed_fasts(fasts: list) -> None:
     __print_with_alignment("Completed Fasts", value)
 
 
-def __print_total_fasting_time(fasts: list) -> None:
+def print_total_fasting_time(fasts: list) -> None:
 
     total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
 
@@ -50,7 +25,7 @@ def __print_total_fasting_time(fasts: list) -> None:
     __print_with_alignment("Total Fasting Time", value)
 
 
-def __print_average_fast_length(fasts: list) -> None:
+def print_average_fast_length(fasts: list) -> None:
 
     hours_total, minutes_total = __get_total_hours_and_minutes(fasts)
 
@@ -68,7 +43,7 @@ def __print_average_fast_length(fasts: list) -> None:
     __print_with_alignment("Average Fast Length", value)
 
 
-def __print_longest_fast_length(fasts: list) -> None:
+def print_longest_fast_length(fasts: list) -> None:
 
     hours, minutes = __get_longest_fast_length(fasts)
 
@@ -77,7 +52,7 @@ def __print_longest_fast_length(fasts: list) -> None:
     __print_with_alignment("Longest Fast Length", value)
 
 
-def __print_longest_fasting_streak(fasts: list) -> None:
+def print_longest_fasting_streak(fasts: list) -> None:
 
     value = __get_longest_fasting_streak(fasts)
     value = "{} days".format(value)
@@ -85,7 +60,7 @@ def __print_longest_fasting_streak(fasts: list) -> None:
     __print_with_alignment("Longest Fasting Streak", value)
 
 
-def __print_current_fasting_streak(fasts: list) -> None:
+def print_current_fasting_streak(fasts: list) -> None:
 
     value = __get_current_fasting_streak(fasts)
     value = "{} days".format(value)
@@ -93,7 +68,7 @@ def __print_current_fasting_streak(fasts: list) -> None:
     __print_with_alignment("Current Fasting Streak", value)
 
 
-def __print_achievements(fasts: list) -> None:
+def print_achievements(fasts: list) -> None:
 
     print("Achievements:")
 
@@ -108,7 +83,7 @@ def __print_achievements(fasts: list) -> None:
 
 def __print_with_alignment(title: str, value: str):
 
-    print_with_alignment(title, value, 24)
+    utils.print_with_alignment(title, value, 24)
 
 
 def __get_achievements(fasts: list) -> list:
@@ -127,23 +102,23 @@ def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
     completed_fasts = __get_number_of_completed_fasts(fasts)
 
     levels = {
-        5: "WOODEN PERSISTENCE (level 1 badge out of 9). "
+        5: "WOODEN SENSE OF PURPOSE (level 1 badge out of 9). "
            "Five fasts completed!",
-        25: "COPPER PERSISTENCE (level 2 badge out of 9). "
+        25: "COPPER SENSE OF PURPOSE (level 2 badge out of 9). "
             "Twenty five fasts completed!",
-        50: "BRONZE PERSISTENCE (level 3 badge out of 9). "
+        50: "BRONZE SENSE OF PURPOSE (level 3 badge out of 9). "
             "Fifty fasts completed!",
-        100: "IRON PERSISTENCE (level 4 badge out of 9). "
+        100: "IRON SENSE OF PURPOSE (level 4 badge out of 9). "
              "One hundred fasts completed!",
-        250: "STEEL PERSISTENCE (level 5 badge out of 9). "
+        250: "STEEL SENSE OF PURPOSE (level 5 badge out of 9). "
              "Two hundred and fifty fasts completed!",
-        500: "SILVER PERSISTENCE (level 6 badge out of 9). "
+        500: "SILVER SENSE OF PURPOSE (level 6 badge out of 9). "
              "Five hundred fasts completed!",
-        1000: "GOLD PERSISTENCE (level 7 badge out of 9). "
+        1000: "GOLD SENSE OF PURPOSE (level 7 badge out of 9). "
               "Thousand fasts completed!",
-        2500: "PLATINUM PERSISTENCE (level 8 badge out of 9). "
+        2500: "PLATINUM SENSE OF PURPOSE (level 8 badge out of 9). "
               "Two and a half thousand fasts completed!",
-        5000: "DIAMOND PERSISTENCE (level 9 badge out of 9). "
+        5000: "DIAMOND SENSE OF PURPOSE (level 9 badge out of 9). "
               "Five thousand fasts completed!"
     }
 
@@ -214,19 +189,6 @@ def __get_period(date: datetime.datetime) -> tuple:
     return period_from, period_to
 
 
-def __get_fast_length(fast: dict) -> tuple:
-
-    started = fast["started"]
-    stopped = fast.get("stopped")
-
-    if stopped is not None:
-        result = get_time_difference(started, stopped)
-    else:
-        result = 0, 0
-
-    return result
-
-
 def __get_total_hours_and_minutes(fasts: list) -> tuple:
 
     total_hours = 0
@@ -234,7 +196,7 @@ def __get_total_hours_and_minutes(fasts: list) -> tuple:
 
     for fast in fasts:
 
-        hours, minutes = __get_fast_length(fast)
+        hours, minutes = utils.get_fast_length(fast)
 
         total_hours += hours
         total_minutes += minutes
@@ -258,7 +220,7 @@ def __get_number_of_completed_fasts(fasts: list) -> int:
         if fast.get("stopped") is None:
             continue
 
-        if fast.get("length") > __get_fast_length(fast)[0]:
+        if fast.get("length") > utils.get_fast_length(fast)[0]:
             continue
 
         result += 1
@@ -275,7 +237,7 @@ def __get_number_of_incomplete_fasts(fasts: list) -> int:
         if fast.get("stopped") is None:
             continue
 
-        if fast.get("length") <= __get_fast_length(fast)[0]:
+        if fast.get("length") <= utils.get_fast_length(fast)[0]:
             continue
 
         result += 1
@@ -299,10 +261,10 @@ def __get_fasting_streaks(fasts: list) -> list:
 
         for fast in fasts:
 
-            goal_is_not_achieved = fast.get("length") > __get_fast_length(fast)[0]
-            fast_is_finished = fast.get("stopped") is not None
+            fast_is_completed = utils.is_fast_completed(fast)
+            fast_is_active = utils.is_fast_active(fast)
 
-            if goal_is_not_achieved and fast_is_finished:
+            if not fast_is_completed and not fast_is_active:
                 continue
 
             if previous_fast is not None:
@@ -346,7 +308,7 @@ def __get_longest_fast_length(fasts: list) -> tuple:
 
     for fast in fasts:
 
-        hours, minutes = __get_fast_length(fast)
+        hours, minutes = utils.get_fast_length(fast)
         minutes += hours * minutes_per_hour
 
         if minutes > max_minutes:

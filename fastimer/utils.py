@@ -18,6 +18,16 @@ def get_time_difference(
     return hours, minutes
 
 
+def aligned_string(title: str, value: str, width: int = 15) -> str:
+
+    if len(title) > width:
+        width = len(title)
+
+    title = f"{title}:".ljust(width)
+
+    return "{} {}".format(title, value)
+
+
 def print_with_alignment(title: str, value: str, width: int = 15) -> None:
 
     title = f"{title}:".ljust(width)
@@ -29,3 +39,28 @@ def print_with_alignment(title: str, value: str, width: int = 15) -> None:
 def get_active_fast(fasts: list) -> dict | None:
 
     return fasts[-1] if len(fasts) > 0 and fasts[-1].get("stopped") is None else None
+
+
+def is_fast_active(fast: dict) -> bool:
+
+    return fast.get("stopped") is not None
+
+
+def is_fast_completed(fast: dict) -> bool:
+
+    hours_in_fast = get_fast_length(fast)[0]
+
+    return fast.get("length") < hours_in_fast
+
+
+def get_fast_length(fast: dict) -> tuple:
+
+    started = fast["started"]
+    stopped = fast.get("stopped")
+
+    if stopped is not None:
+        result = get_time_difference(started, stopped)
+    else:
+        result = 0, 0
+
+    return result
