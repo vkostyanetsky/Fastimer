@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
 import datetime
-from .utils import get_time_difference, print_with_alignment, aligned_string, is_fast_completed
+
+from .utils import (
+    aligned_string,
+    get_time_difference,
+    is_fast_completed,
+    print_with_alignment,
+)
 
 
 def get_fast_preview(fast: dict) -> list:

@@ -5,12 +5,8 @@ import sys
 
 from vkostyanetsky import cliutils
 
+from fastimer import fasts_file, statistics, utils
 from fastimer.menu import FastimerMenu
-import fastimer.fasts_viewer
-import fastimer.statistics
-import fastimer.utils
-
-from .fasts_file import read_fasts, write_fasts
 
 
 def main() -> None:
@@ -23,8 +19,8 @@ def main() -> None:
 
 def main_menu():
 
-    fasts = read_fasts()
-    active_fast = fastimer.utils.get_active_fast(fasts)
+    fasts = fasts_file.read_fasts()
+    active_fast = utils.get_active_fast(fasts)
 
     menu = FastimerMenu(active_fast)
 
@@ -33,16 +29,16 @@ def main_menu():
     else:
         menu.add_item("Stop Active Fast", stop_fast)
 
-    #menu.add_item("Fasts Browser", fasts_browser)
-    menu.add_item("Statistics", statistics)
+    # menu.add_item("Fasts Browser", show_fasts_browser)
+    menu.add_item("Statistics", show_statistics)
     menu.add_item("Exit", sys.exit)
 
     menu.choose()
 
 
 def start_fast() -> None:
-    fasts = read_fasts()
-    fast = fastimer.utils.get_active_fast(fasts)
+    fasts = fasts_file.read_fasts()
+    fast = utils.get_active_fast(fasts)
 
     if fast is not None:
 
@@ -52,8 +48,6 @@ def start_fast() -> None:
         cliutils.enter_to_continue()
 
     else:
-
-        fasts = read_fasts()
 
         length = None
 
@@ -70,7 +64,8 @@ def start_fast() -> None:
                 }
 
                 fasts.append(fast)
-                write_fasts(fasts)
+
+                fasts_file.write_fasts(fasts)
 
             else:
 
@@ -97,8 +92,8 @@ def cancel_fast() -> None:
     """
     Cancel Fast
     """
-    fasts = read_fasts()
-    active_fast = fastimer.utils.get_active_fast(fasts)
+    fasts = fasts_file.read_fasts()
+    active_fast = utils.get_active_fast(fasts)
 
     cliutils.clear_terminal()
 
@@ -107,43 +102,43 @@ def cancel_fast() -> None:
     if cliutils.prompt_for_yes_or_no(prompt):
 
         fasts.remove(active_fast)
-        write_fasts(fasts)
+        fasts_file.write_fasts(fasts)
 
 
 def finish_fast() -> None:
     """
     Finish Fast
     """
-    fasts = read_fasts()
+    fasts = fasts_file.read_fasts()
 
     cliutils.clear_terminal()
 
     if cliutils.prompt_for_yes_or_no("Do you want to end your ongoing fast?"):
 
         fasts[-1]["stopped"] = datetime.datetime.now()
-        write_fasts(fasts)
+        fasts_file.write_fasts(fasts)
 
 
-def fasts_browser() -> None:
-    x = 1
+# def show_fasts_browser() -> None:
+#     x = 1
 
 
-def statistics() -> None:
+def show_statistics() -> None:
 
-    fasts = read_fasts()
+    fasts = fasts_file.read_fasts()
 
     print("FASTING STATISTICS")
     print()
 
-    fastimer.statistics.print_completed_fasts(fasts)
-    fastimer.statistics.print_total_fasting_time(fasts)
-    fastimer.statistics.print_average_fast_length(fasts)
-    fastimer.statistics.print_longest_fast_length(fasts)
-    fastimer.statistics.print_longest_fasting_streak(fasts)
-    fastimer.statistics.print_current_fasting_streak(fasts)
+    statistics.print_completed_fasts(fasts)
+    statistics.print_total_fasting_time(fasts)
+    statistics.print_average_fast_length(fasts)
+    statistics.print_longest_fast_length(fasts)
+    statistics.print_longest_fasting_streak(fasts)
+    statistics.print_current_fasting_streak(fasts)
     print()
 
-    fastimer.statistics.print_achievements(fasts)
+    statistics.print_achievements(fasts)
     print()
 
     cliutils.enter_to_continue()
