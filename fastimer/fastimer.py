@@ -5,7 +5,7 @@ import sys
 
 from vkostyanetsky import cliutils
 
-from fastimer import fasts_file, statistics, utils, browser
+from fastimer import datafile, statistics, utils, browser
 from fastimer.menu import FastimerMenu
 
 
@@ -19,7 +19,7 @@ def main() -> None:
 
 def main_menu():
 
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
     menu = FastimerMenu(active_fast)
@@ -37,7 +37,7 @@ def main_menu():
 
 
 def start_fast() -> None:
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
     fast = utils.get_active_fast(fasts)
 
     if fast is not None:
@@ -65,7 +65,7 @@ def start_fast() -> None:
 
                 fasts.append(fast)
 
-                fasts_file.write_fasts(fasts)
+                datafile.write_fasts(fasts)
 
             else:
 
@@ -92,7 +92,7 @@ def cancel_fast() -> None:
     """
     Cancel Fast
     """
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
     cliutils.clear_terminal()
@@ -102,25 +102,25 @@ def cancel_fast() -> None:
     if cliutils.prompt_for_yes_or_no(prompt):
 
         fasts.remove(active_fast)
-        fasts_file.write_fasts(fasts)
+        datafile.write_fasts(fasts)
 
 
 def finish_fast() -> None:
     """
     Finish Fast
     """
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
 
     cliutils.clear_terminal()
 
     if cliutils.prompt_for_yes_or_no("Do you want to end your ongoing fast?"):
 
         fasts[-1]["stopped"] = datetime.datetime.now()
-        fasts_file.write_fasts(fasts)
+        datafile.write_fasts(fasts)
 
 
 def show_fasts_browser() -> None:
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
     active_fast_description = browser.get_fast_description(active_fast, include_zones=True)
 
@@ -135,7 +135,7 @@ def show_fasts_browser() -> None:
 
 def show_statistics() -> None:
 
-    fasts = fasts_file.read_fasts()
+    fasts = datafile.read_fasts()
 
     print("FASTING STATISTICS")
     print()
