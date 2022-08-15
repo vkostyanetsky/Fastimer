@@ -50,7 +50,7 @@ def is_fast_completed(fast: dict) -> bool:
 
     hours_in_fast = get_fast_length(fast)[0]
 
-    return fast.get("length") < hours_in_fast
+    return fast.get("length") <= hours_in_fast
 
 
 def get_fast_length(fast: dict) -> tuple:

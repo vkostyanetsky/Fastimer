@@ -258,9 +258,9 @@ def __get_fasting_streaks(fasts: list) -> list:
         for fast in fasts:
 
             fast_is_completed = utils.is_fast_completed(fast)
-            fast_is_active = utils.is_fast_active(fast)
+            fast_is_stopped = utils.is_fast_stopped(fast)
 
-            if not fast_is_completed and not fast_is_active:
+            if fast_is_stopped and not fast_is_completed:
                 continue
 
             if previous_fast is not None:
