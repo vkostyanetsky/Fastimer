@@ -2,7 +2,7 @@
 
 from vkostyanetsky import cliutils
 
-from fastimer import fasts_viewer
+from fastimer import browser
 
 
 class FastimerMenu(cliutils.Menu):
@@ -45,7 +45,7 @@ class FastimerMenu(cliutils.Menu):
 
         if self._active_fast is not None:
 
-            active_fast_preview = fasts_viewer.get_fast_preview(self._active_fast)
+            active_fast_preview = browser.get_fast_description(self._active_fast)
 
             print(self._empty_line())
 

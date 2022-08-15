@@ -5,7 +5,7 @@ import sys
 
 from vkostyanetsky import cliutils
 
-from fastimer import fasts_file, statistics, utils
+from fastimer import fasts_file, statistics, utils, browser
 from fastimer.menu import FastimerMenu
 
 
@@ -29,7 +29,7 @@ def main_menu():
     else:
         menu.add_item("Stop Active Fast", stop_fast)
 
-    # menu.add_item("Fasts Browser", show_fasts_browser)
+    menu.add_item("Fasts Browser", show_fasts_browser)
     menu.add_item("Statistics", show_statistics)
     menu.add_item("Exit", sys.exit)
 
@@ -119,8 +119,18 @@ def finish_fast() -> None:
         fasts_file.write_fasts(fasts)
 
 
-# def show_fasts_browser() -> None:
-#     x = 1
+def show_fasts_browser() -> None:
+    fasts = fasts_file.read_fasts()
+    active_fast = utils.get_active_fast(fasts)
+    active_fast_description = browser.get_fast_description(active_fast, include_zones=True)
+
+    for line in active_fast_description:
+        print(line)
+
+    print()
+    cliutils.enter_to_continue()
+
+    main_menu()
 
 
 def show_statistics() -> None:

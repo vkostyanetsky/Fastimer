@@ -6,42 +6,61 @@ from .utils import (
     aligned_string,
     get_time_difference,
     is_fast_completed,
-    print_with_alignment,
+    is_fast_stopped
 )
 
 
-def get_fast_preview(fast: dict) -> list:
+def get_fast_description(fast: dict, include_zones: bool = False) -> list:
     now = datetime.datetime.now()
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
 
-    result = [
-        "Active Fast",
+    description = [
+        __get_fast_title(fast),
         "",
-        __fast_from(fast),
-        __fast_goal(fast, goal),
-        "",
-        __fast_progress_bar(fast, goal),
+        __get_fast_from(fast),
+        __get_fast_goal(fast, goal),
+        ""
     ]
 
+    if include_zones:
+        __include_fasting_zones(description, fast)
+        description.append("")
+
+    description.append(__get_fast_progress_bar(fast, goal))
+
+    description.append("")
+
+    description.append(__get_fast_elapsed_time(fast, now))
+
     if now <= goal:
-        result.append(__fast_time_left(now, goal))
+        description.append(__get_fast_remaining_time(now, goal))
     else:
-        result.append(__fast_time_extra(now, goal))
+        description.append(__get_fast_extra_time(now, goal))
 
     if is_fast_completed(fast):
-        result.append("")
-        result.append("Well done! You have completed this fast!")
+        description.append("")
+        description.append("Well done! You have completed this fast!")
 
-    return result
+    return description
 
 
-def __fast_from(fast: dict) -> str:
+def __get_fast_title(fast: dict) -> str:
+
+    if is_fast_stopped(fast):
+        title = "COMPLETED FAST" if is_fast_completed(fast) else "FAILED FAST"
+    else:
+        title = "ACTIVE FAST"
+
+    return title
+
+
+def __get_fast_from(fast: dict) -> str:
     value = __get_day(fast["started"])
 
     return aligned_string("From", value, 5)
 
 
-def __fast_goal(fast: dict, goal: datetime.datetime) -> str:
+def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
     value = "{goal} ({length} hours)".format(
         goal=goal.strftime("%a, %H:%M"), length=fast["length"]
     )
@@ -49,77 +68,34 @@ def __fast_goal(fast: dict, goal: datetime.datetime) -> str:
     return aligned_string("Goal", value, 5)
 
 
-def __fast_time_extra(now: datetime.datetime, goal: datetime.datetime) -> str:
+def __get_fast_elapsed_time(fast: dict, now: datetime.datetime) -> str:
+    date1 = fast["started"]
+    date2 = now if fast.get("stopped") is None else fast.get("stopped")
+
+    value = __get_time_difference(date1, date2)
+
+    return aligned_string("Elapsed time", value, 15)
+
+
+def __get_fast_extra_time(now: datetime.datetime, goal: datetime.datetime) -> str:
     value = __get_time_difference(goal, now) if now >= goal else None
 
-    return aligned_string("Extra: ", value, 5)
+    return aligned_string("Extra time: ", value, 15)
 
 
-def __fast_time_left(now: datetime.datetime, goal: datetime.datetime) -> str:
+def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -> str:
     value = (
         __get_time_difference(now - datetime.timedelta(minutes=1), goal)
         if now < goal
         else None
     )
 
-    return aligned_string("Left", value, 5)
+    return aligned_string("Remaining", value, 15)
 
 
-def __fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
-    seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
-    seconds_all = (goal - fast["started"]).total_seconds()
-
-    percent = round(seconds_now / seconds_all * 100, 1)
-
-    done_len = int(percent // 2.5)
-
-    if done_len > 40:
-        done_len = 40
-
-    left_len = int(40 - done_len)
-
-    left = "-" * left_len
-    done = "#" * done_len
-    tail = str(percent)
-
-    return f"{done}{left} {tail}%"
-
-    #
-    #
-    # is_completed = active_fast.get("stopped") is not None
-    #
-    # now =
-    #
-    #
-    # print()
-    #
-    # __print_fast_zones(active_fast)
-    #
-    # print()
-    #
-    # __print_fast_elapsed_time(active_fast, now)
-    #
-    # if now > goal:
-    #     __print_fast_extra_time(goal, now)
-    # else:
-    #     __print_fast_remaining_time(goal, now)
-    #
-    # print()
-    #
-    # __print_fast_progress_bar(active_fast, goal)
-    #
-    # if is_completed:
-    #     print()
-    #     print("Well done! You have completed your goal!")
-    #
-    # print()
-    # prompt.enter_to_continue()
-    #
-
-
-def __print_fast_zones(fast: dict) -> None:
-    print("Fasting zones:")
-    print()
+def __include_fasting_zones(description: list, fast: dict) -> None:
+    description.append("Fasting zones:")
+    description.append("")
 
     anabolic_zone = fast["started"]
     catabolic_zone = anabolic_zone + datetime.timedelta(hours=4)
@@ -153,20 +129,31 @@ def __print_fast_zones(fast: dict) -> None:
         deep_ketosis_zone_from, deep_ketosis_zone_note
     )
 
-    print_with_alignment("- Anabolic", anabolic_zone_info)
-    print_with_alignment("- Catabolic", catabolic_zone_info)
-    print_with_alignment("- Fat burning", fat_burning_zone_info)
-    print_with_alignment("- Ketosis", ketosis_zone_info)
-    print_with_alignment("- Deep ketosis", deep_ketosis_zone_info)
+    description.append(aligned_string("- Anabolic", anabolic_zone_info))
+    description.append(aligned_string("- Catabolic", catabolic_zone_info))
+    description.append(aligned_string("- Fat burning", fat_burning_zone_info))
+    description.append(aligned_string("- Ketosis", ketosis_zone_info))
+    description.append(aligned_string("- Deep ketosis", deep_ketosis_zone_info))
 
 
-def __print_fast_elapsed_time(fast: dict, now: datetime.datetime) -> None:
-    date1 = fast["started"]
-    date2 = now if fast.get("stopped") is None else fast.get("stopped")
+def __get_fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
+    seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
+    seconds_all = (goal - fast["started"]).total_seconds()
 
-    value = __get_time_difference(date1, date2)
+    percent = round(seconds_now / seconds_all * 100, 1)
 
-    print_with_alignment("Elapsed time", value)
+    done_len = int(percent // 2.5)
+
+    if done_len > 40:
+        done_len = 40
+
+    left_len = int(40 - done_len)
+
+    left = "-" * left_len
+    done = "#" * done_len
+    tail = str(percent)
+
+    return f"{done}{left} {tail}%"
 
 
 def __get_time_difference(start_date: datetime, end_date: datetime) -> str:

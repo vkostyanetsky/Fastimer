@@ -41,7 +41,7 @@ def get_active_fast(fasts: list) -> dict | None:
     return fasts[-1] if len(fasts) > 0 and fasts[-1].get("stopped") is None else None
 
 
-def is_fast_active(fast: dict) -> bool:
+def is_fast_stopped(fast: dict) -> bool:
 
     return fast.get("stopped") is not None
 
