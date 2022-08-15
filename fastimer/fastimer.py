@@ -5,7 +5,7 @@ import sys
 
 from vkostyanetsky import cliutils
 
-from fastimer.menu import FastimerMainMenu
+from fastimer.menu import FastimerMenu
 import fastimer.fasts_viewer
 import fastimer.statistics
 import fastimer.utils
@@ -26,7 +26,7 @@ def main_menu():
     fasts = read_fasts()
     active_fast = fastimer.utils.get_active_fast(fasts)
 
-    menu = FastimerMainMenu(active_fast)
+    menu = FastimerMenu(active_fast)
 
     if active_fast is None:
         menu.add_item("Start New Fast", start_fast)
@@ -84,7 +84,7 @@ def start_fast() -> None:
 
 def stop_fast() -> None:
 
-    menu = FastimerMainMenu()
+    menu = FastimerMenu()
 
     menu.add_item("Finish Fast", finish_fast)
     menu.add_item("Cancel Fast", cancel_fast)

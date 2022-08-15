@@ -5,7 +5,7 @@ from vkostyanetsky import cliutils
 from fastimer import fasts_viewer
 
 
-class FastimerMainMenu(cliutils.Menu):
+class FastimerMenu(cliutils.Menu):
     _active_fast: dict | None = None
 
     def __init__(self, active_fast: dict | None = None):
