@@ -122,7 +122,9 @@ def finish_fast() -> None:
 def show_fasts_browser() -> None:
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
-    active_fast_description = browser.get_fast_description(active_fast, include_zones=True)
+    active_fast_description = browser.get_fast_description(
+        active_fast, include_zones=True
+    )
 
     for line in active_fast_description:
         print(line)
