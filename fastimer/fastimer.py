@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import keyboard
 import datetime
 import sys
 
 from vkostyanetsky import cliutils
 
-from fastimer import datafile, statistics, utils, browser
+from fastimer import datafile, statistics, utils
 from fastimer.menu import FastimerMenu
+from fastimer.browser import FastsBrowser
 
 
 def main() -> None:
@@ -54,7 +54,7 @@ def start_fast() -> None:
 
         while length is None:
 
-            user_input = input("Enter fast length: ")
+            user_input = input("Enter fast duration in hours: ")
 
             if user_input.isdigit():
 
@@ -72,8 +72,6 @@ def start_fast() -> None:
 
                 print("Please enter a valid number.")
                 print()
-
-                cliutils.enter_to_continue()
 
         main_menu()
 
@@ -129,56 +127,9 @@ def finish_fast() -> None:
 
 def show_fasts_browser() -> None:
     fasts = datafile.read_fasts()
-    viewer = FastsBrowser(fasts)
-    viewer.open()
+    FastsBrowser(fasts).open()
 
     main_menu()
-
-
-class FastsBrowser:
-
-    _fasts: list = []
-    _index: int = 0
-    _max_index: int = 0
-
-    def __init__(self, fasts: list):
-        self._fasts = fasts
-
-        self._max_index = len(fasts) - 1
-        self._index = self._max_index
-
-    def open(self) -> None:
-
-        self.show_fast_by_index()
-
-        print()
-        print("Press [Left] and [Right] to switch fasts.")
-        print("Press [Esc] to return to the main menu.")
-
-        keyboard.add_hotkey('left', self.shift_left)
-        keyboard.add_hotkey('right', self.shift_right)
-
-        keyboard.wait('Esc')
-
-    def show_fast_by_index(self):
-
-        fasts = datafile.read_fasts()
-        fast = fasts[self._index]
-
-        fast_description = browser.get_fast_description(fast, include_zones=True)
-
-        for line in fast_description:
-            print(line)
-
-    def shift_left(self):
-        if self._index > 0:
-            self._index -= 1
-            self.show_fast_by_index()
-
-    def shift_right(self):
-        if self._index < self._max_index:
-            self._index += 1
-            self.show_fast_by_index()
 
 
 def show_statistics() -> None:
@@ -202,5 +153,3 @@ def show_statistics() -> None:
     cliutils.enter_to_continue()
 
     main_menu()
-
-x = 1

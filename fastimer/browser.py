@@ -1,169 +1,49 @@
-#!/usr/bin/env python3
-
-import datetime
-
-from .utils import (
-    aligned_string,
-    get_time_difference,
-    is_fast_completed,
-    is_fast_stopped
-)
+import keyboard
+from fastimer import view
+from vkostyanetsky import cliutils
 
 
-def get_fast_description(fast: dict, include_zones: bool = False) -> list:
-    now = datetime.datetime.now()
-    goal = fast["started"] + datetime.timedelta(hours=fast["length"])
+class FastsBrowser:
+    _fasts: list = []
+    _index: int = 0
+    _max_index: int = 0
 
-    description = [
-        __get_fast_title(fast),
-        "",
-        __get_fast_from(fast),
-        __get_fast_goal(fast, goal),
-        ""
-    ]
+    def __init__(self, fasts: list):
+        self._fasts = fasts
 
-    if include_zones:
-        __include_fasting_zones(description, fast)
-        description.append("")
+        self._max_index = len(fasts) - 1
+        self._index = self._max_index
 
-    description.append(__get_fast_progress_bar(fast, goal))
+    def open(self) -> None:
 
-    description.append("")
+        self.show_fast_by_index()
 
-    description.append(__get_fast_elapsed_time(fast, now))
+        print()
+        print("Press [Left] and [Right] to switch fasts.")
+        print("Press [Esc] to return to the main menu.")
 
-    if now <= goal:
-        description.append(__get_fast_remaining_time(now, goal))
-    else:
-        description.append(__get_fast_extra_time(now, goal))
+        keyboard.add_hotkey('left', self.shift_left)
+        keyboard.add_hotkey('right', self.shift_right)
 
-    if is_fast_completed(fast):
-        description.append("")
-        description.append("Well done! You have completed this fast!")
+        keyboard.wait('Esc')
 
-    return description
+    def show_fast_by_index(self):
 
+        cliutils.clear_terminal()
 
-def __get_fast_title(fast: dict) -> str:
+        fast = self._fasts[self._index]
 
-    if is_fast_stopped(fast):
-        title = "COMPLETED FAST" if is_fast_completed(fast) else "FAILED FAST"
-    else:
-        title = "ACTIVE FAST"
+        fast_description = view.get(fast, include_zones=True)
 
-    return title
+        for line in fast_description:
+            print(line)
 
+    def shift_left(self):
+        if self._index > 0:
+            self._index -= 1
+            self.show_fast_by_index()
 
-def __get_fast_from(fast: dict) -> str:
-    value = __get_day(fast["started"])
-
-    return aligned_string("From", value, 5)
-
-
-def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
-    value = "{goal} ({length} hours)".format(
-        goal=goal.strftime("%a, %H:%M"), length=fast["length"]
-    )
-
-    return aligned_string("Goal", value, 5)
-
-
-def __get_fast_elapsed_time(fast: dict, now: datetime.datetime) -> str:
-    date1 = fast["started"]
-    date2 = now if fast.get("stopped") is None else fast.get("stopped")
-
-    value = __get_time_difference(date1, date2)
-
-    return aligned_string("Elapsed time", value, 15)
-
-
-def __get_fast_extra_time(now: datetime.datetime, goal: datetime.datetime) -> str:
-    value = __get_time_difference(goal, now) if now >= goal else None
-
-    return aligned_string("Extra time", value, 15)
-
-
-def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -> str:
-    value = (
-        __get_time_difference(now - datetime.timedelta(minutes=1), goal)
-        if now < goal
-        else None
-    )
-
-    return aligned_string("Remaining", value, 15)
-
-
-def __include_fasting_zones(description: list, fast: dict) -> None:
-    description.append("Fasting zones:")
-    description.append("")
-
-    anabolic_zone = fast["started"]
-    catabolic_zone = anabolic_zone + datetime.timedelta(hours=4)
-    fat_burning_zone = catabolic_zone + datetime.timedelta(hours=12)
-    ketosis_zone = fat_burning_zone + datetime.timedelta(hours=8)
-    deep_ketosis_zone = ketosis_zone + datetime.timedelta(hours=48)
-
-    now = datetime.datetime.now()
-    fmt = "from %a, %H:%M"
-    note = " <-- you are here"
-
-    anabolic_zone_from = anabolic_zone.strftime(fmt)
-    anabolic_zone_note = note if anabolic_zone <= now < catabolic_zone else ""
-    anabolic_zone_info = "{}{}".format(anabolic_zone_from, anabolic_zone_note)
-
-    catabolic_zone_from = catabolic_zone.strftime(fmt)
-    catabolic_zone_note = note if catabolic_zone <= now < fat_burning_zone else ""
-    catabolic_zone_info = "{}{}".format(catabolic_zone_from, catabolic_zone_note)
-
-    fat_burning_zone_from = fat_burning_zone.strftime(fmt)
-    fat_burning_zone_note = note if fat_burning_zone <= now < ketosis_zone else ""
-    fat_burning_zone_info = "{}{}".format(fat_burning_zone_from, fat_burning_zone_note)
-
-    ketosis_zone_from = ketosis_zone.strftime(fmt)
-    ketosis_zone_note = note if ketosis_zone <= now < deep_ketosis_zone else ""
-    ketosis_zone_info = "{}{}".format(ketosis_zone_from, ketosis_zone_note)
-
-    deep_ketosis_zone_from = deep_ketosis_zone.strftime(fmt)
-    deep_ketosis_zone_note = note if deep_ketosis_zone <= now else ""
-    deep_ketosis_zone_info = "{}{}".format(
-        deep_ketosis_zone_from, deep_ketosis_zone_note
-    )
-
-    description.append(aligned_string("- Anabolic", anabolic_zone_info))
-    description.append(aligned_string("- Catabolic", catabolic_zone_info))
-    description.append(aligned_string("- Fat burning", fat_burning_zone_info))
-    description.append(aligned_string("- Ketosis", ketosis_zone_info))
-    description.append(aligned_string("- Deep ketosis", deep_ketosis_zone_info))
-
-
-def __get_fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
-    seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
-    seconds_all = (goal - fast["started"]).total_seconds()
-
-    percent = round(seconds_now / seconds_all * 100, 1)
-
-    done_len = int(percent // 2.5)
-
-    if done_len > 40:
-        done_len = 40
-
-    left_len = int(40 - done_len)
-
-    left = "-" * left_len
-    done = "#" * done_len
-    tail = str(percent)
-
-    return f"{done}{left} {tail}%"
-
-
-def __get_time_difference(start_date: datetime, end_date: datetime) -> str:
-    hours, minutes = get_time_difference(start_date, end_date)
-
-    hours = str(hours).zfill(2)
-    minutes = str(minutes).zfill(2)
-
-    return f"{hours}h {minutes}m"
-
-
-def __get_day(date: datetime.datetime) -> str:
-    return date.strftime("%a, %H:%M")
+    def shift_right(self):
+        if self._index < self._max_index:
+            self._index += 1
+            self.show_fast_by_index()
