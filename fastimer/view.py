@@ -2,8 +2,12 @@
 
 import datetime
 
-from .utils import (aligned_string, get_time_difference, is_fast_completed,
-                    is_fast_stopped)
+from .utils import (
+    aligned_string,
+    get_time_difference,
+    is_fast_completed,
+    is_fast_stopped,
+)
 
 
 def get(fast: dict, include_zones: bool = False) -> list:
@@ -15,7 +19,7 @@ def get(fast: dict, include_zones: bool = False) -> list:
         "",
         __get_fast_from(fast),
         __get_fast_goal(fast, goal),
-        ""
+        "",
     ]
 
     if include_zones:
@@ -91,7 +95,6 @@ def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -
 
 
 def __include_fasting_zones(lines: list, fast: dict) -> None:
-
     def add_line_for_zone(title, start_time, end_time=None) -> None:
 
         zone_from = start_time.strftime("from %a, %H:%M")

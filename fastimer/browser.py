@@ -23,10 +23,10 @@ class FastsBrowser:
         print("Press [Left] and [Right] to switch fasts.")
         print("Press [Esc] to return to the main menu.")
 
-        keyboard.add_hotkey('left', self.shift_left)
-        keyboard.add_hotkey('right', self.shift_right)
+        keyboard.add_hotkey("left", self.shift_left)
+        keyboard.add_hotkey("right", self.shift_right)
 
-        keyboard.wait('Esc')
+        keyboard.wait("Esc")
 
     def show_fast_by_index(self):
 
