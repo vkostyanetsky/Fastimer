@@ -80,7 +80,7 @@ def __get_fast_elapsed_time(fast: dict, now: datetime.datetime) -> str:
 def __get_fast_extra_time(now: datetime.datetime, goal: datetime.datetime) -> str:
     value = __get_time_difference(goal, now) if now >= goal else None
 
-    return aligned_string("Extra time: ", value, 15)
+    return aligned_string("Extra time", value, 15)
 
 
 def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -> str:

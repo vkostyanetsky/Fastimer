@@ -7,7 +7,7 @@ from yaml import parser, safe_dump, safe_load
 
 def read_fasts() -> list:
 
-    yaml_file_name = __get_journal_file_name()
+    yaml_file_name = __get_file_name()
 
     fasts = []
 
@@ -34,12 +34,12 @@ def write_fasts(fasts: list) -> None:
         if fast.get("stopped") is not None:
             fast["stopped"] = fast["stopped"].replace(microsecond=0)
 
-    yaml_file_name = __get_journal_file_name()
+    yaml_file_name = __get_file_name()
 
     with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:
         safe_dump(fasts, yaml_file)
 
 
-def __get_journal_file_name() -> str:
+def __get_file_name() -> str:
 
     return "fasts.yaml"

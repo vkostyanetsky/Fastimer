@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import keyboard
 import datetime
 import sys
 
@@ -79,7 +80,10 @@ def start_fast() -> None:
 
 def stop_fast() -> None:
 
-    menu = FastimerMenu()
+    fasts = datafile.read_fasts()
+    active_fast = utils.get_active_fast(fasts)
+
+    menu = FastimerMenu(active_fast)
 
     menu.add_item("Finish Fast", finish_fast)
     menu.add_item("Cancel Fast", cancel_fast)
@@ -104,6 +108,8 @@ def cancel_fast() -> None:
         fasts.remove(active_fast)
         datafile.write_fasts(fasts)
 
+    main_menu()
+
 
 def finish_fast() -> None:
     """
@@ -118,21 +124,61 @@ def finish_fast() -> None:
         fasts[-1]["stopped"] = datetime.datetime.now()
         datafile.write_fasts(fasts)
 
+    main_menu()
+
 
 def show_fasts_browser() -> None:
     fasts = datafile.read_fasts()
-    active_fast = utils.get_active_fast(fasts)
-    active_fast_description = browser.get_fast_description(
-        active_fast, include_zones=True
-    )
-
-    for line in active_fast_description:
-        print(line)
-
-    print()
-    cliutils.enter_to_continue()
+    viewer = FastsBrowser(fasts)
+    viewer.open()
 
     main_menu()
+
+
+class FastsBrowser:
+
+    _fasts: list = []
+    _index: int = 0
+    _max_index: int = 0
+
+    def __init__(self, fasts: list):
+        self._fasts = fasts
+
+        self._max_index = len(fasts) - 1
+        self._index = self._max_index
+
+    def open(self) -> None:
+
+        self.show_fast_by_index()
+
+        print()
+        print("Press [Left] and [Right] to switch fasts.")
+        print("Press [Esc] to return to the main menu.")
+
+        keyboard.add_hotkey('left', self.shift_left)
+        keyboard.add_hotkey('right', self.shift_right)
+
+        keyboard.wait('Esc')
+
+    def show_fast_by_index(self):
+
+        fasts = datafile.read_fasts()
+        fast = fasts[self._index]
+
+        fast_description = browser.get_fast_description(fast, include_zones=True)
+
+        for line in fast_description:
+            print(line)
+
+    def shift_left(self):
+        if self._index > 0:
+            self._index -= 1
+            self.show_fast_by_index()
+
+    def shift_right(self):
+        if self._index < self._max_index:
+            self._index += 1
+            self.show_fast_by_index()
 
 
 def show_statistics() -> None:
@@ -156,3 +202,5 @@ def show_statistics() -> None:
     cliutils.enter_to_continue()
 
     main_menu()
+
+x = 1
