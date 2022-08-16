@@ -2,12 +2,8 @@
 
 import datetime
 
-from .utils import (
-    aligned_string,
-    get_time_difference,
-    is_fast_completed,
-    is_fast_stopped
-)
+from .utils import (aligned_string, get_time_difference, is_fast_completed,
+                    is_fast_stopped)
 
 
 def get(fast: dict, include_zones: bool = False) -> list:

@@ -6,8 +6,8 @@ import sys
 from vkostyanetsky import cliutils
 
 from fastimer import datafile, statistics, utils
-from fastimer.menu import FastimerMenu
 from fastimer.browser import FastsBrowser
+from fastimer.menu import FastimerMenu
 
 
 def main() -> None:

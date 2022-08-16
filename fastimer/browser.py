@@ -1,6 +1,7 @@
 import keyboard
-from fastimer import view
 from vkostyanetsky import cliutils
+
+from fastimer import view
 
 
 class FastsBrowser:
