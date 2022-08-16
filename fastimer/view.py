@@ -37,10 +37,6 @@ def get(fast: dict, include_zones: bool = False) -> list:
     else:
         description.append(__get_fast_extra_time(now, goal))
 
-    if is_fast_completed(fast):
-        description.append("")
-        description.append("Well done! You have completed this fast!")
-
     return description
 
 
