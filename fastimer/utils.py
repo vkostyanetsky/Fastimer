@@ -25,15 +25,14 @@ def aligned_string(title: str, value: str, width: int = 15) -> str:
 
     title = f"{title}:".ljust(width)
 
-    return "{} {}".format(title, value)
+    return f"{title} {value}"
 
 
 def print_with_alignment(title: str, value: str, width: int = 15) -> None:
 
     title = f"{title}:".ljust(width)
-    string = "{} {}".format(title, value)
 
-    print(string)
+    print(f"{title} {value}")
 
 
 def get_active_fast(fasts: list) -> dict | None:

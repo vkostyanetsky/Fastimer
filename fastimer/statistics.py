@@ -55,17 +55,15 @@ def print_longest_fast_length(fasts: list) -> None:
 def print_longest_fasting_streak(fasts: list) -> None:
 
     value = __get_longest_fasting_streak(fasts)
-    value = "{} days".format(value)
 
-    __print_with_alignment("Longest Fasting Streak", value)
+    __print_with_alignment("Longest Fasting Streak", f"{value} days")
 
 
 def print_current_fasting_streak(fasts: list) -> None:
 
     value = __get_current_fasting_streak(fasts)
-    value = "{} days".format(value)
 
-    __print_with_alignment("Current Fasting Streak", value)
+    __print_with_alignment("Current Fasting Streak", f"{value} days")
 
 
 def print_achievements(fasts: list) -> None:
@@ -78,7 +76,7 @@ def print_achievements(fasts: list) -> None:
         print("- Nothing yet.")
     else:
         for achievement in achievements:
-            print("- {}".format(achievement))
+            print(f"- {achievement}")
 
 
 def __print_with_alignment(title: str, value: str):
@@ -318,4 +316,4 @@ def __get_longest_fast_length(fasts: list) -> tuple:
 
 def __get_period_string(hours: float, minutes: float) -> str:
 
-    return "{hours}h {minutes}m".format(hours=int(hours), minutes=int(minutes))
+    return f"{int(hours)}h {int(minutes)}m"

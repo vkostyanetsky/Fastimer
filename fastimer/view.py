@@ -57,11 +57,12 @@ def __get_fast_from(fast: dict) -> str:
 
 
 def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
-    value = "{goal} ({length} hours)".format(
-        goal=goal.strftime("%a, %H:%M"), length=fast["length"]
-    )
 
-    return aligned_string("Goal", value, 5)
+    goal = goal.strftime("%a, %H:%M")
+    length = fast["length"]
+    goal_string = f"{goal} ({length} hours)"
+
+    return aligned_string("Goal", goal_string, 5)
 
 
 def __get_fast_elapsed_time(fast: dict, now: datetime.datetime) -> str:
@@ -89,9 +90,21 @@ def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -
     return aligned_string("Remaining", value, 15)
 
 
-def __include_fasting_zones(description: list, fast: dict) -> None:
-    description.append("Fasting zones:")
-    description.append("")
+def __include_fasting_zones(lines: list, fast: dict) -> None:
+
+    def add_line_for_zone(title, start_time, end_time=None) -> None:
+
+        zone_from = start_time.strftime("from %a, %H:%M")
+        note = " <-- you are here"
+
+        if end_time is None:
+            zone_note = note if start_time <= now else ""
+        else:
+            zone_note = note if start_time <= now < end_time else ""
+
+        zone_info = aligned_string(f"- {title}", f"{zone_from}{zone_note}")
+
+        lines.append(zone_info)
 
     anabolic_zone = fast["started"]
     catabolic_zone = anabolic_zone + datetime.timedelta(hours=4)
@@ -100,36 +113,15 @@ def __include_fasting_zones(description: list, fast: dict) -> None:
     deep_ketosis_zone = ketosis_zone + datetime.timedelta(hours=48)
 
     now = datetime.datetime.now()
-    fmt = "from %a, %H:%M"
-    note = " <-- you are here"
 
-    anabolic_zone_from = anabolic_zone.strftime(fmt)
-    anabolic_zone_note = note if anabolic_zone <= now < catabolic_zone else ""
-    anabolic_zone_info = "{}{}".format(anabolic_zone_from, anabolic_zone_note)
+    lines.append("Fasting zones:")
+    lines.append("")
 
-    catabolic_zone_from = catabolic_zone.strftime(fmt)
-    catabolic_zone_note = note if catabolic_zone <= now < fat_burning_zone else ""
-    catabolic_zone_info = "{}{}".format(catabolic_zone_from, catabolic_zone_note)
-
-    fat_burning_zone_from = fat_burning_zone.strftime(fmt)
-    fat_burning_zone_note = note if fat_burning_zone <= now < ketosis_zone else ""
-    fat_burning_zone_info = "{}{}".format(fat_burning_zone_from, fat_burning_zone_note)
-
-    ketosis_zone_from = ketosis_zone.strftime(fmt)
-    ketosis_zone_note = note if ketosis_zone <= now < deep_ketosis_zone else ""
-    ketosis_zone_info = "{}{}".format(ketosis_zone_from, ketosis_zone_note)
-
-    deep_ketosis_zone_from = deep_ketosis_zone.strftime(fmt)
-    deep_ketosis_zone_note = note if deep_ketosis_zone <= now else ""
-    deep_ketosis_zone_info = "{}{}".format(
-        deep_ketosis_zone_from, deep_ketosis_zone_note
-    )
-
-    description.append(aligned_string("- Anabolic", anabolic_zone_info))
-    description.append(aligned_string("- Catabolic", catabolic_zone_info))
-    description.append(aligned_string("- Fat burning", fat_burning_zone_info))
-    description.append(aligned_string("- Ketosis", ketosis_zone_info))
-    description.append(aligned_string("- Deep ketosis", deep_ketosis_zone_info))
+    add_line_for_zone("Anabolic", anabolic_zone, catabolic_zone)
+    add_line_for_zone("Catabolic", catabolic_zone, fat_burning_zone)
+    add_line_for_zone("Fat burning", fat_burning_zone, ketosis_zone)
+    add_line_for_zone("Ketosis", ketosis_zone, deep_ketosis_zone)
+    add_line_for_zone("Anabolic", deep_ketosis_zone)
 
 
 def __get_fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
@@ -139,9 +131,7 @@ def __get_fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
     percent = round(seconds_now / seconds_all * 100, 1)
 
     done_len = int(percent // 2.5)
-
-    if done_len > 40:
-        done_len = 40
+    done_len = min(done_len, 40)
 
     left_len = int(40 - done_len)
 
