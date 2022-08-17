@@ -67,7 +67,7 @@ As you can see, the first command above is replaced by another one. Its meaning 
 
 The second command of the main menu, "Fasts Browser" allows you to browse through your fasts.
 
-By default, it shows you the very last one, but you can go back in history, using by [Left] and [Right] buttons on your keyboard. 
+By default, it shows you the very last one, but you switch fasts by using [Left] and [Right] buttons on your keyboard. 
 
 ```
 COMPLETED FAST
@@ -94,7 +94,7 @@ Press [Esc] to return to the main menu.
 
 ### Statistics
 
-The `Statistics` command shows you some statistics & [achievements](Achievements.md) you were able to unlock (total fasting time, average fast length etc.).
+The `Statistics` command shows you statistical data and [earned achievements](Achievements.md).
 
 For instance:
 
@@ -117,7 +117,7 @@ Achievements:
 
 ### Where I can see or edit my fasts?
 
-The script stores all the fasts in `fasts.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in `fasts.yaml` file in the working directory (where you run the timer). The file is quite human-readable, so you can just open it in your lovely text editor.
 
 For instance, the completed fast in the journal looks like this:
 
