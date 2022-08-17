@@ -38,7 +38,7 @@ The script shows you a menu with three commands available:
 
 Something is obvious: the first command starts a new fast. It asks you for a number of hours you are going to be hungry and turns the timer on.
 
-You can control active fast directly from the main menu. For instance, if the fast is active, it can look like this:
+You can control the active fast directly from the main menu. Have a look:
 
 ```
   ┌───────────────────────────────────────────────────────────────────────────┐
@@ -64,6 +64,8 @@ You can control active fast directly from the main menu. For instance, if the fa
   │                                                                           │
   └───────────────────────────────────────────────────────────────────────────┘
 ```
+
+So you can when you started, when you are going to finish, elapsed time, remaining time and something that looks like a progress bar to visualise you spilled blood, sweat and tears :-)
 
 ## Stop Active Fast
 
