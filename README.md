@@ -6,7 +6,7 @@ It is a little CLI timer to track fasts, designed specifically to help you monit
 
 ## 😮 What's this for?
 
-Yeah, there are a lot of apps like this one, you are right.
+Yeah, there are plenty of apps like this one, you are right.
 
 To come clear, I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me statistics for a date. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
 
@@ -36,7 +36,7 @@ The script shows you a menu with three commands available:
 
 ### Start New Fast
 
-Something is obvious: the first command starts a new fast. It asks you for a number of hours you are going to be hungry and turns the timer on.
+Something is obvious: the first command starts a new fast. It asks you for a number of hours you will be hungry and turns the timer on.
 
 You can control the active fast directly from the main menu. Have a look:
 
@@ -47,13 +47,13 @@ You can control the active fast directly from the main menu. Have a look:
   │                                                                           │
   │    ACTIVE FAST                                                            │
   │                                                                           │
-  │    From: Tue, 20:31                                                       │
-  │    Goal: Wed, 10:31 (14 hours)                                            │
+  │    From: Wed, 19:33                                                       │
+  │    Goal: Thu, 09:33 (14 hours)                                            │
   │                                                                           │
-  │    ######################################-- 97.3%                         │
+  │    #######--------------------------------- 19.2%                         │
   │                                                                           │
-  │    Elapsed time:   13h 36m                                                │
-  │    Remaining:      00h 24m                                                │
+  │    Elapsed time:   02h 41m                                                │
+  │    Remaining:      11h 19m                                                │
   │                                                                           │
   ├───────────────────────────────────────────────────────────────────────────┤
   │                                                                           │
@@ -65,13 +65,13 @@ You can control the active fast directly from the main menu. Have a look:
   └───────────────────────────────────────────────────────────────────────────┘
 ```
 
-So you can when you started, when you are going to finish, elapsed time, remaining time and something that looks like a progress bar to visualise you spilled blood, sweat and tears :-)
+So, you can when you started, when you are going to finish, elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :-)
 
 ## Stop Active Fast
 
 When the fast is active, the command `Stop Active Fast` appears and allows you to stop your fast when you decided to do so.
 
-It asks you whether you want to finish your fast or cancel it. Finishing means you want to store the fast in the app history; cancelling means you want to delete the information about this fast by a reason. 
+It asks you whether you want to finish your fast or cancel it. Finishing means you wish to store the fast in the app history; cancelling means you wish to delete the information about this fast by a reason. 
 
 ### Fasts Browser
 
@@ -111,21 +111,21 @@ For instance:
 ```
 FASTING STATISTICS
 
-Completed Fasts:         32 out of 33
-Total Fasting Time:      423h 15m
-Average Fast Length:     13h 13m
+Completed Fasts:         33 out of 34
+Total Fasting Time:      437h 26m
+Average Fast Length:     13h 15m
 Longest Fast Length:     18h 12m
 Longest Fasting Streak:  20 days
-Current Fasting Streak:  2 days
+Current Fasting Streak:  3 days
 
 Achievements:
-- COPPER SENSE OF PURPOSE (level 2 badge out of 9). Twenty five fasts completed!
-- COPPER HABIT (level 2 badge out of 9). Ten completed fasts in a row!
+- COPPER WALKER (level 2 badge out of 9). Twenty five fasts completed!
+- COPPER MAN OF HABIT (level 2 badge out of 9). Ten completed fasts in a row!
 ```
 
 ## 😌 Questions 
 
-### Where I can see or edit my fasts?
+### Where can I see or edit my fasts?
 
 The script stores all the fasts in `fasts.yaml` file in the working directory (where you run the timer). The file is quite human-readable, so you can just open it in your lovely text editor.
 
