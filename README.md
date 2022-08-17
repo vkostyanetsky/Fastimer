@@ -36,7 +36,7 @@ The script shows you a menu with three commands available:
 
 ### Start New Fast
 
-Something is obvious: so, the first command starts a new fast. It asks you for a length of the fast and turns the timer on.
+Something is obvious: the first command starts a new fast. It asks you for a number of hours you are going to be hungry and turns the timer on.
 
 You can control active fast directly from the main menu. For instance, if the fast is active, it can look like this:
 
