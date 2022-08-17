@@ -100,22 +100,22 @@ def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
     completed_fasts = __get_number_of_completed_fasts(fasts)
 
     levels = {
-        5: "WOODEN SENSE OF PURPOSE (level 1 badge out of 9). " "Five fasts completed!",
-        25: "COPPER SENSE OF PURPOSE (level 2 badge out of 9). "
+        5: "WOODEN WALKER (level 1 badge out of 9). " "Five fasts completed!",
+        25: "COPPER WALKER (level 2 badge out of 9). "
         "Twenty five fasts completed!",
-        50: "BRONZE SENSE OF PURPOSE (level 3 badge out of 9). "
+        50: "BRONZE WALKER (level 3 badge out of 9). "
         "Fifty fasts completed!",
-        100: "IRON SENSE OF PURPOSE (level 4 badge out of 9). "
+        100: "IRON WALKER (level 4 badge out of 9). "
         "One hundred fasts completed!",
-        250: "STEEL SENSE OF PURPOSE (level 5 badge out of 9). "
+        250: "STEEL WALKER (level 5 badge out of 9). "
         "Two hundred and fifty fasts completed!",
-        500: "SILVER SENSE OF PURPOSE (level 6 badge out of 9). "
+        500: "SILVER WALKER (level 6 badge out of 9). "
         "Five hundred fasts completed!",
-        1000: "GOLD SENSE OF PURPOSE (level 7 badge out of 9). "
+        1000: "GOLD WALKER (level 7 badge out of 9). "
         "Thousand fasts completed!",
-        2500: "PLATINUM SENSE OF PURPOSE (level 8 badge out of 9). "
+        2500: "PLATINUM WALKER (level 8 badge out of 9). "
         "Two and a half thousand fasts completed!",
-        5000: "DIAMOND SENSE OF PURPOSE (level 9 badge out of 9). "
+        5000: "DIAMOND WALKER (level 9 badge out of 9). "
         "Five thousand fasts completed!",
     }
 
@@ -127,20 +127,20 @@ def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
     longest_fasting_streak = __get_longest_fasting_streak(fasts)
 
     levels = {
-        5: "WOODEN HABIT (level 1 badge out of 9). " "Five completed fasts in a row!",
-        10: "COPPER HABIT (level 2 badge out of 9). " "Ten completed fasts in a row!",
-        25: "BRONZE HABIT (level 3 badge out of 9). "
+        5: "WOODEN MAN OF HABIT (level 1 badge out of 9). " "Five completed fasts in a row!",
+        10: "COPPER MAN OF HABIT (level 2 badge out of 9). " "Ten completed fasts in a row!",
+        25: "BRONZE MAN OF HABIT (level 3 badge out of 9). "
         "Twenty five completed fasts in a row!",
-        50: "IRON HABIT (level 4 badge out of 9). " "Fifty completed fasts in a row!",
-        100: "STEEL HABIT (level 5 badge out of 9). "
+        50: "IRON MAN OF HABIT (level 4 badge out of 9). " "Fifty completed fasts in a row!",
+        100: "STEEL MAN OF HABIT (level 5 badge out of 9). "
         "One hundred completed fasts in a row!",
-        150: "SILVER HABIT (level 6 badge out of 9). "
+        150: "SILVER MAN OF HABIT (level 6 badge out of 9). "
         "One hundred and fifty completed fasts in a row!",
-        200: "GOLD HABIT (level 7 badge out of 9). "
+        200: "GOLD MAN OF HABIT (level 7 badge out of 9). "
         "Two hundred completed fasts in a row!",
-        250: "PLATINUM HABIT (level 8 badge out of 9). "
+        250: "PLATINUM MAN OF HABIT (level 8 badge out of 9). "
         "Two hundred and fifty completed fasts in a row!",
-        365: "DIAMOND HABIT (level 9 badge out of 9). "
+        365: "DIAMOND MAN OF HABIT (level 9 badge out of 9). "
         "Three hundred sixty five completed fasts in a row!",
     }
 

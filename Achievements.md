@@ -2,7 +2,7 @@
 
 I have implemented them to entertain and motivate myself. To be honest, fasting is not an easy way to lose weight, so some additional gamification is always nice.
 
-## Sense of Purpose 
+## Walker 
 
 This reward can be obtained for the number of completed fasts.
 
@@ -18,7 +18,7 @@ This reward can be obtained for the number of completed fasts.
 | 8     | 2500            | Platinum |
 | 9     | 5000            | Diamond  |
 
-## Habit
+## Man of Habit
 
 This reward can be obtained for the number of fasts in a row.
 
