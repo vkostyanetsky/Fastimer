@@ -11,7 +11,11 @@ from .utils import (
 
 
 def get(fast: dict, include_zones: bool = False) -> list:
-    now = datetime.datetime.now()
+
+    time = (
+        fast["stopped"] if is_fast_stopped(fast) else datetime.datetime.now()
+    )
+
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
 
     description = [
@@ -23,19 +27,19 @@ def get(fast: dict, include_zones: bool = False) -> list:
     ]
 
     if include_zones:
-        __include_fasting_zones(description, fast)
+        __include_fasting_zones(description, fast, time)
         description.append("")
 
-    description.append(__get_fast_progress_bar(fast, goal))
+    description.append(__get_fast_progress_bar(fast, goal, time))
 
     description.append("")
 
-    description.append(__get_fast_elapsed_time(fast, now))
+    description.append(__get_fast_elapsed_time(fast, time))
 
-    if now <= goal:
-        description.append(__get_fast_remaining_time(now, goal))
+    if time <= goal:
+        description.append(__get_fast_remaining_time(time, goal))
     else:
-        description.append(__get_fast_extra_time(now, goal))
+        description.append(__get_fast_extra_time(time, goal))
 
     return description
 
@@ -58,60 +62,69 @@ def __get_fast_from(fast: dict) -> str:
 
 def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
 
-    goal = goal.strftime("%a, %H:%M")
+    goal = __get_day(goal)
     length = fast["length"]
     goal_string = f"{goal} ({length} hours)"
 
     return aligned_string("Goal", goal_string, 5)
 
 
-def __get_fast_elapsed_time(fast: dict, now: datetime.datetime) -> str:
+def __get_fast_elapsed_time(fast: dict, time: datetime.datetime) -> str:
     date1 = fast["started"]
-    date2 = now if fast.get("stopped") is None else fast.get("stopped")
+    date2 = time if fast.get("stopped") is None else fast.get("stopped")
 
     value = __get_time_difference(date1, date2)
 
     return aligned_string("Elapsed time", value, 15)
 
 
-def __get_fast_extra_time(now: datetime.datetime, goal: datetime.datetime) -> str:
-    value = __get_time_difference(goal, now) if now >= goal else None
+def __get_fast_extra_time(
+    time: datetime.datetime, goal: datetime.datetime
+) -> str:
+    value = (
+        __get_time_difference(goal, time)
+        if time >= goal
+        else None
+    )
 
     return aligned_string("Extra time", value, 15)
 
 
-def __get_fast_remaining_time(now: datetime.datetime, goal: datetime.datetime) -> str:
+def __get_fast_remaining_time(
+    time: datetime.datetime, goal: datetime.datetime
+) -> str:
     value = (
-        __get_time_difference(now - datetime.timedelta(minutes=1), goal)
-        if now < goal
+        __get_time_difference(time - datetime.timedelta(minutes=1), goal)
+        if time < goal
         else None
     )
 
     return aligned_string("Remaining", value, 15)
 
 
-def __include_fasting_zones(lines: list, fast: dict) -> None:
+def __include_fasting_zones(
+    lines: list, fast: dict, time: datetime.datetime
+) -> None:
     def add_line_for_zone(title, start_time, end_time=None) -> None:
 
-        zone_from = start_time.strftime("from %a, %H:%M")
-        note = " <-- you are here"
+        zone_from = f"from {__get_day(start_time)}"
 
         if end_time is None:
-            zone_note = note if start_time <= now else ""
+            zone_note = note if start_time <= time else ""
         else:
-            zone_note = note if start_time <= now < end_time else ""
+            zone_note = note if start_time <= time < end_time else ""
 
         zone_info = aligned_string(f"- {title}", f"{zone_from}{zone_note}")
 
         lines.append(zone_info)
+
+    note = " <-- you were here" if is_fast_stopped(fast) else " <-- you are here"
 
     anabolic_zone = fast["started"]
     catabolic_zone = anabolic_zone + datetime.timedelta(hours=4)
     fat_burning_zone = catabolic_zone + datetime.timedelta(hours=12)
     ketosis_zone = fat_burning_zone + datetime.timedelta(hours=8)
     deep_ketosis_zone = ketosis_zone + datetime.timedelta(hours=48)
-
-    now = datetime.datetime.now()
 
     lines.append("Fasting zones:")
     lines.append("")
@@ -123,8 +136,10 @@ def __include_fasting_zones(lines: list, fast: dict) -> None:
     add_line_for_zone("Anabolic", deep_ketosis_zone)
 
 
-def __get_fast_progress_bar(fast: dict, goal: datetime.datetime) -> str:
-    seconds_now = (datetime.datetime.now() - fast["started"]).total_seconds()
+def __get_fast_progress_bar(
+    fast: dict, goal: datetime.datetime, time: datetime.datetime
+) -> str:
+    seconds_now = (time - fast["started"]).total_seconds()
     seconds_all = (goal - fast["started"]).total_seconds()
 
     percent = round(seconds_now / seconds_all * 100, 1)
@@ -151,4 +166,10 @@ def __get_time_difference(start_date: datetime, end_date: datetime) -> str:
 
 
 def __get_day(date: datetime.datetime) -> str:
-    return date.strftime("%a, %H:%M")
+
+    if (datetime.datetime.now() - date).days > 7:
+        fmt = "%Y-%m-%d %H:%M"
+    else:
+        fmt = "%a, %H:%M"
+
+    return date.strftime(fmt)

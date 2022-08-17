@@ -8,8 +8,13 @@ from fastimer import view
 
 class FastsBrowser:
     _fasts: list = []
-    _index: int = 0
+
     _max_index: int = 0
+    _index: int = 0
+
+    _previous_fast_hotkey: str = "Left"
+    _next_fast_hotkey: str = "Right"
+    _exit_hotkey: str = "Esc"
 
     def __init__(self, fasts: list):
         self._fasts = fasts
@@ -21,32 +26,35 @@ class FastsBrowser:
 
         self.show_fast_by_index()
 
-        print()
-        print("Press [Left] and [Right] to switch fasts.")
-        print("Press [Esc] to return to the main menu.")
+        keyboard.add_hotkey(self._previous_fast_hotkey, self.show_previous_fast)
+        keyboard.add_hotkey(self._next_fast_hotkey, self.show_next_fast)
 
-        keyboard.add_hotkey("left", self.shift_left)
-        keyboard.add_hotkey("right", self.shift_right)
+        keyboard.wait(self._exit_hotkey)
 
-        keyboard.wait("Esc")
+        keyboard.remove_all_hotkeys()
 
     def show_fast_by_index(self):
 
         cliutils.clear_terminal()
 
         fast = self._fasts[self._index]
+        info = view.get(fast, include_zones=True)
 
-        fast_description = view.get(fast, include_zones=True)
-
-        for line in fast_description:
+        for line in info:
             print(line)
 
-    def shift_left(self):
+        print()
+        print(
+            f"Press [{self._previous_fast_hotkey}] and [{self._next_fast_hotkey}] to switch fasts."
+        )
+        print(f"Press [{self._exit_hotkey}] to return to the main menu.")
+
+    def show_previous_fast(self):
         if self._index > 0:
             self._index -= 1
             self.show_fast_by_index()
 
-    def shift_right(self):
+    def show_next_fast(self):
         if self._index < self._max_index:
             self._index += 1
             self.show_fast_by_index()

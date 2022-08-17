@@ -24,61 +24,96 @@ Simply run the script in the directory where you want to store data:
 fastimer
 ```
 
-The script shows you a menu with four commands available: 
+The script shows you a menu with three commands available: 
 
 1. Start New Fast
-2. Manage Active Fast
-3. Display Statistics  
+2. Fasts Browser
+3. Statistics  
 
-Something is obvious: so, the first command starts a new fast. The second one displays submenu: 
+### Start New Fast
 
-1. End Fast
-2. Cancel Fast
-3. Display Fast
+Something is obvious: so, the first command starts a new fast. It will ask you for a length of the fast and enables the timer.
 
-The first command here enables you to end active fast, second one means the cancelling of active fast. Third one shows you how active fast is going on.
-
-For instance:  
+You can control active fast directly from the main menu. For instance, if the fast is active, it can look like this:
 
 ```
-ACTIVE FAST
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │  FASTING TIMER                                                            │
+  ├───────────────────────────────────────────────────────────────────────────┤
+  │                                                                           │
+  │    ACTIVE FAST                                                            │
+  │                                                                           │
+  │    From: Tue, 20:31                                                       │
+  │    Goal: Wed, 10:31 (14 hours)                                            │
+  │                                                                           │
+  │    ######################################-- 97.3%                         │
+  │                                                                           │
+  │    Elapsed time:   13h 36m                                                │
+  │    Remaining:      00h 24m                                                │
+  │                                                                           │
+  ├───────────────────────────────────────────────────────────────────────────┤
+  │                                                                           │
+  │    1 - Stop Active Fast                                                   │
+  │    2 - Fasts Browser                                                      │
+  │    3 - Statistics                                                         │
+  │    4 - Exit                                                               │
+  │                                                                           │
+  └───────────────────────────────────────────────────────────────────────────┘
+```
 
-Started:        Mon, 20:19
-Goal:           Tue, 14:19 (18 hours)
+As you can see, the first command is replaced by another one. Its meaning is obvious as well: stopping the active fast. Begin selected, it asks you whether you want to finish your fast (and store it in the history) or cancel the fast (and delete it permanently).
+
+### Fasts Browser
+
+The second command of the main menu, "Fasts Browser" allows you to browse through your fasts (active, finished, and failed ones). 
+
+```
+COMPLETED FAST
+
+From: Mon, 19:27
+Goal: Tue, 09:27 (14 hours)
 
 Fasting zones:
 
-- Anabolic:     from Mon, 20:19
-- Catabolic:    from Tue, 00:19 <-- you are here
-- Fat burning:  from Tue, 12:19
-- Ketosis:      from Tue, 20:19
-- Deep ketosis: from Thu, 20:19
+- Anabolic:     from Mon, 19:27
+- Catabolic:    from Mon, 23:27 <-- you were here
+- Fat burning:  from Tue, 11:27
+- Ketosis:      from Tue, 19:27
+- Anabolic:     from Thu, 19:27
 
-Elapsed time:   13:38
-Remaining:      04:21
+######################################## 101.3%
 
-| ##############################---------- | 75.8%
+Elapsed time:   14h 11m
+Extra time:     00h 11m
+
+Press [Left] and [Right] to switch fasts.
+Press [Esc] to return to the main menu.
 ```
 
-The `Display Statistics` command shows you some statistics & [achievements](Achievements.md) you were able to unlock (total fasting time, average fast length etc.).
+### Statistics
+
+The `Statistics` command shows you some statistics & [achievements](Achievements.md) you were able to unlock (total fasting time, average fast length etc.).
 
 For instance:
 
 ```
 FASTING STATISTICS
 
-Completed Fasts:         8
-Total Fasting Time:      120h 59m
-Average Fast Length:     15h 7m
+Completed Fasts:         32 out of 33
+Total Fasting Time:      423h 15m
+Average Fast Length:     13h 13m
 Longest Fast Length:     18h 12m
-Longest Fasting Streak:  3 days
-Current Fasting Streak:  1 days
+Longest Fasting Streak:  20 days
+Current Fasting Streak:  2 days
 
 Achievements:
-- WOODEN PERSISTENCE (level 1 badge out of 9). Five fasts completed!
+- COPPER SENSE OF PURPOSE (level 2 badge out of 9). Twenty five fasts completed!
+- COPPER HABIT (level 2 badge out of 9). Ten completed fasts in a row!
 ```
 
-## 😌 Where I can see or edit my fasts?
+## 😌 Questions 
+
+### Where I can see or edit my fasts?
 
 The script stores all the fasts in `fasts.yaml` file in the working directory. The file is quite human-readable, so you can just open it in your lovely text editor.
 
