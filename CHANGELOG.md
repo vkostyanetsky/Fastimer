@@ -1,17 +1,21 @@
 # Changelog
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [1.2.0] - 2022-08-17
 
 ### Added
 
-* Added the `Cancel Active Fast` command.
-* The command `End Active Fast`, the command `Display Active Fast`, and the new command `Cancel Active Fast` (was mentioned above) were moved to a new submenu `Manage Active Fast`. 
+* The main menu items were renamed.
+* Added the option to cancel active fast.
+* Information about an active fast now displays in the main menu.  
+* Implemented an interface allows a user to have a look at previous fasts. 
 * Added more precise description for each achievement & a page with [the full list](Achievements.md) of possible awards.
 
 ### Fixed
 
-* The `Display Fasting Statistics` command received a new logic to calculate fasting streaks (I hope this one will last us for a good while).
-* The `Display Fasting Statistics` command now considers a fast as completed only if it did not end earlier than planned. 
+* The `Statistics` command received a new logic to calculate fasting streaks (I hope this one will last us for a good while).
+* The `Statistics` command now considers a fast as completed only if it did not end earlier than planned. 
 
 ## [1.1.1] - 2022-07-28
 
