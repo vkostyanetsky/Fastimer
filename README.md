@@ -77,7 +77,7 @@ It asks you whether you want to finish your fast or cancel it. Finishing means y
 
 The `Fasts Browser` command of the main menu allows you to browse through your fasts.
 
-By default, it shows you the very last one, but you switch fasts by using `[Left]` and `[Right]` buttons on your keyboard. 
+By default, it shows you the very last one, but you switch fasts by using `Left` and `Right` buttons on your keyboard. 
 
 ```
 COMPLETED FAST
