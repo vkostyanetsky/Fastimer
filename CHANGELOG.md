@@ -2,7 +2,7 @@
 
 <!-- ## [Unreleased] -->
 
-## [1.2.0] - 2022-08-17
+## 1.2.0 - 2022-08-17
 
 ### Added
 
@@ -17,14 +17,14 @@
 * The `Statistics` command received a new logic to calculate fasting streaks (I hope this one will last us for a good while).
 * The `Statistics` command now considers a fast as completed only if it did not end earlier than planned. 
 
-## [1.1.1] - 2022-07-28
+## 1.1.1 - 2022-07-28
 
 ### Fixed
 
 * The `Display Active Fast` command now properly shows `Extra time` parameter for a completed fast, instead of `Remaining: None`.
 * The `Display Fasting Statistics` command now properly calculates fasting streaks.
 
-## [1.1.0] - 2022-07-26
+## 1.1.0 - 2022-07-26
 
 ### Added
 
@@ -37,7 +37,7 @@
 * If a fast goal is less than a current moment, the `Display Active Fast` command will show excess time instead of negative remaining time (as before).
 * Microseconds were removed from dates in the `fasts.yaml` file.
 
-## [1.0.3] - 2022-07-22
+## 1.0.3 - 2022-07-22
 
 ### Added
 
