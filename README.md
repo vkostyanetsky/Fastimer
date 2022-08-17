@@ -36,7 +36,7 @@ The script shows you a menu with three commands available:
 
 ### Start New Fast
 
-Something is obvious: so, the first command starts a new fast. It will ask you for a length of the fast and enables the timer.
+Something is obvious: so, the first command starts a new fast. It asks you for a length of the fast and turns the timer on.
 
 You can control active fast directly from the main menu. For instance, if the fast is active, it can look like this:
 
@@ -65,7 +65,11 @@ You can control active fast directly from the main menu. For instance, if the fa
   └───────────────────────────────────────────────────────────────────────────┘
 ```
 
-As you can see, the first command above is replaced by another one. Its meaning is obvious as well: begin selected, it asks you whether you want to finish your fast or cancel it. Finishing means you want to store the fast in the app history; cancelling means you want to delete the information about this fast by a reason. 
+## Stop Active Fast
+
+When the fast is active, the command `Stop Active Fast` appears and allows you to stop your fast when you decided to do so.
+
+It asks you whether you want to finish your fast or cancel it. Finishing means you want to store the fast in the app history; cancelling means you want to delete the information about this fast by a reason. 
 
 ### Fasts Browser
 
