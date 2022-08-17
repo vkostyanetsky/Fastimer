@@ -6,7 +6,7 @@ It is a little CLI timer to track fasts, designed specifically to help you monit
 
 ## 😮 What's this for? There are a lot of apps like this one!
 
-Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) once again refused to show me statistics for a date. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
+Well, I wrote this one out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me statistics for a date. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
 
 Have no idea what was wrong with it. Anyway, the problem is not that hard, so I just wrote my own timer.
 
@@ -94,7 +94,7 @@ Press [Esc] to return to the main menu.
 
 ### Statistics
 
-The `Statistics` command shows you statistical data and [earned achievements](Achievements.md).
+The `Statistics` command shows you statistical data and earned [achievements](Achievements.md).
 
 For instance:
 
