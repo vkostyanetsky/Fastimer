@@ -14,7 +14,11 @@ setup(
     license="MIT",
     python_requires=">=3.7",
     packages=["fastimer"],
-    install_requires=["PyYAML~=6.0", "keyboard~=0.13.5", "vkostyanetsky.cliutils~=0.1.0"],
+    install_requires=[
+        "PyYAML~=6.0",
+        "keyboard~=0.13.5",
+        "vkostyanetsky.cliutils~=0.1.0",
+    ],
     entry_points={"console_scripts": ["fastimer=fastimer.fastimer:main"]},
     author="Vlad Kostyanetsky",
     author_email="vlad@kostyanetsky.me",

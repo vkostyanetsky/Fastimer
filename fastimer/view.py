@@ -12,9 +12,7 @@ from .utils import (
 
 def get(fast: dict, include_zones: bool = False) -> list:
 
-    time = (
-        fast["stopped"] if is_fast_stopped(fast) else datetime.datetime.now()
-    )
+    time = fast["stopped"] if is_fast_stopped(fast) else datetime.datetime.now()
 
     goal = fast["started"] + datetime.timedelta(hours=fast["length"])
 
@@ -78,21 +76,13 @@ def __get_fast_elapsed_time(fast: dict, time: datetime.datetime) -> str:
     return aligned_string("Elapsed time", value, 15)
 
 
-def __get_fast_extra_time(
-    time: datetime.datetime, goal: datetime.datetime
-) -> str:
-    value = (
-        __get_time_difference(goal, time)
-        if time >= goal
-        else None
-    )
+def __get_fast_extra_time(time: datetime.datetime, goal: datetime.datetime) -> str:
+    value = __get_time_difference(goal, time) if time >= goal else None
 
     return aligned_string("Extra time", value, 15)
 
 
-def __get_fast_remaining_time(
-    time: datetime.datetime, goal: datetime.datetime
-) -> str:
+def __get_fast_remaining_time(time: datetime.datetime, goal: datetime.datetime) -> str:
     value = (
         __get_time_difference(time - datetime.timedelta(minutes=1), goal)
         if time < goal
@@ -102,9 +92,7 @@ def __get_fast_remaining_time(
     return aligned_string("Remaining", value, 15)
 
 
-def __include_fasting_zones(
-    lines: list, fast: dict, time: datetime.datetime
-) -> None:
+def __include_fasting_zones(lines: list, fast: dict, time: datetime.datetime) -> None:
     def add_line_for_zone(title, start_time, end_time=None) -> None:
 
         zone_from = f"from {__get_day(start_time)}"

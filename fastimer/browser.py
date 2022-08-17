@@ -12,7 +12,7 @@ class FastsBrowser:
     _max_index: int = 0
     _index: int = 0
 
-    _previous_fast_hotkey: str = "Left"
+    _prev_fast_hotkey: str = "Left"
     _next_fast_hotkey: str = "Right"
     _exit_hotkey: str = "Esc"
 
@@ -26,7 +26,7 @@ class FastsBrowser:
 
         self.show_fast_by_index()
 
-        keyboard.add_hotkey(self._previous_fast_hotkey, self.show_previous_fast)
+        keyboard.add_hotkey(self._prev_fast_hotkey, self.show_previous_fast)
         keyboard.add_hotkey(self._next_fast_hotkey, self.show_next_fast)
 
         keyboard.wait(self._exit_hotkey)
@@ -45,7 +45,8 @@ class FastsBrowser:
 
         print()
         print(
-            f"Press [{self._previous_fast_hotkey}] and [{self._next_fast_hotkey}] to switch fasts."
+            f"Press [{self._prev_fast_hotkey}] and "
+            f"[{self._next_fast_hotkey}] to switch fasts."
         )
         print(f"Press [{self._exit_hotkey}] to return to the main menu.")
 
