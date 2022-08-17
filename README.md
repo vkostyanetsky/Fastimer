@@ -61,11 +61,13 @@ You can control active fast directly from the main menu. For instance, if the fa
   └───────────────────────────────────────────────────────────────────────────┘
 ```
 
-As you can see, the first command is replaced by another one. Its meaning is obvious as well: stopping the active fast. Begin selected, it asks you whether you want to finish your fast (and store it in the history) or cancel the fast (and delete it permanently).
+As you can see, the first command above is replaced by another one. Its meaning is obvious as well: begin selected, it asks you whether you want to finish your fast or cancel it. Finishing means you want to store the fast in the app history; cancelling means you want to delete the information about this fast by a reason. 
 
 ### Fasts Browser
 
-The second command of the main menu, "Fasts Browser" allows you to browse through your fasts (active, finished, and failed ones). 
+The second command of the main menu, "Fasts Browser" allows you to browse through your fasts.
+
+By default, it shows you the very last one, but you can go back in history, using by [Left] and [Right] buttons on your keyboard. 
 
 ```
 COMPLETED FAST
