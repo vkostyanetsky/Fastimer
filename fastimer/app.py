@@ -46,7 +46,7 @@ def start_fast() -> None:
         print("Fast is already on.")
         print()
 
-        cliutils.enter_to_continue()
+        cliutils.ask_for_enter()
 
     else:
 
@@ -101,7 +101,7 @@ def cancel_fast() -> None:
 
     prompt = "Do you want to CANCEL the active fast? It cannot be undone."
 
-    if cliutils.prompt_for_yes_or_no(prompt):
+    if cliutils.ask_for_yes_or_no(prompt):
 
         fasts.remove(active_fast)
         datafile.write_fasts(fasts)
@@ -117,7 +117,7 @@ def finish_fast() -> None:
 
     cliutils.clear_terminal()
 
-    if cliutils.prompt_for_yes_or_no("Do you want to end your ongoing fast?"):
+    if cliutils.ask_for_yes_or_no("Do you want to end your ongoing fast?"):
 
         fasts[-1]["stopped"] = datetime.datetime.now()
         datafile.write_fasts(fasts)
@@ -150,6 +150,6 @@ def show_statistics() -> None:
     statistics.print_achievements(fasts)
     print()
 
-    cliutils.enter_to_continue()
+    cliutils.ask_for_enter()
 
     main_menu()

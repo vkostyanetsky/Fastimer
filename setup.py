@@ -17,9 +17,9 @@ setup(
     install_requires=[
         "PyYAML~=6.0",
         "keyboard~=0.13.5",
-        "vkostyanetsky.cliutils~=0.1.0",
+        "vkostyanetsky.cliutils~=0.2.0",
     ],
-    entry_points={"console_scripts": ["fastimer=fastimer.fastimer:main"]},
+    entry_points={"console_scripts": ["fastimer=fastimer.app:main"]},
     author="Vlad Kostyanetsky",
     author_email="vlad@kostyanetsky.me",
     classifiers=[

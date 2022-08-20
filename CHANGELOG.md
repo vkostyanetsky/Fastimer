@@ -2,6 +2,12 @@
 
 <!-- ## [Unreleased] -->
 
+## 1.2.1 - 2022-08-20
+
+### Added
+
+* Updated the auxiliary library `vkostyanetsky.cliutils`. 
+
 ## 1.2.0 - 2022-08-17
 
 ### Added
