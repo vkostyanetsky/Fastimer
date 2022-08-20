@@ -2,8 +2,10 @@
 
 import datetime
 
-from .utils import (aligned_string, get_time_difference, is_fast_completed,
+from .utils import (get_time_difference, is_fast_completed,
                     is_fast_stopped)
+
+from vkostyanetsky.cliutils import title_and_value
 
 
 def get(fast: dict, include_zones: bool = False) -> list:
@@ -51,7 +53,7 @@ def __get_fast_title(fast: dict) -> str:
 def __get_fast_from(fast: dict) -> str:
     value = __get_day(fast["started"])
 
-    return aligned_string("From", value, 5)
+    return title_and_value("From", value, 5)
 
 
 def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
@@ -60,7 +62,7 @@ def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
     length = fast["length"]
     goal_string = f"{goal} ({length} hours)"
 
-    return aligned_string("Goal", goal_string, 5)
+    return title_and_value("Goal", goal_string, 5)
 
 
 def __get_fast_elapsed_time(fast: dict, time: datetime.datetime) -> str:
@@ -69,13 +71,13 @@ def __get_fast_elapsed_time(fast: dict, time: datetime.datetime) -> str:
 
     value = __get_time_difference(date1, date2)
 
-    return aligned_string("Elapsed time", value, 15)
+    return title_and_value("Elapsed time", value, 15)
 
 
 def __get_fast_extra_time(time: datetime.datetime, goal: datetime.datetime) -> str:
     value = __get_time_difference(goal, time) if time >= goal else None
 
-    return aligned_string("Extra time", value, 15)
+    return title_and_value("Extra time", value, 15)
 
 
 def __get_fast_remaining_time(time: datetime.datetime, goal: datetime.datetime) -> str:
@@ -85,7 +87,7 @@ def __get_fast_remaining_time(time: datetime.datetime, goal: datetime.datetime) 
         else None
     )
 
-    return aligned_string("Remaining", value, 15)
+    return title_and_value("Remaining", value, 15)
 
 
 def __include_fasting_zones(lines: list, fast: dict, time: datetime.datetime) -> None:
@@ -98,7 +100,7 @@ def __include_fasting_zones(lines: list, fast: dict, time: datetime.datetime) ->
         else:
             zone_note = note if start_time <= time < end_time else ""
 
-        zone_info = aligned_string(f"- {title}", f"{zone_from}{zone_note}")
+        zone_info = title_and_value(f"- {title}", f"{zone_from}{zone_note}")
 
         lines.append(zone_info)
 

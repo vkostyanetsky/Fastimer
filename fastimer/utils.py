@@ -18,16 +18,6 @@ def get_time_difference(
     return hours, minutes
 
 
-def aligned_string(title: str, value: str, width: int = 15) -> str:
-
-    if len(title) > width:
-        width = len(title)
-
-    title = f"{title}:".ljust(width)
-
-    return f"{title} {value}"
-
-
 def print_with_alignment(title: str, value: str, width: int = 15) -> None:
 
     title = f"{title}:".ljust(width)
