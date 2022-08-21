@@ -2,6 +2,12 @@
 
 <!-- ## [Unreleased] -->
 
+## 1.2.2 - 2022-08-21
+
+### Fixed
+
+* Fixed a library version in a description of the package.
+
 ## 1.2.1 - 2022-08-20
 
 ### Added
