@@ -12,7 +12,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/vkostyanetsky/Fastimer",
     license="MIT",
-    python_requires=">=3.7",
+    python_requires=">=3.10",
     packages=["fastimer"],
     install_requires=[
         "PyYAML~=6.0",
