@@ -2,10 +2,9 @@
 
 import datetime
 
-from .utils import (get_time_difference, is_fast_completed,
-                    is_fast_stopped)
-
 from vkostyanetsky.cliutils import title_and_value
+
+from .utils import get_time_difference, is_fast_completed, is_fast_stopped
 
 
 def get(fast: dict, include_zones: bool = False) -> list:
