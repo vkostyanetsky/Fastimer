@@ -1,6 +1,8 @@
 # Changelog
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+* Hotkeys for the fast browser were changed.
 
 ## 1.2.2 - 2022-08-21
 
