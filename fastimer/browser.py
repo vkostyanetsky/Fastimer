@@ -12,8 +12,8 @@ class FastsBrowser:
     _max_index: int = 0
     _index: int = 0
 
-    _prev_fast_hotkey: str = "Left"
-    _next_fast_hotkey: str = "Right"
+    _prev_fast_hotkey: str = "A"
+    _next_fast_hotkey: str = "D"
     _exit_hotkey: str = "Esc"
 
     def __init__(self, fasts: list):
