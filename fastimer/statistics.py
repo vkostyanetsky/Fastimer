@@ -33,7 +33,7 @@ def print_average_fast_length(fasts: list) -> None:
 
     fasts_total = __get_number_of_completed_fasts(fasts)
     all_minutes = hours_total * 60 + minutes_total
-    avg_minutes = all_minutes / fasts_total
+    avg_minutes = all_minutes / fasts_total if fasts_total > 0 else 0
 
     avg_hours = avg_minutes // minutes_per_hour
     avg_minutes -= avg_hours * minutes_per_hour
