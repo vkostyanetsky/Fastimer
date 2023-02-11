@@ -46,7 +46,7 @@ def main_menu():
 
 def start_fast() -> None:
     """
-    Starts a new fasti.
+    Starts a new fast.
     """
 
     fasts = datafile.read_fasts()
