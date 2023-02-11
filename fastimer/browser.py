@@ -23,7 +23,6 @@ class FastsBrowser:
         self._index = self._max_index
 
     def open(self) -> None:
-
         self.show_fast_by_index()
 
         keyboard.add_hotkey(self._prev_fast_hotkey, self.show_previous_fast)
@@ -34,7 +33,6 @@ class FastsBrowser:
         keyboard.remove_all_hotkeys()
 
     def show_fast_by_index(self):
-
         cliutils.clear_terminal()
 
         fast = self._fasts[self._index]

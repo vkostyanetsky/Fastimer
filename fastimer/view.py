@@ -45,7 +45,6 @@ def get(fast: dict, include_zones: bool = False) -> list:
 
 
 def __get_fast_title(fast: dict) -> str:
-
     if is_fast_stopped(fast):
         title = "COMPLETED FAST" if is_fast_completed(fast) else "FAILED FAST"
     else:
@@ -61,7 +60,6 @@ def __get_fast_from(fast: dict) -> str:
 
 
 def __get_fast_goal(fast: dict, goal: datetime.datetime) -> str:
-
     goal = __get_day(goal)
     length = fast["length"]
     goal_string = f"{goal} ({length} hours)"
@@ -96,7 +94,6 @@ def __get_fast_remaining_time(time: datetime.datetime, goal: datetime.datetime) 
 
 def __include_fasting_zones(lines: list, fast: dict, time: datetime.datetime) -> None:
     def add_line_for_zone(title, start_time, end_time=None) -> None:
-
         zone_from = f"from {__get_day(start_time)}"
 
         if end_time is None:
@@ -156,7 +153,6 @@ def __get_time_difference(start_date: datetime, end_date: datetime) -> str:
 
 
 def __get_day(date: datetime.datetime) -> str:
-
     if (datetime.datetime.now() - date).days > 7:
         fmt = "%Y-%m-%d %H:%M"
     else:

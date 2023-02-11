@@ -19,7 +19,6 @@ def main() -> None:
 
 
 def main_menu():
-
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
@@ -42,22 +41,18 @@ def start_fast() -> None:
     fast = utils.get_active_fast(fasts)
 
     if fast is not None:
-
         print("Fast is already on.")
         print()
 
         cliutils.ask_for_enter()
 
     else:
-
         length = None
 
         while length is None:
-
             user_input = input("Enter fast duration in hours: ")
 
             if user_input.isdigit():
-
                 length = int(user_input)
                 fast = {
                     "length": length,
@@ -69,7 +64,6 @@ def start_fast() -> None:
                 datafile.write_fasts(fasts)
 
             else:
-
                 print("Please enter a valid number.")
                 print()
 
@@ -77,7 +71,6 @@ def start_fast() -> None:
 
 
 def stop_fast() -> None:
-
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
@@ -102,7 +95,6 @@ def cancel_fast() -> None:
     prompt = "Do you want to CANCEL the active fast? It cannot be undone."
 
     if cliutils.ask_for_yes_or_no(prompt):
-
         fasts.remove(active_fast)
         datafile.write_fasts(fasts)
 
@@ -118,7 +110,6 @@ def finish_fast() -> None:
     cliutils.clear_terminal()
 
     if cliutils.ask_for_yes_or_no("Do you want to end your ongoing fast?"):
-
         fasts[-1]["stopped"] = datetime.datetime.now()
         datafile.write_fasts(fasts)
 
@@ -133,7 +124,6 @@ def show_fasts_browser() -> None:
 
 
 def show_statistics() -> None:
-
     fasts = datafile.read_fasts()
 
     print("FASTING STATISTICS")

@@ -6,7 +6,6 @@ from fastimer import utils
 
 
 def print_completed_fasts(fasts: list) -> None:
-
     completed_fasts = __get_number_of_completed_fasts(fasts)
     incomplete_fasts = __get_number_of_incomplete_fasts(fasts)
     total_fasts = completed_fasts + incomplete_fasts
@@ -17,7 +16,6 @@ def print_completed_fasts(fasts: list) -> None:
 
 
 def print_total_fasting_time(fasts: list) -> None:
-
     total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
 
     value = __get_period_string(total_hours, total_minutes)
@@ -26,7 +24,6 @@ def print_total_fasting_time(fasts: list) -> None:
 
 
 def print_average_fast_length(fasts: list) -> None:
-
     hours_total, minutes_total = __get_total_hours_and_minutes(fasts)
 
     minutes_per_hour = 60
@@ -44,7 +41,6 @@ def print_average_fast_length(fasts: list) -> None:
 
 
 def print_longest_fast_length(fasts: list) -> None:
-
     hours, minutes = __get_longest_fast_length(fasts)
 
     value = __get_period_string(hours, minutes)
@@ -53,21 +49,18 @@ def print_longest_fast_length(fasts: list) -> None:
 
 
 def print_longest_fasting_streak(fasts: list) -> None:
-
     value = __get_longest_fasting_streak(fasts)
 
     __print_with_alignment("Longest Fasting Streak", f"{value} days")
 
 
 def print_current_fasting_streak(fasts: list) -> None:
-
     value = __get_current_fasting_streak(fasts)
 
     __print_with_alignment("Current Fasting Streak", f"{value} days")
 
 
 def print_achievements(fasts: list) -> None:
-
     print("Achievements:")
 
     achievements = __get_achievements(fasts)
@@ -80,12 +73,10 @@ def print_achievements(fasts: list) -> None:
 
 
 def __print_with_alignment(title: str, value: str):
-
     utils.print_with_alignment(title, value, 24)
 
 
 def __get_achievements(fasts: list) -> list:
-
     result = []
 
     __add_completed_fasts_achievement(result, fasts)
@@ -96,7 +87,6 @@ def __get_achievements(fasts: list) -> list:
 
 
 def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
-
     completed_fasts = __get_number_of_completed_fasts(fasts)
 
     levels = {
@@ -118,7 +108,6 @@ def __add_completed_fasts_achievement(achievements: list, fasts: list) -> None:
 
 
 def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
-
     longest_fasting_streak = __get_longest_fasting_streak(fasts)
 
     levels = {
@@ -146,7 +135,6 @@ def __add_longest_streak_achievement(achievements: list, fasts: list) -> None:
 
 
 def __add_daily_fasting_achievement(achievements: list, fasts: list) -> None:
-
     hours, _ = __get_longest_fast_length(fasts)
 
     levels = {
@@ -162,7 +150,6 @@ def __add_daily_fasting_achievement(achievements: list, fasts: list) -> None:
 
 
 def __add_achievement(achievements: list, levels: dict, value: int) -> None:
-
     achievement = None
 
     for number_to_get in levels:
@@ -174,7 +161,6 @@ def __add_achievement(achievements: list, levels: dict, value: int) -> None:
 
 
 def __get_period(date: datetime.datetime) -> tuple:
-
     period_from = date.replace(hour=0, minute=0, second=0, microsecond=0)
     period_to = period_from + datetime.timedelta(days=1) - datetime.timedelta(seconds=1)
 
@@ -182,12 +168,10 @@ def __get_period(date: datetime.datetime) -> tuple:
 
 
 def __get_total_hours_and_minutes(fasts: list) -> tuple:
-
     total_hours = 0
     total_minutes = 0
 
     for fast in fasts:
-
         hours, minutes = utils.get_fast_length(fast)
 
         total_hours += hours
@@ -204,11 +188,9 @@ def __get_total_hours_and_minutes(fasts: list) -> tuple:
 
 
 def __get_number_of_completed_fasts(fasts: list) -> int:
-
     result = 0
 
     for fast in fasts:
-
         if fast.get("stopped") is None:
             continue
 
@@ -221,11 +203,9 @@ def __get_number_of_completed_fasts(fasts: list) -> int:
 
 
 def __get_number_of_incomplete_fasts(fasts: list) -> int:
-
     result = 0
 
     for fast in fasts:
-
         if fast.get("stopped") is None:
             continue
 
@@ -238,7 +218,6 @@ def __get_number_of_incomplete_fasts(fasts: list) -> int:
 
 
 def __get_fasting_streaks(fasts: list) -> list:
-
     streaks = []
     current_streak = 0
 
@@ -248,11 +227,9 @@ def __get_fasting_streaks(fasts: list) -> list:
     seconds_per_day = seconds_per_minute * minutes_per_hour * hours_per_day
 
     if __get_number_of_completed_fasts(fasts) > 0:
-
         previous_fast = None
 
         for fast in fasts:
-
             fast_is_completed = utils.is_fast_completed(fast)
             fast_is_stopped = utils.is_fast_stopped(fast)
 
@@ -260,7 +237,6 @@ def __get_fasting_streaks(fasts: list) -> list:
                 continue
 
             if previous_fast is not None:
-
                 timedelta = fast.get("started") - previous_fast.get("stopped")
 
                 if timedelta.total_seconds() <= seconds_per_day:
@@ -280,26 +256,22 @@ def __get_fasting_streaks(fasts: list) -> list:
 
 
 def __get_longest_fasting_streak(fasts: list) -> int:
-
     streaks = __get_fasting_streaks(fasts)
 
     return max(streaks) if len(streaks) > 0 else 0
 
 
 def __get_current_fasting_streak(fasts: list) -> int:
-
     streaks = __get_fasting_streaks(fasts)
 
     return streaks[-1] if len(streaks) > 0 else 0
 
 
 def __get_longest_fast_length(fasts: list) -> tuple:
-
     minutes_per_hour = 60
     max_minutes = 0
 
     for fast in fasts:
-
         hours, minutes = utils.get_fast_length(fast)
         minutes += hours * minutes_per_hour
 
@@ -313,5 +285,4 @@ def __get_longest_fast_length(fasts: list) -> tuple:
 
 
 def __get_period_string(hours: float, minutes: float) -> str:
-
     return f"{int(hours)}h {int(minutes)}m"
