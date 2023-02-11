@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 
+"""
+The package's information.
+"""
+
 from setuptools import setup
 from fastimer.version import __version__
 
+with open("README.md", encoding="utf-8-sig") as readme_file:
+    long_description = readme_file.read()
 
 setup(
     name="fastimer",
     version=__version__,
     description="A simple CLI tool to track food you consume",
-    long_description=open("README.md", encoding="utf-8-sig").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/vkostyanetsky/Fastimer",
     license="MIT",
