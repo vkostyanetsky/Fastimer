@@ -1,8 +1,9 @@
 # Changelog
 
-## [Unreleased]
+## 1.2.3 - 2023-02-11
 
 * Hotkeys for the fast browser were changed.
+* Some bugs were fixed.
 
 ## 1.2.2 - 2022-08-21
 
