@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+This file contains the entry point of the application.
+"""
+
 import datetime
 import sys
 
@@ -19,6 +23,10 @@ def main() -> None:
 
 
 def main_menu():
+    """
+    Draws the main menu of the application.
+    """
+
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
@@ -37,6 +45,10 @@ def main_menu():
 
 
 def start_fast() -> None:
+    """
+    Starts a new fasti.
+    """
+
     fasts = datafile.read_fasts()
     fast = utils.get_active_fast(fasts)
 
@@ -71,6 +83,10 @@ def start_fast() -> None:
 
 
 def stop_fast() -> None:
+    """
+    Stops the active fast.
+    """
+
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
@@ -85,8 +101,9 @@ def stop_fast() -> None:
 
 def cancel_fast() -> None:
     """
-    Cancel Fast
+    Cancels the active fast.
     """
+
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
@@ -103,8 +120,9 @@ def cancel_fast() -> None:
 
 def finish_fast() -> None:
     """
-    Finish Fast
+    Finishes the active fast.
     """
+
     fasts = datafile.read_fasts()
 
     cliutils.clear_terminal()
@@ -117,6 +135,10 @@ def finish_fast() -> None:
 
 
 def show_fasts_browser() -> None:
+    """
+    Runs the fast browser to help a user to be proud of their efforts.
+    """
+
     fasts = datafile.read_fasts()
     FastsBrowser(fasts).open()
 
@@ -124,6 +146,10 @@ def show_fasts_browser() -> None:
 
 
 def show_statistics() -> None:
+    """
+    Draws fasting statistics accumulated so far.
+    """
+
     fasts = datafile.read_fasts()
 
     print("FASTING STATISTICS")

@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+Generates the app's main menu.
+"""
+
 from vkostyanetsky import cliutils
 
 from fastimer import view
 
 
 class FastimerMenu(cliutils.Menu):
+    """
+    This class represents main menu of the application.
+    """
+
     _active_fast: dict | None = None
 
     def __init__(self, active_fast: dict | None = None):

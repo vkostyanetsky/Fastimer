@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+Method to work with the fasts journal.
+"""
+
 from os.path import isfile
 
 from yaml import parser, safe_dump, safe_load
 
 
 def read_fasts() -> list:
+    """
+    Reads the fasts journal.
+    """
+
     yaml_file_name = __get_file_name()
 
     fasts = []
@@ -22,6 +30,10 @@ def read_fasts() -> list:
 
 
 def write_fasts(fasts: list) -> None:
+    """
+    Writes the fasts journal.
+    """
+
     for fast in fasts:
         fast["started"] = fast["started"].replace(microsecond=0)
 

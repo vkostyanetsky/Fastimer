@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+Helpers widely used in the application.
+"""
+
 import datetime
 
 
 def get_time_difference(
     start_date: datetime.datetime, end_date: datetime.datetime
 ) -> tuple:
+    """
+    Return time difference between two dates as a (hours, seconds) tuple.
+    """
+
     seconds_per_hour = 3600
     seconds_per_minute = 60
 
@@ -18,26 +26,46 @@ def get_time_difference(
 
 
 def print_with_alignment(title: str, value: str, width: int = 15) -> None:
+    """
+    Prints a string with an alighment given.
+    """
+
     title = f"{title}:".ljust(width)
 
     print(f"{title} {value}")
 
 
 def get_active_fast(fasts: list) -> dict | None:
+    """
+    Return data of the active fast.
+    """
+
     return fasts[-1] if len(fasts) > 0 and fasts[-1].get("stopped") is None else None
 
 
 def is_fast_stopped(fast: dict) -> bool:
+    """
+    Determines whether a fast is over or not.
+    """
+
     return fast.get("stopped") is not None
 
 
 def is_fast_completed(fast: dict) -> bool:
+    """
+    Checks if a fast completed.
+    """
+
     hours_in_fast = get_fast_length(fast)[0]
 
     return fast.get("length") <= hours_in_fast
 
 
 def get_fast_length(fast: dict) -> tuple:
+    """
+    Returns length of a fast as a (hours, seconds) tuple.
+    """
+
     started = fast["started"]
     stopped = fast.get("stopped")
 

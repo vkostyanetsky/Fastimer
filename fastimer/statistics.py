@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+Generates statistics for based on a user's fasts.
+"""
+
 import datetime
 
 from fastimer import utils
 
 
 def print_completed_fasts(fasts: list) -> None:
+    """
+    Prints how many fasts were successful (and unsuccessful).
+    """
+
     completed_fasts = __get_number_of_completed_fasts(fasts)
     incomplete_fasts = __get_number_of_incomplete_fasts(fasts)
     total_fasts = completed_fasts + incomplete_fasts
@@ -16,6 +24,10 @@ def print_completed_fasts(fasts: list) -> None:
 
 
 def print_total_fasting_time(fasts: list) -> None:
+    """
+    Prints total fasting time of a user.
+    """
+
     total_hours, total_minutes = __get_total_hours_and_minutes(fasts)
 
     value = __get_period_string(total_hours, total_minutes)
@@ -24,6 +36,10 @@ def print_total_fasting_time(fasts: list) -> None:
 
 
 def print_average_fast_length(fasts: list) -> None:
+    """
+    Prints the average fast length of a user (if there is one).
+    """
+
     hours_total, minutes_total = __get_total_hours_and_minutes(fasts)
 
     minutes_per_hour = 60
@@ -41,6 +57,10 @@ def print_average_fast_length(fasts: list) -> None:
 
 
 def print_longest_fast_length(fasts: list) -> None:
+    """
+    Prints the longest fast length of a user (if there is one).
+    """
+
     hours, minutes = __get_longest_fast_length(fasts)
 
     value = __get_period_string(hours, minutes)
@@ -49,18 +69,30 @@ def print_longest_fast_length(fasts: list) -> None:
 
 
 def print_longest_fasting_streak(fasts: list) -> None:
+    """
+    Prints the longest fasting streak of a user (if there is one).
+    """
+
     value = __get_longest_fasting_streak(fasts)
 
     __print_with_alignment("Longest Fasting Streak", f"{value} days")
 
 
 def print_current_fasting_streak(fasts: list) -> None:
+    """
+    Prints current fasting streak of a user (if there is one).
+    """
+
     value = __get_current_fasting_streak(fasts)
 
     __print_with_alignment("Current Fasting Streak", f"{value} days")
 
 
 def print_achievements(fasts: list) -> None:
+    """
+    Prints a user's achievements.
+    """
+
     print("Achievements:")
 
     achievements = __get_achievements(fasts)
