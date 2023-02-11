@@ -4,7 +4,7 @@
 The package's information.
 """
 
-from setuptools import setup
+from setuptools import setup  # type: ignore
 from fastimer.version import __version__
 
 with open("README.md", encoding="utf-8-sig") as readme_file:
