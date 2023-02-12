@@ -4,7 +4,7 @@
 
 ### Added
 
-* New hotkeys for the fast browser.
+* New hotkeys were added for the fast browser.
 
 ### Fixed
 
