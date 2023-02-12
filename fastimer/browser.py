@@ -3,9 +3,10 @@
 """
 Module with a class intended to show information about any fast.
 """
+import datetime
 
 import keyboard
-from vkostyanetsky import cliutils
+from vkostyanetsky import cliutils  # type: ignore
 
 from fastimer import view
 
@@ -15,7 +16,7 @@ class FastsBrowser:
     Class intended to show a fast's information.
     """
 
-    _fasts: list = []
+    _fasts: list[dict[str, datetime.datetime | int]] = []
 
     _max_index: int = 0
     _index: int = 0
@@ -24,7 +25,7 @@ class FastsBrowser:
     _next_fast_hotkey: str = "D"
     _exit_hotkey: str = "Esc"
 
-    def __init__(self, fasts: list):
+    def __init__(self, fasts: list[dict[str, datetime.datetime | int]]):
         self._fasts = fasts
 
         self._max_index = len(fasts) - 1
@@ -44,7 +45,7 @@ class FastsBrowser:
 
         keyboard.remove_all_hotkeys()
 
-    def show_fast_by_index(self):
+    def show_fast_by_index(self) -> None:
         """
         Draws a fast by a journal position given.
         """
@@ -64,7 +65,7 @@ class FastsBrowser:
         )
         print(f"Press [{self._exit_hotkey}] to return to the main menu.")
 
-    def show_previous_fast(self):
+    def show_previous_fast(self) -> None:
         """
         Draws an information about the previous fast.
         """
@@ -73,7 +74,7 @@ class FastsBrowser:
             self._index -= 1
             self.show_fast_by_index()
 
-    def show_next_fast(self):
+    def show_next_fast(self) -> None:
         """
         Draws an information about the next fast.
         """

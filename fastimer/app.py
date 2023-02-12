@@ -7,7 +7,7 @@ This file contains the entry point of the application.
 import datetime
 import sys
 
-from vkostyanetsky import cliutils
+from vkostyanetsky import cliutils  # type: ignore
 
 from fastimer import datafile, statistics, utils
 from fastimer.browser import FastsBrowser
@@ -22,7 +22,7 @@ def main() -> None:
     main_menu()
 
 
-def main_menu():
+def main_menu() -> None:
     """
     Draws the main menu of the application.
     """
@@ -107,13 +107,14 @@ def cancel_fast() -> None:
     fasts = datafile.read_fasts()
     active_fast = utils.get_active_fast(fasts)
 
-    cliutils.clear_terminal()
+    if active_fast is not None:
+        cliutils.clear_terminal()
 
-    prompt = "Do you want to CANCEL the active fast? It cannot be undone."
+        prompt = "Do you want to CANCEL the active fast? It cannot be undone."
 
-    if cliutils.ask_for_yes_or_no(prompt):
-        fasts.remove(active_fast)
-        datafile.write_fasts(fasts)
+        if cliutils.ask_for_yes_or_no(prompt):
+            fasts.remove(active_fast)
+            datafile.write_fasts(fasts)
 
     main_menu()
 

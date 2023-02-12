@@ -5,11 +5,12 @@ Helpers widely used in the application.
 """
 
 import datetime
+import typing
 
 
 def get_time_difference(
     start_date: datetime.datetime, end_date: datetime.datetime
-) -> tuple:
+) -> tuple[int, int]:
     """
     Return time difference between two dates as a (hours, seconds) tuple.
     """
@@ -35,7 +36,9 @@ def print_with_alignment(title: str, value: str, width: int = 15) -> None:
     print(f"{title} {value}")
 
 
-def get_active_fast(fasts: list) -> dict | None:
+def get_active_fast(
+    fasts: list[dict[str, datetime.datetime | int]]
+) -> dict[str, typing.Any] | None:
     """
     Return data of the active fast.
     """
@@ -43,7 +46,7 @@ def get_active_fast(fasts: list) -> dict | None:
     return fasts[-1] if len(fasts) > 0 and fasts[-1].get("stopped") is None else None
 
 
-def is_fast_stopped(fast: dict) -> bool:
+def is_fast_stopped(fast: dict[str, datetime.datetime | int]) -> bool:
     """
     Determines whether a fast is over or not.
     """
@@ -51,17 +54,18 @@ def is_fast_stopped(fast: dict) -> bool:
     return fast.get("stopped") is not None
 
 
-def is_fast_completed(fast: dict) -> bool:
+def is_fast_completed(fast: dict[str, typing.Any]) -> bool:
     """
     Checks if a fast completed.
     """
 
     hours_in_fast = get_fast_length(fast)[0]
+    fast_length = fast["length"] if fast["length"] is not None else 0
 
-    return fast.get("length") <= hours_in_fast
+    return int(fast_length) <= hours_in_fast
 
 
-def get_fast_length(fast: dict) -> tuple:
+def get_fast_length(fast: dict[str, typing.Any]) -> tuple[int, int]:
     """
     Returns length of a fast as a (hours, seconds) tuple.
     """

@@ -4,12 +4,13 @@
 Method to work with the fasts journal.
 """
 
+import typing
 from os.path import isfile
 
 from yaml import parser, safe_dump, safe_load
 
 
-def read_fasts() -> list:
+def read_fasts() -> list[dict[str, typing.Any]]:
     """
     Reads the fasts journal.
     """
@@ -29,7 +30,7 @@ def read_fasts() -> list:
     return fasts
 
 
-def write_fasts(fasts: list) -> None:
+def write_fasts(fasts: list[dict[str, typing.Any]]) -> None:
     """
     Writes the fasts journal.
     """
