@@ -17,4 +17,4 @@ jobs:
         python-version: 3.x
     - run: pip install --upgrade pip
     - run: pip install mypy
-    - run: mypy --install-types --strict $(git ls-files '*.py')
+    - run: mypy --strict --install-types --non-interactive $(git ls-files '*.py')
