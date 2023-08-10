@@ -6,7 +6,7 @@ It is a little CLI timer to track fasts, designed specifically to help you monit
 
 ## 😮 What's this for?
 
-Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me statistics for a date. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
+Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
 
 Have no idea what was wrong with it. Anyway, the task is not that hard, so I just wrote my own timer.
 
