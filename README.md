@@ -125,7 +125,7 @@ Achievements:
 
 ### Where can I see or edit my fasts?
 
-The script stores all the fasts in `fasts.yaml` file in the working directory (where you run the timer). The file is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in `fasts.yaml` file in the working directory (where you run the timer). It has [YAML](https://en.wikipedia.org/wiki/YAML) format, which is quite human-readable, so you can just open it in your lovely text editor.
 
 For instance, the completed fast in the journal looks like this:
 
