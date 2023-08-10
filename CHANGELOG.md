@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Support for the new PyYAML version.
+
 ## 1.2.3 - 2023-02-11
 
 ### Added
