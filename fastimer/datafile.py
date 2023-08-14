@@ -4,22 +4,22 @@
 Method to work with the fasts journal.
 """
 
+import os
 import typing
-from os.path import isfile
 
 from yaml import parser, safe_dump, safe_load
 
 
-def read_fasts() -> list[dict[str, typing.Any]]:
+def read_fasts(path: str) -> list[dict[str, typing.Any]]:
     """
     Reads the fasts journal.
     """
 
-    yaml_file_name = __get_file_name()
+    yaml_file_name = os.path.join(path, __get_file_name())
 
     fasts = []
 
-    if isfile(yaml_file_name):
+    if os.path.isfile(yaml_file_name):
         try:
             with open(yaml_file_name, encoding="utf-8-sig") as yaml_file:
                 fasts = safe_load(yaml_file)
@@ -30,7 +30,7 @@ def read_fasts() -> list[dict[str, typing.Any]]:
     return fasts
 
 
-def write_fasts(fasts: list[dict[str, typing.Any]]) -> None:
+def write_fasts(path: str, fasts: list[dict[str, typing.Any]]) -> None:
     """
     Writes the fasts journal.
     """
@@ -41,7 +41,7 @@ def write_fasts(fasts: list[dict[str, typing.Any]]) -> None:
         if fast.get("stopped") is not None:
             fast["stopped"] = fast["stopped"].replace(microsecond=0)
 
-    yaml_file_name = __get_file_name()
+    yaml_file_name = os.path.join(path, __get_file_name())
 
     with open(yaml_file_name, encoding="utf-8-sig", mode="w") as yaml_file:
         safe_dump(fasts, yaml_file)

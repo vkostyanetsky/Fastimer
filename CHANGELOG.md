@@ -4,7 +4,12 @@
 
 ### Added
 
-- Support for the new PyYAML version.
+- CLI interface.
+- Support for the new minor PyYAML version.
+
+### Changed
+
+- Menu has been removed.
 
 ## 1.2.3 - 2023-02-11
 

@@ -79,3 +79,16 @@ def get_fast_length(fast: dict[str, typing.Any]) -> tuple[int, int]:
         result = 0, 0
 
     return result
+
+
+def title_and_value(title: str, value: str, width: int = 15) -> str:
+    """
+    Aligns title & value by a given position.
+    """
+
+    if len(title) > width:
+        width = len(title)
+
+    title = f"{title}:".ljust(width)
+
+    return f"{title} {value}"

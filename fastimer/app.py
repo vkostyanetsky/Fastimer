@@ -5,168 +5,87 @@ This file contains the entry point of the application.
 """
 
 import datetime
+import os
 import sys
+from sys import stdout
 
+import click
 from vkostyanetsky import cliutils  # type: ignore
 
-from fastimer import datafile, statistics, utils
+from fastimer import constants, datafile, statistics, utils
 from fastimer.browser import FastsBrowser
+from fastimer.commands import command_show, command_start
 from fastimer.menu import FastimerMenu
 
 
-def main() -> None:
+def __get_path(path: str | None) -> str:
     """
-    Main entry point of the application. Displays the main menu by default.
-    """
-
-    main_menu()
-
-
-def main_menu() -> None:
-    """
-    Draws the main menu of the application.
+    Determines the path to a working directory. It is supposed to be the "Fastimer" folder
+    in user's home directory in case it's not specified via app's options.
     """
 
-    fasts = datafile.read_fasts()
-    active_fast = utils.get_active_fast(fasts)
+    if path is None:
+        path = os.path.expanduser("~")
+        path = os.path.join(path, "Fastimer")
 
-    menu = FastimerMenu(active_fast)
-
-    if active_fast is None:
-        menu.add_item("Start New Fast", start_fast)
-    else:
-        menu.add_item("Stop Active Fast", stop_fast)
-
-    menu.add_item("Fasts Browser", show_fasts_browser)
-    menu.add_item("Statistics", show_statistics)
-    menu.add_item("Exit", sys.exit)
-
-    menu.choose()
+    return path
 
 
-def start_fast() -> None:
-    """
-    Starts a new fast.
-    """
-
-    fasts = datafile.read_fasts()
-    fast = utils.get_active_fast(fasts)
-
-    if fast is not None:
-        print("Fast is already on.")
-        print()
-
-        cliutils.ask_for_enter()
-
-    else:
-        length = None
-
-        while length is None:
-            user_input = input("Enter fast duration in hours: ")
-
-            if user_input.isdigit():
-                length = int(user_input)
-                fast = {
-                    "length": length,
-                    "started": datetime.datetime.now(),
-                }
-
-                fasts.append(fast)
-
-                datafile.write_fasts(fasts)
-
-            else:
-                print("Please enter a valid number.")
-                print()
-
-        main_menu()
+def __path_help() -> str:
+    return "Set path to working directory."
 
 
-def stop_fast() -> None:
-    """
-    Stops the active fast.
-    """
-
-    fasts = datafile.read_fasts()
-    active_fast = utils.get_active_fast(fasts)
-
-    menu = FastimerMenu(active_fast)
-
-    menu.add_item("Finish Fast", finish_fast)
-    menu.add_item("Cancel Fast", cancel_fast)
-    menu.add_item("Back", main_menu)
-
-    menu.choose()
+def __path_type() -> click.Path:
+    return click.Path(exists=True)
 
 
-def cancel_fast() -> None:
-    """
-    Cancels the active fast.
-    """
-
-    fasts = datafile.read_fasts()
-    active_fast = utils.get_active_fast(fasts)
-
-    if active_fast is not None:
-        cliutils.clear_terminal()
-
-        prompt = "Do you want to CANCEL the active fast? It cannot be undone."
-
-        if cliutils.ask_for_yes_or_no(prompt):
-            fasts.remove(active_fast)
-            datafile.write_fasts(fasts)
-
-    main_menu()
+@click.group(help="CLI tool that helps with fasting.")
+def cli():
+    stdout.reconfigure(encoding=constants.ENCODING)
 
 
-def finish_fast() -> None:
-    """
-    Finishes the active fast.
-    """
-
-    fasts = datafile.read_fasts()
-
-    cliutils.clear_terminal()
-
-    if cliutils.ask_for_yes_or_no("Do you want to end your ongoing fast?"):
-        fasts[-1]["stopped"] = datetime.datetime.now()
-        datafile.write_fasts(fasts)
-
-    main_menu()
+@cli.command(help="Start a new fast.")
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def start(path: str | None) -> None:
+    path = __get_path(path)
+    command_start.main(path)
 
 
-def show_fasts_browser() -> None:
-    """
-    Runs the fast browser to help a user to be proud of their efforts.
-    """
-
-    fasts = datafile.read_fasts()
-    FastsBrowser(fasts).open()
-
-    main_menu()
+@cli.command(help="Show fasts by date.")
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def show(path: str | None) -> None:
+    path = __get_path(path)
+    command_show.main(path)
 
 
-def show_statistics() -> None:
-    """
-    Draws fasting statistics accumulated so far.
-    """
+# @cli.command(help="Check that data files have no mistakes.")
+# @click.option("-p", "--path", type=__path_type(), help=__path_help())
+# def test(path: str | None) -> None:
+#     path = __get_path(path)
+#     command_test.main(path)
+#
+#
+# @cli.command(help="Set alarm according to notification settings.")
+# @click.option("-p", "--path", type=__path_type(), help=__path_help())
+# def beep(path: str | None):
+#     path = __get_path(path)
+#     command_beep.main(path)
 
-    fasts = datafile.read_fasts()
 
-    print("FASTING STATISTICS")
-    print()
+# @cli.command(help="Display tasks for a given day (or days).")
+# @click.argument(
+#     "period", default="today", type=click.Choice(["today", "last", "next", "date"])
+# )
+# @click.argument("value", default="")
+# @click.option("-p", "--path", type=__path_type(), help=__path_help())
+# @click.option(
+#     "-t", "--timesheet", is_flag=True, help="Show only tasks with time logged."
+# )
+# @click.option("-l", "--logs", is_flag=True, help="Show time logged for each task.")
+# def show(path: str | None, timesheet: bool, logs: bool, period: str, value: str):
+#     path = __get_path(path)
+#     command_show.main(period, value, path, timesheet, logs)
 
-    statistics.print_completed_fasts(fasts)
-    statistics.print_total_fasting_time(fasts)
-    statistics.print_average_fast_length(fasts)
-    statistics.print_longest_fast_length(fasts)
-    statistics.print_longest_fasting_streak(fasts)
-    statistics.print_current_fasting_streak(fasts)
-    print()
 
-    statistics.print_achievements(fasts)
-    print()
-
-    cliutils.ask_for_enter()
-
-    main_menu()
+if __name__ == "__main__":
+    cli()
