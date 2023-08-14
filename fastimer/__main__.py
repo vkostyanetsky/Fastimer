@@ -2,7 +2,7 @@
 
 """This module implements a main entry point of the application."""
 
-from fastimer.app import main
+from fastimer.app import cli
 
 if __name__ == "__main__":
-    main()
+    cli()
