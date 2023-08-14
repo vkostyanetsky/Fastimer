@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+Implementation of a command to start a new fast.
+"""
+
+
 def main(path: str) -> None:
     """
     Starts a new fast.

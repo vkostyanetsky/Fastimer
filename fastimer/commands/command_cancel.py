@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+"""
+Implementation of a command to cancel an ongoing fast.
+"""
+
 def cancel_fast() -> None:
     """
     Cancels the active fast.

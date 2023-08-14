@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+Implementation of a command to stop an ongoing fast.
+"""
+
+
 def main(path: str) -> None:
     """
     Finishes the active fast.

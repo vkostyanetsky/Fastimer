@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+"""
+Implementation of a command to output a fast.
+"""
+
 import datetime
 import typing
 
