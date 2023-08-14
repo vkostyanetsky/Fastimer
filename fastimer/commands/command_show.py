@@ -42,7 +42,6 @@ def main(path: str) -> None:
 
 def __echo_fast_title(fast: dict[str, typing.Any]) -> None:
     if utils.is_fast_stopped(fast):
-
         if utils.is_fast_completed(fast):
             click.echo(click.style(text="COMPLETED FAST", fg="green"))
         else:
