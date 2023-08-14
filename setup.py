@@ -7,6 +7,7 @@ The package's information.
 from setuptools import setup  # type: ignore
 from fastimer import constants
 
+
 with open("README.md", encoding="utf-8-sig") as readme_file:
     long_description = readme_file.read()
 

@@ -41,7 +41,7 @@
 * Added an option to cancel an active fast.
 * Information about an active fast now displays in the main menu.  
 * Implemented an interface allows a user to have a look at previous fasts. 
-* Added more precise description for each achievement & a page with [the full list](Achievements.md) of possible awards.
+* Added more precise description for each achievement & a page with [the full list](ACHIEVEMENTS.md) of possible awards.
 
 ### Fixed
 

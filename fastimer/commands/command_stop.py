@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
-"""
-Implementation of a command to stop an ongoing fast.
-"""
+"""Implementation of a command to stop an ongoing fast."""
+
+import datetime
+
+import click
+
+from fastimer import datafile, utils
 
 
 def main(path: str) -> None:
@@ -10,16 +14,15 @@ def main(path: str) -> None:
     Finishes the active fast.
     """
 
-    pass
+    fasts = datafile.read_fasts(path)
 
+    if utils.get_active_fast(fasts) is not None:
+        fasts[-1]["stopped"] = datetime.datetime.now()
+        datafile.write_fasts(path, fasts)
 
-#
-#     fasts = datafile.read_fasts()
-#
-#     cliutils.clear_terminal()
-#
-#     if cliutils.ask_for_yes_or_no("Do you want to end your ongoing fast?"):
-#         fasts[-1]["stopped"] = datetime.datetime.now()
-#         datafile.write_fasts(fasts)
-#
-#     main_menu()
+        fast = fasts[len(fasts) - 1]
+
+        utils.echo(fast)
+
+    else:
+        click.echo("No active fast to stop!")

@@ -10,7 +10,7 @@ from sys import stdout
 import click
 
 from fastimer import constants
-from fastimer.commands import command_show, command_start
+from fastimer.commands import command_cancel, command_show, command_start, command_stop
 
 
 def __get_path(path: str | None) -> str:
@@ -44,14 +44,15 @@ def cli():
 
 
 @cli.command(help="Start a new fast.")
+@click.argument("length", type=click.INT, default=16)
 @click.option("-p", "--path", type=__path_type(), help=__path_help())
-def start(path: str | None) -> None:
+def start(path: str | None, length: int) -> None:
     """
     Creates a new fast entry in the data file.
     """
 
     path = __get_path(path)
-    command_start.main(path)
+    command_start.main(path, length)
 
 
 @cli.command(help="Show fasts by date.")
@@ -63,6 +64,28 @@ def show(path: str | None) -> None:
 
     path = __get_path(path)
     command_show.main(path)
+
+
+@cli.command(help="Stop ongoing fast.")
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def stop(path: str | None) -> None:
+    """
+    Stops ongoing fast.
+    """
+
+    path = __get_path(path)
+    command_stop.main(path)
+
+
+@cli.command(help="Cancel ongoing fast.")
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def cancel(path: str | None) -> None:
+    """
+    Cancels ongoing fast.
+    """
+
+    path = __get_path(path)
+    command_cancel.main(path)
 
 
 if __name__ == "__main__":

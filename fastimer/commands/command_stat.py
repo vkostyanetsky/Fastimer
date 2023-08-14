@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-"""
-Implementation of a command to output fasting statistics.
-"""
+"""Implementation of a command to output fasting statistics."""
 
 
 def main(path: str) -> None:

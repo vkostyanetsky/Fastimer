@@ -102,7 +102,7 @@ Press [Esc] to return to the main menu.
 
 ### Statistics
 
-The `Statistics` command shows you statistical data and earned [achievements](Achievements.md).
+The `Statistics` command shows you statistical data and earned [achievements](ACHIEVEMENTS.md).
 
 For instance:
 
