@@ -96,7 +96,7 @@ def title_and_value(title: str, value: str, width: int = 15) -> str:
     return f"{title} {value}"
 
 
-def echo(fast: dict[str, typing.Any]) -> None:
+def print_fast(fast: dict[str, typing.Any]) -> None:
     """
     Prints information about a fast.
     """
@@ -128,11 +128,11 @@ def echo(fast: dict[str, typing.Any]) -> None:
 def __echo_fast_title(fast: dict[str, typing.Any]) -> None:
     if is_fast_stopped(fast):
         if is_fast_completed(fast):
-            click.echo(click.style(text="COMPLETED FAST", fg="green"))
+            click.echo(click.style(text="COMPLETED FAST", bold=True, fg="green"))
         else:
-            click.echo(click.style(text="FAILED FAST", fg="red"))
+            click.echo(click.style(text="FAILED FAST", bold=True, fg="red"))
     else:
-        click.echo(click.style(text="ACTIVE FAST", fg="yellow"))
+        click.echo(click.style(text="ACTIVE FAST", bold=True, fg="yellow"))
 
 
 def __echo_fast_from(fast: dict[str, typing.Any]) -> None:
@@ -248,7 +248,7 @@ def __echo_fast_progress_bar(
     done = "#" * done_len
     tail = str(percent)
 
-    click.echo(f"{done}{left} {tail}%")
+    click.echo(click.style(text=f"{done}{left} {tail}%", fg="yellow"))
 
 
 def __get_time_difference(

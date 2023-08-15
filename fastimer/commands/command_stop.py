@@ -17,12 +17,17 @@ def main(path: str) -> None:
     fasts = datafile.read_fasts(path)
 
     if utils.get_active_fast(fasts) is not None:
-        fasts[-1]["stopped"] = datetime.datetime.now()
+        fast = fasts[-1]
+
+        fast["stopped"] = datetime.datetime.now()
         datafile.write_fasts(path, fasts)
 
-        fast = fasts[len(fasts) - 1]
+        click.echo(
+            click.style(text="Done! The active fast has been stopped.", fg="green")
+        )
+        click.echo()
 
-        utils.echo(fast)
+        utils.print_fast(fast)
 
     else:
         click.echo("No active fast to stop!")

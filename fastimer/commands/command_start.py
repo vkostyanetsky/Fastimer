@@ -29,5 +29,5 @@ def main(path: str, length: int) -> None:
         fasts.append(new_fast)
         datafile.write_fasts(path, fasts)
 
-        click.echo("Done! A new fast has been started.")
-        utils.echo(new_fast)
+        click.echo(click.style(text="Done! A new fast has been started.", fg="green"))
+        utils.print_fast(new_fast)
