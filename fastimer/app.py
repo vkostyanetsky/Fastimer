@@ -34,10 +34,10 @@ def __path_type() -> click.Path:
     return click.Path(exists=True)
 
 
-@click.group(help="CLI tool that helps with fasting.")
+@click.group(help="CLI tool that helps to fast.")
 def cli():
     """
-    Main entry point.
+    Main CLI entry point.
     """
 
     stdout.reconfigure(encoding=constants.ENCODING)

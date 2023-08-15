@@ -198,7 +198,7 @@ def __line_for_zone(
     else:
         zone_note = note if start_time <= time < end_time else ""
 
-    zone_note = title_and_value(f"- {title}", f"{zone_from}{zone_note}")
+    zone_note = title_and_value(f"{title}", f"{zone_from}{zone_note}")
 
     return str(zone_note)
 
@@ -215,19 +215,19 @@ def __echo_fasting_zones(fast: dict[str, typing.Any], time: datetime.datetime) -
     click.echo("Fasting zones:")
     click.echo("")
 
-    line = __line_for_zone(note, time, "Anabolic", anabolic_zone, catabolic_zone)
+    line = __line_for_zone(note, time, "1. Anabolic", anabolic_zone, catabolic_zone)
     click.echo(line)
 
-    line = __line_for_zone(note, time, "Catabolic", catabolic_zone, fat_burning_zone)
+    line = __line_for_zone(note, time, "2. Catabolic", catabolic_zone, fat_burning_zone)
     click.echo(line)
 
-    line = __line_for_zone(note, time, "Fat burning", fat_burning_zone, ketosis_zone)
+    line = __line_for_zone(note, time, "3. Fat burning", fat_burning_zone, ketosis_zone)
     click.echo(line)
 
-    line = __line_for_zone(note, time, "Ketosis", ketosis_zone, deep_ketosis_zone)
+    line = __line_for_zone(note, time, "4. Ketosis", ketosis_zone, deep_ketosis_zone)
     click.echo(line)
 
-    line = __line_for_zone(note, time, "Anabolic", deep_ketosis_zone, None)
+    line = __line_for_zone(note, time, "5. Anabolic", deep_ketosis_zone, None)
     click.echo(line)
 
 

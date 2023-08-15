@@ -19,5 +19,7 @@ def main(path: str) -> None:
         fasts.remove(fast)
         datafile.write_fasts(path, fasts)
 
+        click.echo("Done! The active fast has been cancelled.")
+
     else:
         click.echo("No active fast to cancel!")

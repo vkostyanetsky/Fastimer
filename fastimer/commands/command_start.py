@@ -21,15 +21,13 @@ def main(path: str, length: int) -> None:
         click.echo("Fast is already on.")
 
     else:
-        fast = {
+        new_fast = {
             "length": length,
             "started": datetime.datetime.now(),
         }
 
-        fasts.append(fast)
-
+        fasts.append(new_fast)
         datafile.write_fasts(path, fasts)
 
-        fast = fasts[len(fasts) - 1]
-
-        utils.echo(fast)
+        click.echo("Done! A new fast has been started.")
+        utils.echo(new_fast)
