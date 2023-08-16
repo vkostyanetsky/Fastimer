@@ -56,16 +56,16 @@ def start(path: str | None, length: int) -> None:
 
 
 @cli.command(help="Show fasts by date.")
-@click.argument("what", default="today", type=click.Choice(["today", "last", "on"]))
-@click.argument("value", default="")
+@click.argument("what", default="last", type=click.Choice(["last", "prev", "on"]))
+@click.argument("date", default="")
 @click.option("-p", "--path", type=__path_type(), help=__path_help())
-def show(path: str | None, what: str, value: str) -> None:
+def show(path: str | None, what: str, date: str) -> None:
     """
     Outputs detailed information about a fast.
     """
 
     path = __get_path(path)
-    command_show.main(path, what, value)
+    command_show.main(path, what, date)
 
 
 @cli.command(help="Stop ongoing fast.")
