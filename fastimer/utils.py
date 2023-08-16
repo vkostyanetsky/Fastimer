@@ -248,7 +248,7 @@ def __echo_fast_progress_bar(
     done = "#" * done_len
     tail = str(percent)
 
-    click.echo(click.style(text=f"{done}{left} {tail}%", fg="yellow"))
+    click.echo(f"{done}{left} {tail}%")
 
 
 def __get_time_difference(
