@@ -10,7 +10,7 @@ from sys import stdout
 import click
 
 from fastimer import constants
-from fastimer.commands import command_cancel, command_show, command_start, command_stop
+from fastimer.commands import command_cancel, command_show, command_start, command_stop, command_info
 
 
 def __get_path(path: str | None) -> str:
@@ -77,6 +77,17 @@ def stop(path: str | None) -> None:
 
     path = __get_path(path)
     command_stop.main(path)
+
+
+@cli.command(help="Show fasting statistics.")
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def info(path: str | None) -> None:
+    """
+    Show accumulated fasting statistics.
+    """
+
+    path = __get_path(path)
+    command_info.main(path)
 
 
 @cli.command(help="Cancel ongoing fast.")
