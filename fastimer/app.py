@@ -10,7 +10,13 @@ from sys import stdout
 import click
 
 from fastimer import constants
-from fastimer.commands import command_cancel, command_show, command_start, command_stop, command_info
+from fastimer.commands import (
+    command_cancel,
+    command_info,
+    command_show,
+    command_start,
+    command_stop,
+)
 
 
 def __get_path(path: str | None) -> str:

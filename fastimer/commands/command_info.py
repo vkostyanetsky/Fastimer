@@ -2,13 +2,12 @@
 
 """Implementation of a command to output fasting statistics."""
 
-import click
-
-from fastimer import datafile
 import datetime
 import typing
 
-from fastimer import utils
+import click
+
+from fastimer import datafile, utils
 
 
 def main(path: str) -> None:

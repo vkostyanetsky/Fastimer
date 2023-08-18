@@ -14,7 +14,6 @@ def main(path: str, what: str, date: str) -> None:
     fasts = datafile.read_fasts(path)
 
     if fasts:
-
         if what == "last":
             __show_last(fasts)
         elif what == "prev":
@@ -32,7 +31,6 @@ def __show_last(fasts) -> None:
 
 
 def __show_prev(fasts) -> None:
-
     if len(fasts) >= 2:
         utils.print_fast(fasts[-2])
     else:
