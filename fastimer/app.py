@@ -40,13 +40,18 @@ def __path_type() -> click.Path:
     return click.Path(exists=True)
 
 
-@click.group(help="CLI tool that helps to fast.")
-def cli():
+@click.group(help="CLI tool that helps to fast.", invoke_without_command=True)
+@click.pass_context
+@click.option("-p", "--path", type=__path_type(), help=__path_help())
+def cli(context, path: str):
     """
     Main CLI entry point.
     """
 
     stdout.reconfigure(encoding=constants.ENCODING)
+
+    if not context.invoked_subcommand:
+        __show(path)
 
 
 @cli.command(help="Start a new fast.")
@@ -70,6 +75,10 @@ def show(path: str | None, what: str, date: str) -> None:
     Outputs detailed information about a fast.
     """
 
+    __show(path, what, date)
+
+
+def __show(path, what="last", date=""):
     path = __get_path(path)
     command_show.main(path, what, date)
 
