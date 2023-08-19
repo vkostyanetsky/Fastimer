@@ -2,7 +2,7 @@
 
 [![PyPi](https://img.shields.io/pypi/v/fastimer)](https://pypi.org/project/fastimer/) [![mypy](https://github.com/vkostyanetsky/BlogBuilder/actions/workflows/mypy.yml/badge.svg)](https://github.com/vkostyanetsky/BlogBuilder/actions/workflows/mypy.yml) [![pylint](https://github.com/vkostyanetsky/Fastimer/actions/workflows/pylint.yml/badge.svg)](https://github.com/vkostyanetsky/Fastimer/actions/workflows/pylint.yml) [![black](https://github.com/vkostyanetsky/Fastimer/actions/workflows/black.yml/badge.svg)](https://github.com/vkostyanetsky/Fastimer/actions/workflows/black.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-It is a little CLI timer to track fasts, designed specifically to help you monitor your fasting intervals.  
+It is a simple CLI timer to track fasts, designed specifically to help you monitor your fasting intervals.  
 
 ## 😮 What's this for?
 
@@ -23,59 +23,26 @@ pip install fastimer
 Run the app in the directory where you want to store your data:
 
 ```commandline
-fastimer
+fastimer --help
 ```
 
-The script shows you a menu with three commands available: 
+The script will show you available commands. 
 
-1. Start New Fast
-2. Fasts Browser
-3. Statistics  
+## Starting a New Fast
 
-### Start New Fast
+First of them is `start`. Something is obvious: this starts a new fast. Usage:
 
-Something is obvious: the first command starts a new fast. It asks you for a number of hours you will be hungry and turns the timer on.
-
-You can control the active fast directly from the main menu. Have a look:
-
-```
-  ┌───────────────────────────────────────────────────────────────────────────┐
-  │  FASTING TIMER                                                            │
-  ├───────────────────────────────────────────────────────────────────────────┤
-  │                                                                           │
-  │    ACTIVE FAST                                                            │
-  │                                                                           │
-  │    From: Wed, 19:33                                                       │
-  │    Goal: Thu, 09:33 (14 hours)                                            │
-  │                                                                           │
-  │    #######--------------------------------- 19.2%                         │
-  │                                                                           │
-  │    Elapsed time:   02h 41m                                                │
-  │    Remaining:      11h 19m                                                │
-  │                                                                           │
-  ├───────────────────────────────────────────────────────────────────────────┤
-  │                                                                           │
-  │    1 - Stop Active Fast                                                   │
-  │    2 - Fasts Browser                                                      │
-  │    3 - Statistics                                                         │
-  │    4 - Exit                                                               │
-  │                                                                           │
-  └───────────────────────────────────────────────────────────────────────────┘
+```commandline
+fastimer start 20
 ```
 
-So, you can when you started, when you are going to finish, elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :-)
+Twenty here is a number of hours you are going to spend fasting. You can omit this option (default is 16).
 
-## Stop Active Fast
+## Control The Ongoing Fast
 
-When the fast is active, the command `Stop Active Fast` appears and allows you to stop your fast when you decided to do so.
+Once you have started a fast, it is convenient to use `fastimer show` command. It shows elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :-)
 
-It asks you whether you want to finish your fast or cancel it. Finishing means you wish to store the fast in the app history; cancelling means you wish to delete the information about this fast by a reason. 
-
-### Fasts Browser
-
-The `Fasts Browser` command of the main menu allows you to browse through your fasts.
-
-By default, it shows you the very last one, but you switch fasts by using `Left` and `Right` buttons on your keyboard. 
+Here is an example:
 
 ```
 COMPLETED FAST
@@ -100,9 +67,21 @@ Press [Left] and [Right] to switch fasts.
 Press [Esc] to return to the main menu.
 ```
 
-### Statistics
+## Stopping The Ongoing Fast
 
-The `Statistics` command shows you statistical data and earned [achievements](ACHIEVEMENTS.md).
+When the fast is active, the `fastimer stop` command allows you to stop your fast when you decided to do so. It means that the fast is over, and you wish to store the fast in the app's history.
+
+## Cancelling The Ongoing Fast
+
+Another option to do it is `fastimer cancel`.  It means you wish to delete the information about this fast by some reason. 
+
+### Information
+
+```commandline
+fastimer info
+```
+
+This command shows you statistical data and earned [achievements](ACHIEVEMENTS.md).
 
 For instance:
 
