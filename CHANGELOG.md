@@ -1,15 +1,15 @@
 # Changelog
 
-## Unreleased
+## 1.3.0 - 2023-08-20
 
 ### Added
 
-- CLI interface.
-- Support for the new minor PyYAML version.
+- Good old CLI interface (instead of menu).
 
 ### Changed
 
 - Menu has been removed.
+- Support for the modern package versions.
 
 ## 1.2.3 - 2023-02-11
 
