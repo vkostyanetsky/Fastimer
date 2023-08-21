@@ -6,9 +6,9 @@ It is a simple CLI timer to track fasts, designed specifically to help you monit
 
 ## 😮 What's this for?
 
-Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast I did. I was tapping on calendar inside the application, but it was doing nothing ¯\\\_(ツ)\_/¯
+Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast I did. I was tapping on calendar inside the application, but it was doing nothing.
 
-Have no idea what was wrong with it. Anyway, the task is not that hard, so I just wrote my own timer.
+Have no idea what was wrong with it. Anyway, the task is not that hard, so I just wrote my own timer ¯\\\_(ツ)\_/¯
 
 ## 🙃 How to install it?
 
@@ -20,13 +20,15 @@ pip install fastimer
 
 ## 🙂 How to use it?
 
-Run the app in the directory where you want to store your data:
+It is a console application. So you can run this:
 
 ```commandline
 fastimer --help
 ```
 
 The script will show you available commands. 
+
+By default, Fastimer supposes that you store your data in `%USERPROFILE%\Fastimer`. Of course, you can store it anywhere else (using a directory junction, for instance).
 
 ## Starting a New Fast
 
