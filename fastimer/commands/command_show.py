@@ -9,7 +9,7 @@ import click
 from fastimer import datafile, utils
 
 
-def main(path: str, what: str | None, date: str | None) -> None:
+def main(path: str, what: str | None) -> None:
     """
     Outputs a detailed view of a fast.
     """

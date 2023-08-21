@@ -72,12 +72,12 @@ def start(path: str | None, length: int) -> None:
 @click.argument("what", default="last", type=click.Choice(["last", "prev", "on"]))
 @click.argument("date", default="")
 @click.option("-p", "--path", type=__path_type(), help=__path_help())
-def show(path: str | None, what: str, date: str) -> None:
+def show(path: str | None, what: str) -> None:
     """
     Outputs detailed information about a fast.
     """
 
-    __show(path, what, date)
+    __show(path, what)
 
 
 @cli.command(help="Stop ongoing fasting.")
@@ -113,13 +113,13 @@ def cancel(path: str | None) -> None:
     command_cancel.main(path)
 
 
-def __show(path: str | None, what: str | None = "last", date: str | None = "") -> None:
+def __show(path: str | None, what: str | None = "last") -> None:
     """
     Executes SHOW command (outputs detailed information about a fast).
     """
 
     path = __get_path(path)
-    command_show.main(path, what, date)
+    command_show.main(path, what)
 
 
 if __name__ == "__main__":
