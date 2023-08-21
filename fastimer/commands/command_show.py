@@ -21,9 +21,6 @@ def main(path: str, what: str | None, date: str | None) -> None:
             __show_last(fasts)
         elif what == "prev":
             __show_prev(fasts)
-        elif what == "on":
-            pass
-            __show_on(fasts, date)
 
     else:
         click.echo("Nothing to show, since there are no recorded fasts.")
@@ -38,7 +35,3 @@ def __show_prev(fasts: list[dict[str, typing.Any]]) -> None:
         utils.print_fast(fasts[-2])
     else:
         click.echo("Nothing to show, since there is no previous fast.")
-
-
-def __show_on(fasts: list[dict[str, typing.Any]], date: str | None) -> None:
-    pass
