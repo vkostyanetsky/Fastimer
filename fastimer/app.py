@@ -4,8 +4,9 @@
 This file contains the entry point of the application.
 """
 
+import io
 import os
-from sys import stdout
+import sys
 
 import click
 
@@ -43,14 +44,15 @@ def __path_type() -> click.Path:
 @click.group(help="CLI tool that helps to fast.", invoke_without_command=True)
 @click.pass_context
 @click.option("-p", "--path", type=__path_type(), help=__path_help())
-def cli(context, path: str):
+def cli(context: click.core.Context | None, path: str | None) -> None:
     """
     Main CLI entry point.
     """
 
-    stdout.reconfigure(encoding=constants.ENCODING)
+    if isinstance(sys.stdout, io.TextIOWrapper) and sys.version_info >= (3, 7):
+        sys.stdout.reconfigure(encoding=constants.ENCODING)
 
-    if not context.invoked_subcommand:
+    if context is None or not context.invoked_subcommand:
         __show(path)
 
 
@@ -111,7 +113,7 @@ def cancel(path: str | None) -> None:
     command_cancel.main(path)
 
 
-def __show(path, what="last", date=""):
+def __show(path: str | None, what: str | None = "last", date: str | None = "") -> None:
     """
     Executes SHOW command (outputs detailed information about a fast).
     """
@@ -121,4 +123,4 @@ def __show(path, what="last", date=""):
 
 
 if __name__ == "__main__":
-    cli()
+    cli(context=None, path=None)

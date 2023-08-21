@@ -164,8 +164,8 @@ def __echo_fast_elapsed_time(
 
 
 def __echo_fast_extra_time(time: datetime.datetime, goal: datetime.datetime) -> None:
-    value = __get_time_difference(goal, time) if time >= goal else None
-    value = title_and_value("Extra time", value, 15)
+    value = __get_time_difference(goal, time) if time >= goal else ""
+    value = title_and_value(title="Extra time", value=value, width=15)
 
     click.echo(str(value))
 
@@ -176,7 +176,7 @@ def __echo_fast_remaining_time(
     value = (
         __get_time_difference(time - datetime.timedelta(minutes=1), goal)
         if time < goal
-        else None
+        else ""
     )
 
     value = title_and_value("Remaining", value, 15)
