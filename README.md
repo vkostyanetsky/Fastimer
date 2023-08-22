@@ -4,7 +4,7 @@
 
 It is a simple CLI timer to track fasts, designed specifically to help you monitor your fasting intervals.  
 
-## 😮 What's this for?
+## 😮 Why did you make this?
 
 Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast I did. I was tapping on calendar inside the application, but it was doing nothing.
 
