@@ -28,11 +28,11 @@ fastimer --help
 
 The script will show you available commands. 
 
-By default, Fastimer supposes that you store your data in `%USERPROFILE%\Fastimer`. Of course, you can store it anywhere else (using a directory junction, for instance).
+By default, Fastimer expects to see your data in user's home directory (`%USERPROFILE%\Fastimer` on Windows, for example). Of course, you can store it anywhere else using a directory junction or `--path` option.
 
-## Starting a New Fast
+To be short, you want a fasting timer to do three things:
 
-First of them is `start`. Something is obvious: this starts a new fast. Usage:
+### 1. To start a new fast
 
 ```commandline
 fastimer start 20
@@ -40,7 +40,7 @@ fastimer start 20
 
 Twenty here is a number of hours you are going to spend fasting. You can omit this option (default is 16).
 
-## Control The Ongoing Fast
+### 2. To see how fast is going
 
 Once you have started a fast, it is convenient to use `fastimer show` command. It shows elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :-)
 
@@ -69,15 +69,25 @@ Press [Left] and [Right] to switch fasts.
 Press [Esc] to return to the main menu.
 ```
 
-## Stopping The Ongoing Fast
+### 3. To stop or cancel the fast you've started
 
 When the fast is active, the `fastimer stop` command allows you to stop your fast when you decided to do so. It means that the fast is over, and you wish to store the fast in the app's history.
 
-## Cancelling The Ongoing Fast
+Usage:
 
-Another option to do it is `fastimer cancel`.  It means you wish to delete the information about this fast by some reason. 
+```commandline
+fastimer stop
+```
 
-### Information
+Another option to cancel the fast. It means you wish to delete the information about this fast by some weird reason.
+
+Usage:
+
+```commandline
+fastimer cancel
+```
+
+### 4. To see how well you're doing
 
 ```commandline
 fastimer info
@@ -102,11 +112,11 @@ Achievements:
 - COPPER MAN OF HABIT (level 2 badge out of 9). Ten completed fasts in a row!
 ```
 
-## 😌 Questions 
+## 🤔 Questions 
 
 ### Where can I see or edit my fasts?
 
-The script stores all the fasts in `fasts.yaml` file in the working directory (where you run the timer). It has [YAML](https://en.wikipedia.org/wiki/YAML) format, which is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all the fasts in `fasts.yaml` file in the working directory. It has [YAML](https://en.wikipedia.org/wiki/YAML) format, which is quite human-readable, so you can just open it in your lovely text editor.
 
 For instance, the completed fast in the journal looks like this:
 
@@ -118,4 +128,4 @@ For instance, the completed fast in the journal looks like this:
 
 The first parameter is the length of the fast, the second is the start date of this, and the third is the completion date.
 
-For an active fast, the `stopped` parameter is omitted.
+For an ongoing fast, the `stopped` parameter is omitted.
