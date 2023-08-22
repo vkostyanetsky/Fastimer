@@ -1,10 +1,11 @@
 # Changelog
 
-## 1.3.0 - 2023-08-20
+## 1.3.0 - 2023-08-22
 
 ### Added
 
 - Good old CLI interface (instead of menu).
+- Coloring some messages to make them easy to spot.
 
 ### Changed
 
