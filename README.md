@@ -6,9 +6,9 @@ It is a simple CLI timer to track fasts, designed specifically to help you monit
 
 ## 😮 Why did you make this?
 
-Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast I did. I was tapping on calendar inside the application, but it was doing nothing.
+Yeah, there are plenty of apps like this one, you are right. I wrote this one simply out of annoyance when the [Zero](https://www.zerolongevity.com/) app for Android once again refused to show me a fast I did. I was tapping on the calendar inside the application, but it was doing nothing.
 
-Have no idea what was wrong with it. Anyway, the task is not that hard, so I just wrote my own timer ¯\\\_(ツ)\_/¯
+I have no idea what was wrong with it. Anyway, the task is not that hard, so I just wrote my own timer ¯\\\_(ツ)\_/¯
 
 ## 🙃 How to install it?
 
@@ -26,25 +26,25 @@ It is a console application. So you can run this:
 fastimer --help
 ```
 
-The script will show you available commands. 
+The script will show you the available commands. 
 
-By default, Fastimer expects to see your data in user's home directory (`%USERPROFILE%\Fastimer` on Windows, for example). Of course, you can store it anywhere else using a directory junction or `--path` option.
+By default, Fastimer expects to see your data in the user's home directory (`%USERPROFILE%\Fastimer` on Windows, for example). Of course, you can store it anywhere else using a directory junction or `--path` option.
 
 To be short, you want a fasting timer to do four things.
 
 ### 1. To start a new fast
 
-First thing is creating a new fast. Usage:
+The first thing is creating a new fast. Usage:
 
 ```commandline
 fastimer start 20
 ```
 
-Twenty here is a number of hours you are going to spend fasting. You can omit this option (default is 16).
+Twenty above is the number of hours you are going to spend fasting. You can omit this option (the default is 16).
 
-### 2. To see how fast is going
+### 2. To see how fasting is going
 
-Once you have started a fast, it is convenient to use `fastimer show last` command. It shows elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :)
+Once you have started a fast, it is convenient to use `fastimer show last` command. It shows elapsed time, remaining time, and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :)
 
 Here is an example:
 
@@ -68,13 +68,13 @@ Elapsed time:   11h 17m
 Remaining:      08h 43m
 ```
 
-Please note the `fastimer show last` command is the default one. So you can simply type `fastimer show` or `fastimer`, both of them have the same meaning.
+Please note that the `fastimer show last` command is the default one. So you can simply type `fastimer show` or `fastimer`: both of them have the same meaning.
 
-In addition, you can use `fastimer show prev` command to a fast before the last one. 
+In addition, you can use `fastimer show prev` command to show a fast before the last one. 
 
 ### 3. To stop or cancel the fast you've started
 
-When the fast is active, the `fastimer stop` command allows you to stop your fast when you decided to do so. It means that the fast is over, and you wish to store the fast in the app's history.
+When the fast is active, the `fastimer stop` command allows you to stop your fast when you decide to do so. It means that the fast is over and you wish to store the fast in the app's history.
 
 Usage:
 
@@ -82,7 +82,7 @@ Usage:
 fastimer stop
 ```
 
-Another option to cancel the fast. It means you wish to delete the information about this fast by some weird reason.
+Another option is to cancel the fast. It means you wish to delete the information about this fast by for some weird reason.
 
 Usage:
 
@@ -119,7 +119,7 @@ Achievements:
 
 ### Where can I see or edit my fasts?
 
-The script stores all the fasts in `fasts.yaml` file in the working directory. It has [YAML](https://en.wikipedia.org/wiki/YAML) format, which is quite human-readable, so you can just open it in your lovely text editor.
+The script stores all fasts in `fasts.yaml` file in the working directory. It has the [YAML](https://en.wikipedia.org/wiki/YAML) format, which is quite human-readable, so you can just open it in your lovely text editor.
 
 For instance, the completed fast in the journal looks like this:
 
@@ -129,6 +129,6 @@ For instance, the completed fast in the journal looks like this:
   stopped: 2022-07-21 12:00:33
 ```
 
-The first parameter is the length of the fast, the second is the start date of this, and the third is the completion date.
+The first parameter is the length of the fast, the second is the start date, and the third is the completion date.
 
-For an ongoing fast, the `stopped` parameter is omitted.
+For an ongoing fast, the third parameter is omitted.
