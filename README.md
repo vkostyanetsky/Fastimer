@@ -30,9 +30,11 @@ The script will show you available commands.
 
 By default, Fastimer expects to see your data in user's home directory (`%USERPROFILE%\Fastimer` on Windows, for example). Of course, you can store it anywhere else using a directory junction or `--path` option.
 
-To be short, you want a fasting timer to do three things:
+To be short, you want a fasting timer to do four things.
 
 ### 1. To start a new fast
+
+First thing is creating a new fast. Usage:
 
 ```commandline
 fastimer start 20
@@ -42,32 +44,33 @@ Twenty here is a number of hours you are going to spend fasting. You can omit th
 
 ### 2. To see how fast is going
 
-Once you have started a fast, it is convenient to use `fastimer show` command. It shows elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :-)
+Once you have started a fast, it is convenient to use `fastimer show last` command. It shows elapsed time, remaining time and something that looks like a progress bar to visualize your spilled blood, sweat, and tears :)
 
 Here is an example:
 
 ```
-COMPLETED FAST
+ACTIVE FAST
 
-From: Mon, 19:27
-Goal: Tue, 09:27 (14 hours)
+From: Tue, 11:25
+Goal: Wed, 07:25 (20 hours)
 
 Fasting zones:
 
-- Anabolic:     from Mon, 19:27
-- Catabolic:    from Mon, 23:27 <-- you were here
-- Fat burning:  from Tue, 11:27
-- Ketosis:      from Tue, 19:27
-- Anabolic:     from Thu, 19:27
+1. Anabolic:    from Tue, 11:25
+2. Catabolic:   from Tue, 15:25 <-- you are here
+3. Fat burning: from Wed, 03:25
+4. Ketosis:     from Wed, 11:25
+5. Anabolic:    from Fri, 11:25
 
-######################################## 101.3%
+######################------------------ 56.5%
 
-Elapsed time:   14h 11m
-Extra time:     00h 11m
-
-Press [Left] and [Right] to switch fasts.
-Press [Esc] to return to the main menu.
+Elapsed time:   11h 17m
+Remaining:      08h 43m
 ```
+
+Please note the `fastimer show last` command is the default one. So you can simply type `fastimer show` or `fastimer`, both of them have the same meaning.
+
+In addition, you can use `fastimer show prev` command to a fast before the last one. 
 
 ### 3. To stop or cancel the fast you've started
 
