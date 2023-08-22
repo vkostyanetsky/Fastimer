@@ -70,7 +70,6 @@ def start(path: str | None, length: int) -> None:
 
 @cli.command(help="Show details of fasting.")
 @click.argument("what", default="last", type=click.Choice(["last", "prev", "on"]))
-@click.argument("date", default="")
 @click.option("-p", "--path", type=__path_type(), help=__path_help())
 def show(path: str | None, what: str) -> None:
     """
