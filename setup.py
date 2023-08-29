@@ -22,8 +22,8 @@ setup(
     python_requires=">=3.10",
     packages=["fastimer"],
     install_requires=[
-        "pyyaml~=6.0.1",
-        "click~=8.1.6",
+        "pyyaml==6.0.1",
+        "click==8.1.7",
     ],
     entry_points={"console_scripts": ["fastimer=fastimer.app:cli"]},
     author="Vlad Kostyanetsky",
