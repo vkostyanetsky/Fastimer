@@ -28,16 +28,6 @@ def get_time_difference(
     return hours, minutes
 
 
-def print_with_alignment(title: str, value: str, width: int = 15) -> None:
-    """
-    Prints a string with an alignment given.
-    """
-
-    title = f"{title}:".ljust(width)
-
-    print(f"{title} {value}")
-
-
 def get_active_fast(
     fasts: list[dict[str, datetime.datetime | int]]
 ) -> dict[str, typing.Any] | None:

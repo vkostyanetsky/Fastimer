@@ -127,10 +127,6 @@ def __print_achievements(fasts: list[dict[str, typing.Any]]) -> None:
             print(f"- {achievement}")
 
 
-def __print_with_alignment(title: str, value: str) -> None:
-    utils.print_with_alignment(title, value, 24)
-
-
 def __get_achievements(fasts: list[dict[str, typing.Any]]) -> list[str]:
     result: list[str] = []
 
@@ -361,3 +357,13 @@ def __get_longest_fast_length(fasts: list[dict[str, typing.Any]]) -> tuple[int, 
 
 def __get_period_string(hours: float, minutes: float) -> str:
     return f"{int(hours)}h {int(minutes)}m"
+
+
+def __print_with_alignment(title: str, value: str, width: int = 24) -> None:
+    """
+    Prints a string with an alignment given.
+    """
+
+    title = f"{title}:".ljust(width)
+
+    print(f"{title} {value}")
